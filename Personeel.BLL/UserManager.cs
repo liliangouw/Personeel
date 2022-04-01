@@ -28,7 +28,8 @@ namespace Personeel.BLL
                      Name=name,
                      UserRightID= right.Id,
                      ImagePath="default.png",
-                     Basicmoney = basicMoney
+                     Basicmoney = basicMoney,
+                     Beginworkdate = DateTime.Now,
                    });
                 }
             }

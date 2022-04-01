@@ -16,10 +16,11 @@ namespace Personeel.Models
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CreateTime { get; set; } = DateTime.Now;
+        public DateTime CreateTime { get; set; } = DateTime.Today;
+
         /// <summary>
         /// 是否被删除(伪删除)
         /// </summary>
-        public bool IsRemoved { get; set; }
+        public bool IsRemoved { get; set; } = false;
     }
 }
