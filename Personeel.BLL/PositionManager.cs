@@ -47,17 +47,16 @@ namespace Personeel.BLL
                 await iPositionService.EditAsync(user);
             }
         }
-        //获取职位列表
-        public async Task<PositionInfoDto> GetInfo()
+        //获取职位列表，不完善，只能获取第一个
+        public async  Task<PositionInfoDto> GetInfo()
         {
             using (IDAL.IPositionService iPositionService=new DAL.PositionService())
             {
-                return  iPositionService.GetAllAsync().Select(m => new DTO.PositionInfoDto()
+                return await iPositionService.GetAllAsync().Where(m => true).Select(m => new PositionInfoDto()
                 {
                     PositionName = m.Posname,
                     PositionDescribe = m.Posdescribe
-                });
-                
+                }).FirstAsync();
             }
         }
     }

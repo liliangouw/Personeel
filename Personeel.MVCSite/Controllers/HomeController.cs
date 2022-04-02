@@ -29,6 +29,7 @@ namespace Personeel.MVCSite.Controllers
 
             return View();
         }
+
         [HttpGet]
         
         public ActionResult AddUser()
@@ -56,6 +57,27 @@ namespace Personeel.MVCSite.Controllers
                 }
                 IBLL.IUserManager userManager = new UserManager();
                 await userManager.AddUser(model.Email, model.Password, model.Name,right, model.BasicMoney);
+                return Content("注册成功");
+            }
+            return View(model);
+        }
+
+        public ActionResult PositionList()
+        {
+            return View();
+        }
+        public ActionResult AddPosition()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddPosition(Models.PositionViewModels.AddPosition model)
+        {
+            if (ModelState.IsValid)
+            {
+                IBLL.IPositionManager ipositionManager = new PositionManager();
+                await ipositionManager.AddPosition(model.PosName,model.PosDesc);
                 return Content("注册成功");
             }
             return View(model);
