@@ -16,7 +16,7 @@ namespace Personeel.Models
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CreateTime { get; set; } = DateTime.Today;
+        public DateTime CreateTime { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 是否被删除(伪删除)

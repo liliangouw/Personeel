@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Personeel.BLL;
-using Personeel.MVCSite.Models.UserViwModels;
+using Personeel.MVCSite.Models.UserViewModels;
 
 namespace Personeel.MVCSite.Controllers
 {
@@ -37,7 +37,7 @@ namespace Personeel.MVCSite.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddUser(Models.UserViwModels.AddViewModel model)
+        public async Task<ActionResult> AddUser(Models.UserViewModels.AddViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +57,39 @@ namespace Personeel.MVCSite.Controllers
                 IBLL.IUserManager userManager = new UserManager();
                 await userManager.AddUser(model.Email, model.Password, model.Name,right, model.BasicMoney);
                 return Content("注册成功");
+            }
+            return View(model);
+        }
+        public ActionResult AddPosition()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddPosition(Models.PositionViewModels.AddViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IBLL.IPositionManager positionManager= new PositionManager();
+                await positionManager.AddPosition(model.PosName, model.PosDescribe);
+                return Content("添加职位成功");
+            }
+            return View(model);
+        }
+
+        public ActionResult AddDepartment()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddDepartment(Models.DepartmentViewModels.AddViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IBLL.IDepartmentManager departmentManager = new DepartmentManager();
+                await departmentManager.AddDep(model.DepName, model.DepDes);
+                return Content("添加部门成功");
             }
             return View(model);
         }

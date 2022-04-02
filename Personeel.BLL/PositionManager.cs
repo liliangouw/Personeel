@@ -52,11 +52,11 @@ namespace Personeel.BLL
         {
             using (IDAL.IPositionService iPositionService=new DAL.PositionService())
             {
-                return  iPositionService.GetAllAsync().Select(m => new DTO.PositionInfoDto()
+                return await  iPositionService.GetAllAsync().Select(m => new DTO.PositionInfoDto()
                 {
                     PositionName = m.Posname,
                     PositionDescribe = m.Posdescribe
-                });
+                }).FirstAsync();
                 
             }
         }
