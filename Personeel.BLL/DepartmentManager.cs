@@ -37,7 +37,7 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task<DepInfoDto> GetInfo()
+        public async Task<List<DepInfoDto>> GetInfo()
         {
             using (IDepartmentService departmentService = new DepartmentService())
             {
@@ -45,7 +45,7 @@ namespace Personeel.BLL
                 {
                     DepName=m.Depname,
                     DepDes=m.Depdescribe
-                }).FirstAsync();
+                }).ToListAsync();
 
             }
         }

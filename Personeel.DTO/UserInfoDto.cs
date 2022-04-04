@@ -88,6 +88,8 @@ namespace Personeel.DTO
         /// 离职日期
         /// </summary>
         public DateTime NotWorkDate { get; set; }
+        public int UserRight { get; set; }
+
 
 
     }

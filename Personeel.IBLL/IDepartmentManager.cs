@@ -11,6 +11,6 @@ namespace Personeel.IBLL
         Task AddDep(string depName, string depDes);
         Task EditDep(string depName, string depDes);
         Task RemoveDep(string depName);
-        Task<DTO.DepInfoDto>GetInfo();
+        Task<List<DTO.DepInfoDto>>GetInfo();
     }
 }

@@ -13,5 +13,6 @@ namespace Personeel.IBLL
         Task ChangeInfo(string email,string name, string imagePath, string gender, DateTime birthday, int idNum, string wedlock,
                         string race, string nativePlace, string politic, int phone, string tipTopDegree, string school);
         Task <DTO.UserInfoDto> GetUserByEmail(string email);
+        Task<List<DTO.UserInfoDto>> GetAllUser();
     }
 }

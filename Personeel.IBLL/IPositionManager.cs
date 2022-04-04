@@ -11,7 +11,7 @@ namespace Personeel.IBLL
         Task AddPosition(string posName, string posDescribe);
         Task ChangeInfo(string posName, string posDescribe);
         Task RemovePosition(string posName);
-        Task<DTO.PositionInfoDto> GetInfo();
+        Task<List<DTO.PositionInfoDto>> GetInfo();
 
     }
 }

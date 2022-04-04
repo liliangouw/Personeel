@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Personeel.Models;
 using System.Data.Entity;
 using Personeel.DAL;
+using Personeel.IDAL;
 
 namespace Personeel.BLL
 {
@@ -71,6 +72,37 @@ namespace Personeel.BLL
             }
         }
 
+        public async Task<List<UserInfoDto>> GetAllUser()
+        {
+            using (IUserService userService=new UserService())
+            {
+                return  await userService.GetAllAsync().Where(m => m.IsRemoved == false).Select(m =>
+                    new DTO.UserInfoDto()
+                    {
+                        Email = m.Email,
+                        ImagePath = m.ImagePath,
+                        UserNum = m.UserNum,
+                        Name = m.Name,
+                        Gender = m.Gender,
+                        Birthday = m.Birthday,
+                        IdNumber = m.IDNumber,
+                        Wedlock = m.Wedlock,
+                        Race = m.Race,
+                        NativePlace = m.Nativeplace,
+                        Phone = m.Phone,
+                        Politic = m.Politic,
+                        School = m.School,
+                        TipTopDegree = m.Tiptopdegree,
+                        BeginWorkDate = m.Beginworkdate,
+                        BeFormDate = m.Beformdate,
+                        NotWorkDate = m.Notworkdate,
+                        Department = m.Department.Depname,
+                        Position = m.Position.Posname,
+                        BasicMoney = m.Basicmoney
+                    }).ToListAsync();
+            }
+        }
+
         public async Task<UserInfoDto> GetUserByEmail(string email)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
@@ -99,7 +131,8 @@ namespace Personeel.BLL
                             NotWorkDate = m.Notworkdate,
                             Department = m.Department.Depname,
                             Position = m.Position.Posname,
-                            BasicMoney = m.Basicmoney
+                            BasicMoney = m.Basicmoney,
+                            UserRight = m.UserRight.UserPower
                         }).FirstAsync();
                 }
                 else

@@ -48,7 +48,7 @@ namespace Personeel.BLL
             }
         }
         //获取职位列表，不完善，只能获取第一个
-        public async  Task<PositionInfoDto> GetInfo()
+        public async  Task<List<PositionInfoDto>> GetInfo()
         {
             using (IDAL.IPositionService iPositionService=new DAL.PositionService())
             {
@@ -56,7 +56,7 @@ namespace Personeel.BLL
                 {
                     PositionName = m.Posname,
                     PositionDescribe = m.Posdescribe
-                }).FirstAsync();
+                }).ToListAsync();
                 
             }
         }
