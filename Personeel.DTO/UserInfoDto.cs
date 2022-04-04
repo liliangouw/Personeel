@@ -88,7 +88,10 @@ namespace Personeel.DTO
         /// 离职日期
         /// </summary>
         public DateTime NotWorkDate { get; set; }
-        public int UserRight { get; set; }
+        /// <summary>
+        /// 权限
+        /// </summary>
+        public int UserPower { get; set; }
 
 
 

@@ -29,5 +29,32 @@ namespace Personeel.MVCSite.Controllers
 
             return View();
         }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Login(AddViewModel model)
+        {
+            IBLL.IUserManager userManager = new UserManager();
+            if ( await userManager.Login(model.Email, model.Password))
+            {
+                DTO.UserInfoDto user=await userManager.GetUserByEmail(model.Email);
+                if (user.UserPower == 0)
+                {
+                    return RedirectToAction("Index", "User");
+                }
+                else if(user.UserPower==1)
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+            }
+            return View();
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace Personeel.IBLL
         Task RemoveDep(Guid id);
         Task<List<DTO.DepInfoDto>>GetInfo();
         Task<DTO.DepInfoDto> GetInfoById(Guid id);
+        Task<DTO.DepInfoDto> GetInfoByName(string depName);
     }
 }

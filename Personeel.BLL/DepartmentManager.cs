@@ -67,6 +67,22 @@ namespace Personeel.BLL
             }
         }
 
+        public async Task<DepInfoDto> GetInfoByName(string depName)
+        {
+            using (IDepartmentService departmentService = new DepartmentService())
+            {
+                Models.Department department = await departmentService.GetAllAsync().Where(m => m.Depname ==depName ).FirstAsync();
+                DepInfoDto infoDto = new DepInfoDto()
+                {
+                    DepGuid = department.Id,
+                    DepName = department.Depname,
+                    DepDes = department.Depdescribe
+                };
+                return infoDto;
+
+            }
+        }
+
         public async Task RemoveDep(Guid id)
         {
             using(IDepartmentService departmentService=new DepartmentService())

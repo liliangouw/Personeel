@@ -74,5 +74,20 @@ namespace Personeel.BLL
                 return position;
             }
         }
+
+        public async Task<PositionInfoDto> GetInfoByName(string posName)
+        {
+            using (IPositionService positionService = new PositionService())
+            {
+                Position positionModel = await positionService.GetAllAsync().Where(m=>m.Posname==posName).FirstAsync();
+                DTO.PositionInfoDto position = new PositionInfoDto()
+                {
+                    PositionGuid = positionModel.Id,
+                    PositionName = positionModel.Posname,
+                    PositionDescribe = positionModel.Posdescribe
+                };
+                return position;
+            }
+        }
     }
 }

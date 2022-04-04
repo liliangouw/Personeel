@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.DTO;
+using Personeel.IBLL;
 using Personeel.MVCSite.Models.UserViewModels;
 
 namespace Personeel.MVCSite.Areas.Admin.Controllers
@@ -27,7 +29,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                     Position = item.Position,
                     Department = item.Department,
                     Email = item.Email,
-                    UserPower = item.UserRight
+                    UserPower = item.UserPower
                 };
                 userListViewModels.Add(tempModel);
             }
@@ -35,13 +37,32 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(string email)
         {
-            return View();
+            IUserManager userManager = new UserManager();
+            UserInfoDto userInfo=await userManager.GetUserByEmail(email);
+            UserListViewModel model = new UserListViewModel()
+            {
+                Email = userInfo.Email,
+                Department = userInfo.Department,
+                Name = userInfo.Name,
+                Position = userInfo.Position,
+                UserNum = userInfo.UserNum,
+                UserPower = userInfo.UserPower
+            };
+            return View(model);
         }
 
         public ActionResult AddUser()
         {
+            //下拉框传值
+            //IDepartmentManager departmentManager = new DepartmentManager();
+            //List<DTO.DepInfoDto> depList = await departmentManager.GetInfo();
+            //IPositionManager positionManager = new PositionManager();
+            //List<DTO.PositionInfoDto> posList = await positionManager.GetInfo();
+            //AddViewModel model = new AddViewModel();
+            //model.DepList = depList;
+            //model.PosList = posList;
             return View();
         }
         [HttpPost]
@@ -63,26 +84,41 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 {
                     right = 2;
                 }
+
+                IBLL.IPositionManager positionManager = new PositionManager();
+                IBLL.IDepartmentManager departmentManager = new DepartmentManager();
+                DTO.PositionInfoDto positionInfo=await positionManager.GetInfoByName(model.Position);
+                DTO.DepInfoDto depInfo = await departmentManager.GetInfoByName(model.Department);
                 IBLL.IUserManager userManager = new UserManager();
-                await userManager.AddUser(model.Email, model.Password, model.Name, right, model.BasicMoney);
-                return Content("注册成功");
+                await userManager.AddUser(model.Email, model.Password, model.Name, right, model.BasicMoney,depInfo.DepGuid,positionInfo.PositionGuid);
+                return RedirectToAction("Index");
             }
             return View(model);
         }
 
         // GET: Admin/User/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(string email)
         {
-            return View();
+            IUserManager userManager = new UserManager();
+            UserInfoDto userInfo = await userManager.GetUserByEmail(email);
+            UserListViewModel model = new UserListViewModel()
+            {
+                Email = userInfo.Email,
+                Department = userInfo.Department,
+                Name = userInfo.Name,
+                Position = userInfo.Position,
+                UserNum = userInfo.UserNum,
+                UserPower = userInfo.UserPower
+            };
+            return View(model);
         }
 
         // POST: Admin/User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string email, UserListViewModel userListViewModel)
         {
             try
             {
-                // TODO: Add update logic here
 
                 return RedirectToAction("Index");
             }

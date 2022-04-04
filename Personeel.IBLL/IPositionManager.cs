@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Personeel.DTO;
 
 namespace Personeel.IBLL
 {
@@ -13,6 +14,7 @@ namespace Personeel.IBLL
         Task RemovePosition(Guid Id);
         Task<List<DTO.PositionInfoDto>> GetInfo();
         Task<DTO.PositionInfoDto> GetInfoById(Guid id);
+        Task<PositionInfoDto> GetInfoByName(string posName);
 
     }
 }

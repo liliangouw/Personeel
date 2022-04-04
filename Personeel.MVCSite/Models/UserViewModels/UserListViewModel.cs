@@ -17,7 +17,7 @@ namespace Personeel.MVCSite.Models.UserViewModels
         public  string Department { get; set; }
         [Display(Name = "职位")]
         public  string Position { get; set; }
-        [Display(Name = "账号")]
+        [Display(Name = "邮箱")]
         public  string Email { get; set; }
         [Display(Name = "角色")]
         public  int UserPower { get; set; }

@@ -15,7 +15,7 @@ namespace Personeel.BLL
 {
     public class UserManager : IUserManager
     {
-        public async Task AddUser(string email, string password, string name, int userRight,int basicMoney)
+        public async Task AddUser(string email, string password, string name, int userRight,int basicMoney,Guid departmentId,Guid positionId)
         {
             using (IDAL.IUserRightService userRightService=new DAL.UserRightService())
             {
@@ -31,6 +31,8 @@ namespace Personeel.BLL
                      ImagePath="default.png",
                      Basicmoney = basicMoney,
                      Beginworkdate = DateTime.Now,
+                     DepartmentID = departmentId,
+                     PositionID = positionId
                    });
                 }
             }
@@ -132,7 +134,7 @@ namespace Personeel.BLL
                             Department = m.Department.Depname,
                             Position = m.Position.Posname,
                             BasicMoney = m.Basicmoney,
-                            UserRight = m.UserRight.UserPower
+                            UserPower = m.UserRight.UserPower
                         }).FirstAsync();
                 }
                 else
@@ -142,11 +144,11 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task<bool> Login(string email, string password,int userRight)
+        public async Task<bool> Login(string email, string password)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
             {
-                return await userService.GetAllAsync().AnyAsync(m => m.Email == email && m.Password == password&&m.UserRight.UserPower==userRight);
+                return await userService.GetAllAsync().AnyAsync(m => m.Email == email && m.Password == password);
             }
         }
     }
