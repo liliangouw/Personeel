@@ -1,0 +1,34 @@
+﻿@model Personeel.MVCSite.Models.PositionViewModels.PosListViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>职位详情</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PosDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PosDes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("修改", "Edit", new { id = Model.PosGuid }) |
+    @Html.ActionLink("返回列表", "Index")
+</p>

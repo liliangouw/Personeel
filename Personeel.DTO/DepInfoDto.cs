@@ -8,7 +8,8 @@ namespace Personeel.DTO
 {
     public class DepInfoDto
     {
-       public string DepName { get; set; }
+        public  Guid DepGuid { get; set; }
+        public string DepName { get; set; }
        public string DepDes { get; set; }
     }
 }

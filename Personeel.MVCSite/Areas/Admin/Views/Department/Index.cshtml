@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Personeel.MVCSite.Models.DepartmentViewModels.DepListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>部门管理</h2>
+
+<p>
+    @Html.ActionLink("添加部门", "AddDepartment")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DepName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepDes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepDes)
+        </td>
+        <td>
+            @Html.ActionLink("修改", "Edit", new { id=item.DepGuid  }) |
+            @Html.ActionLink("详情", "Details", new { id = item.DepGuid }) |
+            @Html.ActionLink("删除", "Delete", new { id = item.DepGuid })
+        </td>
+    </tr>
+}
+
+</table>

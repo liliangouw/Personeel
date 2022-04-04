@@ -27,24 +27,22 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task ChangeInfo(string posName, string posDescribe)
+        public async Task ChangeInfo(Guid id,string posName, string posDescribe)
         {
             using (IDAL.IPositionService iPositionService=new DAL.PositionService())
             {
-                var user = await iPositionService.GetAllAsync().FirstAsync(m => m.Posname == posName);
+                var user = await iPositionService.GetAllAsync().FirstAsync(m => m.Id == id);
                 user.Posname = posName;
                 user.Posdescribe = posDescribe;
                 await iPositionService.EditAsync(user);
             }
         }
 
-        public async Task RemovePosition(string posName)
+        public async Task RemovePosition(Guid id)
         {
             using (IDAL.IPositionService iPositionService = new DAL.PositionService())
             {
-                var user = await iPositionService.GetAllAsync().FirstAsync(m => m.Posname == posName);
-                user.IsRemoved = false;
-                await iPositionService.EditAsync(user);
+                await iPositionService.RemoveAsync(id);
             }
         }
         //获取职位列表，不完善，只能获取第一个
@@ -54,10 +52,26 @@ namespace Personeel.BLL
             {
                 return await  iPositionService.GetAllAsync().Select(m => new DTO.PositionInfoDto()
                 {
+                    PositionGuid = m.Id,
                     PositionName = m.Posname,
                     PositionDescribe = m.Posdescribe
                 }).ToListAsync();
                 
+            }
+        }
+
+        public async Task<PositionInfoDto> GetInfoById(Guid id)
+        {
+            using (IPositionService positionService=new PositionService())
+            {
+                Position positionModel = await positionService.GetOneByIdAsync(id);
+                DTO.PositionInfoDto position = new PositionInfoDto()
+                {
+                    PositionGuid = positionModel.Id,
+                    PositionName = positionModel.Posname,
+                    PositionDescribe = positionModel.Posdescribe
+                };
+                return position;
             }
         }
     }

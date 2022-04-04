@@ -6,11 +6,14 @@ using System.Web;
 
 namespace Personeel.MVCSite.Models.PositionViewModels
 {
-    public class AddViewModel
+    public class PosListViewModel
     {
+        public Guid PosGuid { get; set; }
+        [Required]
         [Display(Name = "职位名称")]
         public string PosName { get; set; }
+        [Required]
         [Display(Name = "职位描述")]
-        public string PosDescribe { get; set; }
+        public string PosDes { get; set; }
     }
 }

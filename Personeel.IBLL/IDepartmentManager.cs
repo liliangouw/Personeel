@@ -10,7 +10,8 @@ namespace Personeel.IBLL
     {
         Task AddDep(string depName, string depDes);
         Task EditDep(string depName, string depDes);
-        Task RemoveDep(string depName);
+        Task RemoveDep(Guid id);
         Task<List<DTO.DepInfoDto>>GetInfo();
+        Task<DTO.DepInfoDto> GetInfoById(Guid id);
     }
 }

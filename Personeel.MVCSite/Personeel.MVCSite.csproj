@@ -135,7 +135,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DepartmentViewModels\AddViewModel.cs" />
+    <Compile Include="Models\DepartmentViewModels\DepListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
+    <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
     <Compile Include="Models\UserViewModels\AddViewModel.cs" />
     <Compile Include="Models\UserViewModels\UserListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,6 +157,16 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\User\AddUser.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\AddDepartment.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\AddPosition.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Position\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -183,8 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Department\" />
-    <Folder Include="Areas\Admin\Views\Position\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

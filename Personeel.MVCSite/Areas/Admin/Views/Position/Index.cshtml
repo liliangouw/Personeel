@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Personeel.MVCSite.Models.PositionViewModels.PosListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>职位管理</h2>
+
+<p>
+    @Html.ActionLink("添加职位", "AddPosition")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PosName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PosDes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PosName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PosDes)
+        </td>
+        <td>
+            @Html.ActionLink("修改", "Edit", new {  id=item.PosGuid  }) |
+            @Html.ActionLink("详情", "Details", new { id = item.PosGuid }) |
+            @Html.ActionLink("删除", "Delete", new { id = item.PosGuid })
+        </td>
+    </tr>
+}
+
+</table>

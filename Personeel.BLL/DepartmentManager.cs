@@ -43,6 +43,7 @@ namespace Personeel.BLL
             {
                 return await departmentService.GetAllAsync().Select(m => new DTO.DepInfoDto()
                 {
+                    DepGuid = m.Id,
                     DepName=m.Depname,
                     DepDes=m.Depdescribe
                 }).ToListAsync();
@@ -50,13 +51,27 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task RemoveDep(string depName)
+        public async Task<DepInfoDto> GetInfoById(Guid id)
+        {
+            using (IDepartmentService departmentService = new DepartmentService())
+            {
+                 Models.Department department= await departmentService.GetAllAsync().Where(m=>m.Id==id).FirstAsync();
+                 DepInfoDto infoDto = new DepInfoDto()
+                 {
+                     DepGuid = department.Id,
+                     DepName = department.Depname,
+                     DepDes = department.Depdescribe
+                 };
+                 return infoDto;
+
+            }
+        }
+
+        public async Task RemoveDep(Guid id)
         {
             using(IDepartmentService departmentService=new DepartmentService())
             {
-                var Dep = await departmentService.GetAllAsync().FirstAsync(m => m.Depname == depName);
-                Dep.IsRemoved = false;
-                await departmentService.EditAsync(Dep);
+                await departmentService.RemoveAsync(id);
             }
             
 

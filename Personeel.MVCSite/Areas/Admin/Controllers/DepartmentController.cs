@@ -5,23 +5,43 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Personeel.BLL;
+using Personeel.IBLL;
+using Personeel.MVCSite.Models.DepartmentViewModels;
 
 namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
     public class DepartmentController : Controller
     {
         // GET: Admin/Department
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            IBLL.IDepartmentManager departmentManager = new DepartmentManager();
+            List<DTO.DepInfoDto> depInfo = await departmentManager.GetInfo();
+            List<DepListViewModel> depList = new List<DepListViewModel>();
+            foreach (var item in depInfo)
+            {
+                DepListViewModel tempModel = new DepListViewModel();
+                tempModel.DepGuid= item.DepGuid;
+                tempModel.DepName = item.DepName;
+                tempModel.DepDes = item.DepDes;
+                depList.Add(tempModel);
+            }
+            return View(depList);
         }
 
         // GET: Admin/Department/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(Guid id)
         {
-            return View();
+            
+            IBLL.IDepartmentManager departmentManager = new DepartmentManager();
+            DepListViewModel dep = new DepListViewModel();
+            DTO.DepInfoDto depinfo =await departmentManager.GetInfoById(id);
+            dep.DepGuid = depinfo.DepGuid;
+            dep.DepName = depinfo.DepName;
+            dep.DepDes = depinfo.DepDes;
+            return View(dep);
         }
-
+        [HttpGet]
         public ActionResult AddDepartment()
         {
             return View();
@@ -34,25 +54,31 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
                 await departmentManager.AddDep(model.DepName, model.DepDes);
-                return Content("添加部门成功");
+                return RedirectToAction("Index");
             }
             return View(model);
         }
 
         // GET: Admin/Department/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            IBLL.IDepartmentManager departmentManager = new DepartmentManager();
+            DepListViewModel dep = new DepListViewModel();
+            DTO.DepInfoDto depinfo = await departmentManager.GetInfoById(id);
+            dep.DepGuid = depinfo.DepGuid;
+            dep.DepName = depinfo.DepName;
+            dep.DepDes = depinfo.DepDes;
+            return View(dep);
         }
 
         // POST: Admin/Department/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, DepListViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
-
+                IBLL.IDepartmentManager departmentManager = new DepartmentManager();
+                departmentManager.EditDep(model.DepName, model.DepDes);
                 return RedirectToAction("Index");
             }
             catch
@@ -62,19 +88,25 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         }
 
         // GET: Admin/Department/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            return View();
+            IBLL.IDepartmentManager departmentManager = new DepartmentManager();
+            DepListViewModel dep = new DepListViewModel();
+            DTO.DepInfoDto depinfo = await departmentManager.GetInfoById(id);
+            dep.DepGuid = depinfo.DepGuid;
+            dep.DepName = depinfo.DepName;
+            dep.DepDes = depinfo.DepDes;
+            return View(dep);
         }
 
         // POST: Admin/Department/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id,DepListViewModel depList)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                IDepartmentManager departmentManager = new DepartmentManager();
+                departmentManager.RemoveDep(id);
                 return RedirectToAction("Index");
             }
             catch
