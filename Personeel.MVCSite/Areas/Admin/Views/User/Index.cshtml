@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>用户管理</h2>
 
 <p>
-    @Html.ActionLink("Create New", "AddUser")
+    @Html.ActionLink("添加用户", "AddUser")
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.UserPower)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {    }) |
-            @Html.ActionLink("Details", "Details", new { email=item.Email }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("修改", "Edit", new { email=item.Email   }) |
+            @Html.ActionLink("详情", "Details", new { email=item.Email }) |
+            @Html.ActionLink("删除", "Delete", new {  email=item.Email })
         </td>
     </tr>
 }

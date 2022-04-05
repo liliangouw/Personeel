@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Personeel.BLL;
+using Personeel.IBLL;
 using Personeel.MVCSite.Models.UserViewModels;
 
 namespace Personeel.MVCSite.Controllers
@@ -35,25 +36,48 @@ namespace Personeel.MVCSite.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> Login(AddViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel model)
         {
-            IBLL.IUserManager userManager = new UserManager();
-            if ( await userManager.Login(model.Email, model.Password))
+            if (ModelState.IsValid)
             {
-                DTO.UserInfoDto user=await userManager.GetUserByEmail(model.Email);
-                if (user.UserPower == 0)
+               IBLL.IUserManager userManager = new UserManager();
+                if ( await userManager.Login(model.LoginName, model.LoginPwd))
                 {
-                    return RedirectToAction("Index", "User");
-                }
-                else if(user.UserPower==1)
-                {
-                    
-                }
-                else
-                {
-                    
+                    if (model.RememberMe)
+                    {
+                        Response.Cookies.Add(new HttpCookie("loginName")
+                        {
+                            Value = model.LoginName,
+                            Expires = DateTime.Now.AddDays(7)
+                        });
+                    }
+                    else
+                    {
+                        Session["loginName"] = model.LoginName;
+                    }
+                    //跳转
+                    DTO.UserInfoDto user=await userManager.GetUserByEmail(model.LoginName);
+                    if (user.UserPower == 0)
+                    {
+                        return RedirectToAction("Index", "User", new { area = "Admin" });
+                    }
+                    else if(user.UserPower==1)
+                    {
+                        return Content("欢迎你人事管理员");
+                    }
+                    else
+                    {
+                        return Content("欢迎您普通员工");
+                    }
+
                 }
             }
+            else
+            {
+                ModelState.AddModelError("","您的账号密码有误");
+            }
+            
             return View();
         }
     }

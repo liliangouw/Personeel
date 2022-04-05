@@ -119,7 +119,7 @@ namespace Personeel.Models
         /// <summary>
         /// 入职日期
         /// </summary>
-        public DateTime Beginworkdate { get; set; }
+        public DateTime Beginworkdate { get; set; }=DateTime.Now;
         /// <summary>
         /// 转正日期
         /// </summary>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Personeel.BLL;
 using Personeel.DTO;
 using Personeel.IBLL;
@@ -44,11 +45,25 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             UserListViewModel model = new UserListViewModel()
             {
                 Email = userInfo.Email,
-                Department = userInfo.Department,
                 Name = userInfo.Name,
+                Gender = userInfo.Gender,
+                Department = userInfo.Department,
                 Position = userInfo.Position,
+                Phone = userInfo.Phone,
                 UserNum = userInfo.UserNum,
-                UserPower = userInfo.UserPower
+                UserPower = userInfo.UserPower,
+                BasicMoney = userInfo.BasicMoney,
+                Birthday = userInfo.Birthday,
+                IdNumber = userInfo.IdNumber,
+                Politic = userInfo.Politic,
+                Wedlock = userInfo.Wedlock,
+                Race = userInfo.Race,
+                NativePlace = userInfo.NativePlace,
+                School = userInfo.School,
+                TipTopDegree = userInfo.TipTopDegree,
+                BeginWorkDate = userInfo.BeginWorkDate,
+                BeFormDate = userInfo.BeFormDate,
+                NotWorkDate = userInfo.NotWorkDate
             };
             return View(model);
         }
@@ -87,8 +102,17 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
 
                 IBLL.IPositionManager positionManager = new PositionManager();
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
-                DTO.PositionInfoDto positionInfo=await positionManager.GetInfoByName(model.Position);
-                DTO.DepInfoDto depInfo = await departmentManager.GetInfoByName(model.Department);
+                PositionInfoDto positionInfo = null;
+                DepInfoDto depInfo = null;
+                try
+                {
+                     positionInfo=await positionManager.GetInfoByName(model.Position);
+                     depInfo = await departmentManager.GetInfoByName(model.Department);
+                }
+                catch
+                {
+                    return Content("<script >alert('您输入的部门或职位信息有误,请重新输入');</script >", "text/html");
+                }
                 IBLL.IUserManager userManager = new UserManager();
                 await userManager.AddUser(model.Email, model.Password, model.Name, right, model.BasicMoney,depInfo.DepGuid,positionInfo.PositionGuid);
                 return RedirectToAction("Index");
@@ -104,22 +128,35 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             UserListViewModel model = new UserListViewModel()
             {
                 Email = userInfo.Email,
-                Department = userInfo.Department,
                 Name = userInfo.Name,
+                Gender = userInfo.Gender,
+                Department = userInfo.Department,
                 Position = userInfo.Position,
+                Phone = userInfo.Phone,
                 UserNum = userInfo.UserNum,
-                UserPower = userInfo.UserPower
+                UserPower = userInfo.UserPower,
+                BasicMoney = userInfo.BasicMoney,
+                Birthday = userInfo.Birthday,
+                IdNumber = userInfo.IdNumber,
+                Politic = userInfo.Politic,
+                Wedlock = userInfo.Wedlock,
+                Race = userInfo.Race,
+                NativePlace = userInfo.NativePlace,
+                School = userInfo.School,
+                TipTopDegree = userInfo.TipTopDegree,
             };
             return View(model);
         }
 
         // POST: Admin/User/Edit/5
         [HttpPost]
-        public ActionResult Edit(string email, UserListViewModel userListViewModel)
+        public async Task<ActionResult> Edit( UserListViewModel user)
         {
             try
             {
-
+                IUserManager userManager = new UserManager();
+               await userManager.ChangeInfo(user.Email, user.Name, user.Gender, user.Birthday, user.IdNumber, user.Wedlock,
+                    user.Race, user.NativePlace, user.Politic, user.Phone, user.TipTopDegree, user.School);
                 return RedirectToAction("Index");
             }
             catch
@@ -129,20 +166,42 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(string email)
         {
-            return View();
+            IUserManager userManager = new UserManager();
+            UserInfoDto userInfo=await userManager.GetUserByEmail(email);
+            UserListViewModel userList = new UserListViewModel()
+            {
+                Email = userInfo.Email,
+                Name = userInfo.Name,
+                Gender = userInfo.Gender,
+                Department = userInfo.Department,
+                Position = userInfo.Position,
+                Phone = userInfo.Phone,
+                UserNum = userInfo.UserNum,
+                UserPower = userInfo.UserPower,
+                BasicMoney = userInfo.BasicMoney,
+                Birthday = userInfo.Birthday,
+                IdNumber = userInfo.IdNumber,
+                Politic = userInfo.Politic,
+                Wedlock = userInfo.Wedlock,
+                Race = userInfo.Race,
+                NativePlace = userInfo.NativePlace,
+                School = userInfo.School,
+                TipTopDegree = userInfo.TipTopDegree,
+            };
+            return View(userList);
         }
 
         // POST: Admin/User/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(string eamil, FormCollection collection)
         {
             try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+            { 
+                IUserManager userManager = new UserManager(); 
+                await  userManager.DeleteUser(eamil);
+               return RedirectToAction("Index");
             }
             catch
             {

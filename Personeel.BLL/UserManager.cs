@@ -39,13 +39,12 @@ namespace Personeel.BLL
             
         }
 
-        public async Task ChangeInfo(string email,string name, string imagePath, string gender, DateTime birthday, int idNum, string wedlock, string race, string nativePlace, string politic, int phone, string tipTopDegree, string school)
+        public async Task ChangeInfo(string email,string name, string gender, DateTime birthday, int idNum, string wedlock, string race, string nativePlace, string politic, int phone, string tipTopDegree, string school)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
             {
                 var user = await userService.GetAllAsync().FirstAsync(m => m.Email == email);
                 user.Name = name;
-                user.ImagePath = imagePath;
                 user.Gender = gender;
                 user.Birthday = birthday;
                 user.IDNumber = idNum;
@@ -100,7 +99,8 @@ namespace Personeel.BLL
                         NotWorkDate = m.Notworkdate,
                         Department = m.Department.Depname,
                         Position = m.Position.Posname,
-                        BasicMoney = m.Basicmoney
+                        BasicMoney = m.Basicmoney,
+                        UserPower = m.UserRight.UserPower
                     }).ToListAsync();
             }
         }
@@ -144,6 +144,14 @@ namespace Personeel.BLL
             }
         }
 
+        public async Task DeleteUser(string email)
+        {
+            using (IUserService userService=new UserService())
+            {
+                User user=await userService.GetAllAsync().Where(m => m.Email == email).FirstAsync();
+                await userService.RemoveAsync(user.Id);
+            }
+        }
         public async Task<bool> Login(string email, string password)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
