@@ -25,6 +25,11 @@ namespace Personeel.Models
         [Required, StringLength(50), Column(TypeName = "varchar")]
         public string AnnounceTitle { get; set; }
         /// <summary>
+        /// 通知描述
+        /// </summary>
+        [Required, StringLength(50), Column(TypeName = "varchar")]
+        public string AnnounceDes { get; set; }
+        /// <summary>
         /// 内容
         /// </summary>
         [Required, Column(TypeName = "ntext")]

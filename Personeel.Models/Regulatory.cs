@@ -28,7 +28,12 @@ namespace Personeel.Models
         [Required,StringLength(50), Column(TypeName = "varchar")]
         public string Title { get; set; }
         /// <summary>
-        /// 描述
+        /// 规则描述
+        /// </summary>
+        [Required, StringLength(50), Column(TypeName = "varchar")]
+        public  string RoleDes { get; set; }
+        /// <summary>
+        /// 内容
         /// </summary>
         [Required,Column(TypeName = "ntext")]
         public string Roletext { get; set; }
