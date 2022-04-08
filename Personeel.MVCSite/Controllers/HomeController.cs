@@ -48,15 +48,15 @@ namespace Personeel.MVCSite.Controllers
                     DTO.UserInfoDto user=await userManager.GetUserByEmail(model.LoginName);
                     if (user.UserPower == 0)
                     {
-                        return RedirectToAction("Index", "User", new { area = "Admin" });
+                        return RedirectToAction("Index", "Admin", new { area = "Admin" });
                     }
                     else if(user.UserPower==1)
                     {
-                        return Content("欢迎你人事管理员");
+                        return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }
                     else
                     {
-                        return Content("欢迎您普通员工");
+                        return RedirectToAction("Index", "Personnel", new { area = "PersonnelAdmin" });
                     }
 
                 }
