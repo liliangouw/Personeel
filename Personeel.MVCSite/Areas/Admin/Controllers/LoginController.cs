@@ -5,14 +5,12 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Personeel.BLL;
-using Personeel.IBLL;
 using Personeel.MVCSite.Models.UserViewModels;
 
-namespace Personeel.MVCSite.Controllers
+namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
-     
 
         [HttpGet]
         public ActionResult Login()
@@ -25,10 +23,10 @@ namespace Personeel.MVCSite.Controllers
         {
             if (ModelState.IsValid)
             {
-               IBLL.IUserManager userManager = new UserManager();
-               Guid userId;
-               string userName;
-                if (  userManager.Login(model.LoginName, model.LoginPwd,out userId,out userName))
+                IBLL.IUserManager userManager = new UserManager();
+                Guid userId;
+                string userName;
+                if (userManager.Login(model.LoginName, model.LoginPwd, out userId, out userName))
                 {
                     if (model.RememberMe)
                     {
@@ -55,12 +53,12 @@ namespace Personeel.MVCSite.Controllers
                         Session["userName"] = userName;
                     }
                     //跳转
-                    DTO.UserInfoDto user=await userManager.GetUserByEmail(model.LoginName);
+                    DTO.UserInfoDto user = await userManager.GetUserByEmail(model.LoginName);
                     if (user.UserPower == 0)
                     {
                         return RedirectToAction("Index", "Admin", new { area = "Admin" });
                     }
-                    else if(user.UserPower==1)
+                    else if (user.UserPower == 1)
                     {
                         return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }
@@ -73,9 +71,9 @@ namespace Personeel.MVCSite.Controllers
             }
             else
             {
-                ModelState.AddModelError("","您的账号密码有误");
+                ModelState.AddModelError("", "您的账号密码有误");
             }
-            
+
             return View();
         }
     }

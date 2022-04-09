@@ -1,8 +1,15 @@
 ﻿
 @{
+    var userEmail = Session["userEmail"] == null ? Request.Cookies["userEmail"].Value : Session["userEmail"].ToString();
+    var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
+    var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
+}
+
+@{
     ViewBag.Title = "Index";
-    
+
 }
 
 <h2>Admin首页</h2>
+<h2>欢迎你: @userName</h2>
 

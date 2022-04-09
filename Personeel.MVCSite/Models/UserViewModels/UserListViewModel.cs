@@ -9,6 +9,7 @@ namespace Personeel.MVCSite.Models.UserViewModels
 {
     public class UserListViewModel
     {
+        public Guid UserId { get; set; }
         [Display(Name = "工号")]
         public  int UserNum { get; set; }
         [Display(Name = "姓名")]

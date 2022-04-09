@@ -33,31 +33,31 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserNum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserPower)
-        </td>
-        <td>
-            @Html.ActionLink("修改", "Edit", new { email=item.Email   }) |
-            @Html.ActionLink("详情", "Details", new { email=item.Email }) |
-            @Html.ActionLink("删除", "Delete", new {  email=item.Email })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserNum)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Department)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Position)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserPower)
+    </td>
+    <td>
+        @Html.ActionLink("修改", "Edit", new { id = item.UserId }) |
+        @Html.ActionLink("详情", "Details", new { id = item.UserId }) |
+        @Html.ActionLink("删除", "Delete", new { id = item.UserId })
+    </td>
+</tr>
 }
 
 </table>

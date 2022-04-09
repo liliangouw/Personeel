@@ -15,35 +15,32 @@ namespace Personeel.BLL
 {
     public class UserManager : IUserManager
     {
-        public async Task AddUser(string email, string password, string name, int userRight,int basicMoney,Guid departmentId,Guid positionId)
+        public async Task AddUser(string email, string password, string name, Guid userRight,int basicMoney,Guid departmentId,Guid positionId)
         {
-            using (IDAL.IUserRightService userRightService=new DAL.UserRightService())
+            using(IDAL.IUserService userService = new DAL.UserService())
             {
-                using(IDAL.IUserService userService = new DAL.UserService())
-                {
-                    var right = await userRightService.GetAllAsync().FirstAsync(m => m.UserPower == userRight);
+                    
                      await  userService.CreateAsync(new User 
                    {  
                      Email = email,
                      Password=password,
                      Name=name,
-                     UserRightID= right.Id,
+                     UserRightID= userRight,
                      ImagePath="default.png",
                      Basicmoney = basicMoney,
                      Beginworkdate = DateTime.Now,
                      DepartmentID = departmentId,
                      PositionID = positionId
                    });
-                }
             }
-            
         }
 
-        public async Task ChangeInfo(string email,string name, string gender, DateTime birthday, int idNum, string wedlock, string race, string nativePlace, string politic, int phone, string tipTopDegree, string school)
+        public async Task ChangeInfo(Guid id,string email,string name, string gender, DateTime birthday, int idNum, string wedlock, string race, string nativePlace, string politic, int phone, string tipTopDegree, string school)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
             {
-                var user = await userService.GetAllAsync().FirstAsync(m => m.Email == email);
+                var user = await userService.GetAllAsync().FirstAsync(m => m.Id == id);
+                user.Email = email;
                 user.Name = name;
                 user.Gender = gender;
                 user.Birthday = birthday;
@@ -59,7 +56,7 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task ChangePassword(string email, string oldPwd, string newPwd)
+        public async Task ChangePassword(Guid id,string email, string oldPwd, string newPwd)
         {
             
             using (IDAL.IUserService userService = new DAL.UserService())
@@ -80,6 +77,7 @@ namespace Personeel.BLL
                 return  await userService.GetAllAsync().Where(m => m.IsRemoved == false).Select(m =>
                     new DTO.UserInfoDto()
                     {
+                        UserId = m.Id,
                         Email = m.Email,
                         ImagePath = m.ImagePath,
                         UserNum = m.UserNum,
@@ -105,15 +103,16 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task<UserInfoDto> GetUserByEmail(string email)
+        public async Task<UserInfoDto> GetUserById(Guid id)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
             {
-                if (await userService.GetAllAsync().AnyAsync(m => m.Email == email ))
+                if (await userService.GetAllAsync().AnyAsync(m => m.Id==id ))
                 {
-                    return await userService.GetAllAsync().Where(m => m.Email == email).Select(m =>
+                    return await userService.GetAllAsync().Where(m => m.Id == id).Select(m =>
                         new DTO.UserInfoDto()
                         {
+                            UserId = m.Id,
                             Email = m.Email,
                             ImagePath = m.ImagePath,
                             UserNum = m.UserNum,
@@ -139,24 +138,80 @@ namespace Personeel.BLL
                 }
                 else
                 {
-                    throw new ArgumentException(message: "邮箱地址不存在");
+                    throw new ArgumentException(message: "ID不存在");
                 }
             }
         }
 
-        public async Task DeleteUser(string email)
+        public async Task DeleteUser(Guid id)
         {
             using (IUserService userService=new UserService())
             {
-                User user=await userService.GetAllAsync().Where(m => m.Email == email).FirstAsync();
+                User user=await userService.GetAllAsync().Where(m => m.Id == id).FirstAsync();
                 await userService.RemoveAsync(user.Id);
             }
         }
-        public async Task<bool> Login(string email, string password)
+        public bool Login(string email, string password,out Guid userId,out string userName)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
             {
-                return await userService.GetAllAsync().AnyAsync(m => m.Email == email && m.Password == password);
+                var user=userService.GetAllAsync().FirstOrDefaultAsync(m => m.Email == email && m.Password == password);
+                user.Wait();
+                var data = user.Result;
+                if (data == null)
+                {
+                    userName = "用户";
+                    userId = new Guid();
+                    return false;
+                }
+                else
+                {
+                    userId = data.Id;
+                    userName = data.Name;
+                    return true;
+                }
+                
+                
+            }
+        }
+
+        public async Task<UserInfoDto> GetUserByEmail(string email)
+        {
+            using (IDAL.IUserService userService = new DAL.UserService())
+            {
+                if (await userService.GetAllAsync().AnyAsync(m => m.Email == email))
+                {
+                    return await userService.GetAllAsync().Where(m => m.Email == email).Select(m =>
+                        new DTO.UserInfoDto()
+                        {
+                            UserId = m.Id,
+                            Email = m.Email,
+                            ImagePath = m.ImagePath,
+                            UserNum = m.UserNum,
+                            Name = m.Name,
+                            Gender = m.Gender,
+                            Birthday = m.Birthday,
+                            IdNumber = m.IDNumber,
+                            Wedlock = m.Wedlock,
+                            Race = m.Race,
+                            NativePlace = m.Nativeplace,
+                            Phone = m.Phone,
+                            Politic = m.Politic,
+                            School = m.School,
+                            TipTopDegree = m.Tiptopdegree,
+                            BeginWorkDate = m.Beginworkdate,
+                            BeFormDate = m.Beformdate,
+                            NotWorkDate = m.Notworkdate,
+                            Department = m.Department.Depname,
+                            Position = m.Position.Posname,
+                            BasicMoney = m.Basicmoney,
+                            UserPower = m.UserRight.UserPower
+                        }).FirstAsync();
+                }
+                else
+                {
+                    throw new ArgumentException(message: "ID不存在");
+                }
             }
         }
     }

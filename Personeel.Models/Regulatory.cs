@@ -36,6 +36,6 @@ namespace Personeel.Models
         /// 内容
         /// </summary>
         [Required,Column(TypeName = "ntext")]
-        public string Roletext { get; set; }
+        public string RoleText { get; set; }
     }
 }

@@ -6,11 +6,13 @@ using System.Web;
 using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.IBLL;
+using Personeel.MVCSite.Filters;
 using Personeel.MVCSite.Models.DepartmentViewModels;
 using Personeel.MVCSite.Models.PositionViewModels;
 
 namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
+    [PersonnelAuth]
     public class PositionController : Controller
     {
         // GET: Admin/Position

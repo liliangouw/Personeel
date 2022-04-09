@@ -129,16 +129,20 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RegulatoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Employee\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\PersonnelAdmin\Controllers\PersonnelController.cs" />
     <Compile Include="Areas\PersonnelAdmin\PersonnelAdminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\PersonnelAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArticleViewModels\CreateArticleViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\AddViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\DepListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
@@ -179,13 +183,15 @@
     <Content Include="Areas\Admin\Views\User\Details.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Employee\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
     <Content Include="Areas\PersonnelAdmin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\PersonnelAdmin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\PersonnelAdmin\Views\Personnel\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Regulatory\CreateArticle.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -209,7 +215,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>

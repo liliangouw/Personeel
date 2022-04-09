@@ -26,6 +26,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Department)
         </dt>
 
@@ -161,17 +169,11 @@
             @Html.DisplayFor(model => model.NotWorkDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+        
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("修改", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("修改", "Edit", new { id=Model.UserId }) |
     @Html.ActionLink("回到列表", "Index")
 </p>

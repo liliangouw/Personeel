@@ -7,13 +7,14 @@ namespace Personeel.IBLL
 {
     public interface IUserManager
     {
-        Task AddUser(string email, string password, string name, int userRight,int basicMoney,Guid department,Guid positionId);
-        Task<bool> Login(string email, string password);
-        Task ChangePassword(string email, string oldPwd, string newPwd);
-        Task ChangeInfo(string email,string name, string gender, DateTime birthday, int idNum, string wedlock,
+        Task AddUser(string email, string password, string name, Guid userRight,int basicMoney,Guid department,Guid positionId);
+        bool Login(string email, string password,out Guid userId,out string userName);
+        Task ChangePassword(Guid id,string email, string oldPwd, string newPwd);
+        Task ChangeInfo(Guid id,string email,string name, string gender, DateTime birthday, int idNum, string wedlock,
                         string race, string nativePlace, string politic, int phone, string tipTopDegree, string school);
-        Task <DTO.UserInfoDto> GetUserByEmail(string email);
+        Task <DTO.UserInfoDto> GetUserById(Guid id);
+        Task<DTO.UserInfoDto> GetUserByEmail(string email);
         Task<List<DTO.UserInfoDto>> GetAllUser();
-        Task DeleteUser(string email);
+        Task DeleteUser(Guid id);
     }
 }

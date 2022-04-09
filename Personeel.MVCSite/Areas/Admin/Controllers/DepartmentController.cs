@@ -6,10 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.IBLL;
+using Personeel.MVCSite.Filters;
 using Personeel.MVCSite.Models.DepartmentViewModels;
 
 namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
+    [PersonnelAuth]
     public class DepartmentController : Controller
     {
         // GET: Admin/Department

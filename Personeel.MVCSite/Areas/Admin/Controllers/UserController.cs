@@ -9,10 +9,12 @@ using System.Web.Services.Description;
 using Personeel.BLL;
 using Personeel.DTO;
 using Personeel.IBLL;
+using Personeel.MVCSite.Filters;
 using Personeel.MVCSite.Models.UserViewModels;
 
 namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
+    [PersonnelAuth]
     public class UserController : Controller
     {
         // GET: Admin/User
@@ -25,6 +27,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 UserListViewModel tempModel = new UserListViewModel()
                 {
+                    UserId = item.UserId,
                     UserNum = item.UserNum,
                     Name = item.Name,
                     Position = item.Position,
@@ -38,12 +41,13 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Details/5
-        public async Task<ActionResult> Details(string email)
+        public async Task<ActionResult> Details(Guid id)
         {
             IUserManager userManager = new UserManager();
-            UserInfoDto userInfo=await userManager.GetUserByEmail(email);
+            UserInfoDto userInfo=await userManager.GetUserById(id);
             UserListViewModel model = new UserListViewModel()
             {
+                UserId = userInfo.UserId,
                 Email = userInfo.Email,
                 Name = userInfo.Name,
                 Gender = userInfo.Gender,
@@ -68,7 +72,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             return View(model);
         }
 
-        public ActionResult AddUser()
+        public async Task<ActionResult> AddUser()
         {
             //下拉框传值
             //IDepartmentManager departmentManager = new DepartmentManager();
@@ -78,6 +82,8 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             //AddViewModel model = new AddViewModel();
             //model.DepList = depList;
             //model.PosList = posList;
+            ViewBag.Departments = await new DepartmentManager().GetInfo();
+            ViewBag.Positions = await new PositionManager().GetInfo();
             return View();
         }
         [HttpPost]
@@ -86,47 +92,21 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                int right;
-                if (model.Right == "系统管理员")
-                {
-                    right = 0;
-                }
-                else if (model.Right == "人事管理员")
-                {
-                    right = 1;
-                }
-                else
-                {
-                    right = 2;
-                }
-
-                IBLL.IPositionManager positionManager = new PositionManager();
-                IBLL.IDepartmentManager departmentManager = new DepartmentManager();
-                PositionInfoDto positionInfo = null;
-                DepInfoDto depInfo = null;
-                try
-                {
-                     positionInfo=await positionManager.GetInfoByName(model.Position);
-                     depInfo = await departmentManager.GetInfoByName(model.Department);
-                }
-                catch
-                {
-                    return Content("<script >alert('您输入的部门或职位信息有误,请重新输入');</script >", "text/html");
-                }
                 IBLL.IUserManager userManager = new UserManager();
-                await userManager.AddUser(model.Email, model.Password, model.Name, right, model.BasicMoney,depInfo.DepGuid,positionInfo.PositionGuid);
+                await userManager.AddUser(model.Email, model.Password, model.Name, model.Right, model.BasicMoney,model.Department,model.Position);
                 return RedirectToAction("Index");
             }
             return View(model);
         }
 
         // GET: Admin/User/Edit/5
-        public async Task<ActionResult> Edit(string email)
+        public async Task<ActionResult> Edit(Guid id)
         {
             IUserManager userManager = new UserManager();
-            UserInfoDto userInfo = await userManager.GetUserByEmail(email);
+            UserInfoDto userInfo = await userManager.GetUserById(id);
             UserListViewModel model = new UserListViewModel()
             {
+                UserId = userInfo.UserId,
                 Email = userInfo.Email,
                 Name = userInfo.Name,
                 Gender = userInfo.Gender,
@@ -152,24 +132,19 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit( UserListViewModel user)
         {
-            try
-            {
+            
                 IUserManager userManager = new UserManager();
-               await userManager.ChangeInfo(user.Email, user.Name, user.Gender, user.Birthday, user.IdNumber, user.Wedlock,
+               await userManager.ChangeInfo(user.UserId,user.Email, user.Name, user.Gender, user.Birthday, user.IdNumber, user.Wedlock,
                     user.Race, user.NativePlace, user.Politic, user.Phone, user.TipTopDegree, user.School);
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            
         }
 
         // GET: Admin/User/Delete/5
-        public async Task<ActionResult> Delete(string email)
+        public async Task<ActionResult> Delete(Guid id)
         {
             IUserManager userManager = new UserManager();
-            UserInfoDto userInfo=await userManager.GetUserByEmail(email);
+            UserInfoDto userInfo=await userManager.GetUserById(id);
             UserListViewModel userList = new UserListViewModel()
             {
                 Email = userInfo.Email,
@@ -195,18 +170,14 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
 
         // POST: Admin/User/Delete/5
         [HttpPost]
-        public async Task<ActionResult> Delete(string eamil, FormCollection collection)
+        public async Task<ActionResult> Delete(Guid id, FormCollection collection)
         {
-            try
-            { 
+           
+            
                 IUserManager userManager = new UserManager(); 
-                await  userManager.DeleteUser(eamil);
-               return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                await  userManager.DeleteUser(id);
+                return RedirectToAction("Index");
+            
         }
     }
 }

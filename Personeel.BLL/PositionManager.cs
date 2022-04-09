@@ -45,7 +45,7 @@ namespace Personeel.BLL
                 await iPositionService.RemoveAsync(id);
             }
         }
-        //获取职位列表，不完善，只能获取第一个
+        
         public async  Task<List<PositionInfoDto>> GetInfo()
         {
             using (IDAL.IPositionService iPositionService=new DAL.PositionService())

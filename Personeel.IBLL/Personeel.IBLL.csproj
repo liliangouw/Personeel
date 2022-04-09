@@ -53,13 +53,27 @@
   <ItemGroup>
     <Compile Include="IDepartmentManager.cs" />
     <Compile Include="IPositionManager.cs" />
+    <Compile Include="IRegulatoryManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegulatoryManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Personeel.DAL\Personeel.DAL.csproj">
+      <Project>{5B45E63A-31D3-4C33-A1A4-CA0D797DF8F3}</Project>
+      <Name>Personeel.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Personeel.DTO\Personeel.DTO.csproj">
       <Project>{9c0a2df9-c5b7-412b-8629-c6d5fdfd5e06}</Project>
       <Name>Personeel.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Personeel.IDAL\Personeel.IDAL.csproj">
+      <Project>{F123E799-1AF7-4F1F-A417-C0FF32EAEC6D}</Project>
+      <Name>Personeel.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Personeel.Models\Personeel.Models.csproj">
+      <Project>{89A15791-316B-4990-9FA8-DB7166714C1B}</Project>
+      <Name>Personeel.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

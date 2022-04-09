@@ -1,4 +1,8 @@
-﻿
+﻿@{
+    var userEmail = Session["userEmail"] == null ? Request.Cookies["userEmail"].Value : Session["userEmail"].ToString();
+    var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
+    var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 企业人事管理系统</title>
     @Styles.Render("~/Content/css")
+    @RenderSection("headers", required: false)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
@@ -14,17 +19,17 @@
 
 </head>
 <body>
-
-    <nav class="navbar navbar-default no-margin">
+<nav class="navbar navbar-default no-margin">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header fixed-brand">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
-                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-            </button>
-            <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-4"></i> 企业人事管理系统</a>
-            <a class="navbar-brand" href="#"></a>
-
-        </div>
+        
+            
+                <div class="navbar-header fixed-brand">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
+                        <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-4"></i>企业人事管理系统</a>
+                </div>
+        
         <!-- navbar-header-->
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -44,7 +49,7 @@
                 <li>
                     <a href="#">
                         <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
-                        @Html.ActionLink("首页", "Index", "Home", new { Area = "" }, null)
+                        @Html.ActionLink("首页", "Index", "Admin", new { Area = "Admin" }, null)
                     </a>
 
                 </li>
@@ -107,7 +112,6 @@
         </div>
         <!-- /#page-content-wrapper -->
     </div>
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

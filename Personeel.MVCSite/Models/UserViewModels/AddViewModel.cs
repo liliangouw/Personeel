@@ -27,15 +27,15 @@ namespace Personeel.MVCSite.Models.UserViewModels
         [Required] [Display(Name = "姓名")] 
         public string Name { get; set; }
         [Required] [Display(Name = "权限")]
-        public string Right { get; set; }
+        public Guid Right { get; set; }
 
         [Required] [Display(Name = "基本工资")] 
         public int BasicMoney { get; set; }
         [Required] [Display(Name = "部门")] 
-        public string Department { get; set; }
+        public Guid Department { get; set; }
 
         [Required] [Display(Name = "职位")]
-        public string Position { get; set; }
+        public Guid Position { get; set; }
 
 
     }
