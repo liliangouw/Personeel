@@ -142,6 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArticleViewModels\ArticleListViewModel.cs" />
     <Compile Include="Models\ArticleViewModels\CreateArticleViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\AddViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\DepListViewModel.cs" />
@@ -160,6 +161,8 @@
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\iconfont.css" />
+    <Content Include="fonts\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
@@ -192,6 +195,10 @@
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Regulatory\CreateArticle.cshtml" />
+    <Content Include="Areas\Admin\Views\Regulatory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Regulatory\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Regulatory\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Regulatory\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

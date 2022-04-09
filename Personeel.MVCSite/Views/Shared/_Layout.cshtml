@@ -16,6 +16,7 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="/Content/style.css">
+    <link href="~/fonts/iconfont.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -56,32 +57,32 @@
                 <li>
 
                     <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span>
+                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>
                         @Html.ActionLink("用户管理", "Index", "User", new { Area = "Admin" }, null)
                     </a>
                 </li>
                 <!--<li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span> Shortcut</a>
-                    <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg pull-left">
-                                    <i class="fa fa-flag fa-stack-1x "></i>
-                                </span>
-                                link1
-                            </a>
-                        </li>
+        <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span> Shortcut</a>
+        <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+            <li>
+                <a href="#">
+                    <span class="fa-stack fa-lg pull-left">
+                        <i class="fa fa-flag fa-stack-1x "></i>
+                    </span>
+                    link1
+                </a>
+            </li>
 
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg pull-left">
-                                    <i class="fa fa-flag fa-stack-1x "></i>
-                                </span>link2
-                            </a>
-                        </li>
+            <li>
+                <a href="#">
+                    <span class="fa-stack fa-lg pull-left">
+                        <i class="fa fa-flag fa-stack-1x "></i>
+                    </span>link2
+                </a>
+            </li>
 
-                    </ul>
-                </li>-->
+        </ul>
+    </li>-->
 
                 <li>
                     <a href="#">
@@ -95,7 +96,20 @@
                         <span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>
                         @Html.ActionLink("职位管理", "Index", "Position", new { Area = "Admin" }, null)
                     </a>
+                </li>
 
+                <li>
+                    <a href="#">
+                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>
+                        @Html.ActionLink("规章制度管理", "Index", "Regulatory", new { Area = "Admin" }, null)
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span>
+                        @Html.ActionLink("日志管理", "Index", "Position", new { Area = "Admin" }, null)
+                    </a>
                 </li>
             </ul>
         </div>

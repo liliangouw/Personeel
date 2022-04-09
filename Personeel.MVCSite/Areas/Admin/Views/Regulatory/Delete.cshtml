@@ -1,0 +1,63 @@
+﻿@model Personeel.MVCSite.Models.ArticleViewModels.ArticleListViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>删除规章制度</h2>
+
+<h3>您确定要删除这个规章制度吗</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Writer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Writer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("回到列表", "Index")
+        </div>
+    }
+</div>

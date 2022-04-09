@@ -12,7 +12,7 @@ namespace Personeel.MVCSite.Controllers
 {
     public class HomeController : Controller
     {
-     
+        
 
         [HttpGet]
         public ActionResult Login()

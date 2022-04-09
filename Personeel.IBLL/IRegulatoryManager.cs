@@ -12,5 +12,7 @@ namespace Personeel.IBLL
         Task<List<DTO.RegulatoryInfoDto>> GetAllRegulatory();
         Task RemoveRegulatory(Guid id);
         Task EditRegulatory(Guid id, string title, string des,string text);
+
+        Task<DTO.RegulatoryInfoDto> GetOneRegulatory(Guid id,string name);
     }
 }

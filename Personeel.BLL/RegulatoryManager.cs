@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Personeel.DAL;
 using Personeel.DTO;
+using Personeel.IBLL;
 using Personeel.IDAL;
 using Personeel.Models;
 
-namespace Personeel.IBLL
+namespace Personeel.BLL
 {
     public class RegulatoryManager:IRegulatoryManager
     {
@@ -41,6 +42,23 @@ namespace Personeel.IBLL
                     Name = m.User.Name,
                     CreateTime = m.CreateTime
                   }).ToListAsync();
+            }
+        }
+        public async Task<RegulatoryInfoDto> GetOneRegulatory(Guid id,string name)
+        {
+            using (IDAL.IRegulatoryService regulatoryService = new DAL.RegulatoryService())
+            {
+                var regulatory = await regulatoryService.GetOneByIdAsync(id);
+                RegulatoryInfoDto info = new RegulatoryInfoDto()
+                {
+                    Id = regulatory.Id,
+                    CreateTime = regulatory.CreateTime,
+                    Des = regulatory.RoleDes,
+                    Title = regulatory.Title,
+                    Name = name,
+                    Text = regulatory.RoleText
+                };
+                return info;
             }
         }
 
