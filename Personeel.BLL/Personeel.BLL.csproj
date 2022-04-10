@@ -51,7 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseManager.cs" />
     <Compile Include="DepartmentManager.cs" />
+    <Compile Include="OperationManager.cs" />
     <Compile Include="PositionManager.cs" />
     <Compile Include="RegulatoryManager.cs" />
     <Compile Include="UserManager.cs" />

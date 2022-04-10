@@ -12,7 +12,7 @@ using System.Data.Entity;
 
 namespace Personeel.BLL
 {
-    public class DepartmentManager : IDepartmentManager
+    public class DepartmentManager :IDepartmentManager
     {
         public async Task AddDep(string depName, string depDes)
         {

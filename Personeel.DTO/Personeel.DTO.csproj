@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DepInfoDto.cs" />
+    <Compile Include="OperationinfoDto.cs" />
     <Compile Include="PositionInfoDto.cs" />
     <Compile Include="RegulatoryInfoDto.cs" />
     <Compile Include="UserInfoDto.cs" />

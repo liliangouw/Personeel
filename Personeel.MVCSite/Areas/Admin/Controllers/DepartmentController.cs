@@ -54,8 +54,10 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
                 await departmentManager.AddDep(model.DepName, model.DepDes);
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -81,6 +83,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
                 departmentManager.EditDep(model.DepName, model.DepDes);
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString()+":"+Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
             catch
@@ -109,6 +112,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 IDepartmentManager departmentManager = new DepartmentManager();
                 departmentManager.RemoveDep(id);
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
             catch

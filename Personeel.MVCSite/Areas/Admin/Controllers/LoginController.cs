@@ -52,6 +52,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                         Session["userid"] = userId.ToString();
                         Session["userName"] = userName;
                     }
+                    BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                     //跳转
                     DTO.UserInfoDto user = await userManager.GetUserByEmail(model.LoginName);
                     if (user.UserPower == 0)

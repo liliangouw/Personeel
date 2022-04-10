@@ -94,6 +94,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 IBLL.IUserManager userManager = new UserManager();
                 await userManager.AddUser(model.Email, model.Password, model.Name, model.Right, model.BasicMoney,model.Department,model.Position);
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -136,7 +137,8 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 IUserManager userManager = new UserManager();
                await userManager.ChangeInfo(user.UserId,user.Email, user.Name, user.Gender, user.Birthday, user.IdNumber, user.Wedlock,
                     user.Race, user.NativePlace, user.Politic, user.Phone, user.TipTopDegree, user.School);
-                return RedirectToAction("Index");
+               BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
+            return RedirectToAction("Index");
             
         }
 
@@ -176,7 +178,8 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             
                 IUserManager userManager = new UserManager(); 
                 await  userManager.DeleteUser(id);
-                return RedirectToAction("Index");
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
+            return RedirectToAction("Index");
             
         }
     }

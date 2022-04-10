@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="IBaseService.cs" />
     <Compile Include="IDepartmentService.cs" />
+    <Compile Include="IOperationService.cs" />
     <Compile Include="IPositionService.cs" />
     <Compile Include="IRegulatoryService.cs" />
     <Compile Include="IUserRightService.cs" />

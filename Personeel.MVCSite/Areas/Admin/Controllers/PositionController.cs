@@ -56,6 +56,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 IBLL.IPositionManager positionManager = new PositionManager();
                 await positionManager.AddPosition(model.PosName, model.PosDescribe);
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -81,6 +82,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 IBLL.IPositionManager posManager = new PositionManager();
                 posManager.ChangeInfo(id,posList.PosName, posList.PosDes);
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
             catch
@@ -109,6 +111,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 IBLL.IPositionManager positionManager = new PositionManager();
                 positionManager.RemovePosition(id);
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
             catch

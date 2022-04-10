@@ -49,6 +49,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 var userid = Guid.Parse(Session["userId"].ToString());
                 IBLL.IRegulatoryManager regulatoryManager = new RegulatoryManager();
                 regulatoryManager.AddRegulatory(model.Title, model.Des, model.Text, userid);
+                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("","添加失败");
@@ -91,6 +92,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         {
             IRegulatoryManager regulatoryManager = new RegulatoryManager();
             await regulatoryManager.EditRegulatory(model.Id, model.Title, model.Des, model.Text);
+            BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
             return RedirectToAction("Index");
         }
 
@@ -116,6 +118,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         {
             IRegulatoryManager regulatoryManager = new RegulatoryManager();
             await regulatoryManager.RemoveRegulatory(model.Id);
+            BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
             return RedirectToAction("Index");
         }
 

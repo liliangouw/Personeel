@@ -130,6 +130,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OperationController.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
     <Compile Include="Areas\Admin\Controllers\RegulatoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Models\ArticleViewModels\CreateArticleViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\AddViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\DepListViewModel.cs" />
+    <Compile Include="Models\OperationViewModels\OperationListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
     <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
     <Compile Include="Models\UserViewModels\AddViewModel.cs" />
@@ -199,6 +201,9 @@
     <Content Include="Areas\Admin\Views\Regulatory\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Regulatory\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Regulatory\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Operation\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Operation\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Operation\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
