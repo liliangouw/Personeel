@@ -135,9 +135,11 @@
     <Compile Include="Areas\Admin\Controllers\RegulatoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Employee\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
-    <Compile Include="Areas\PersonnelAdmin\Controllers\PersonnelController.cs" />
-    <Compile Include="Areas\PersonnelAdmin\PersonnelAdminAreaRegistration.cs" />
+    <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
+    <Compile Include="Areas\Personnel\PersonnelAdminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\PersonnelAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,7 +185,7 @@
     <Content Include="Areas\Admin\Views\Position\AddPosition.cshtml" />
     <Content Include="Areas\Admin\Views\Position\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Position\Delete.cshtml" />
-    <Content Include="Areas\PersonnelAdmin\Views\web.config" />
+    <Content Include="Areas\Personnel\Views\web.config" />
     <Content Include="Areas\Employee\Views\web.config" />
     <Content Include="Areas\Admin\Views\User\Details.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
@@ -191,9 +193,9 @@
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Employee\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
-    <Content Include="Areas\PersonnelAdmin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\PersonnelAdmin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\PersonnelAdmin\Views\Personnel\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Personnel\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Personnel\Views\Personnel\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Regulatory\CreateArticle.cshtml" />
@@ -204,6 +206,8 @@
     <Content Include="Areas\Admin\Views\Operation\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Operation\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Operation\Delete.cshtml" />
+    <Content Include="Areas\Employee\Views\Login\Login.cshtml" />
+    <Content Include="Areas\Personnel\Views\Login\Login.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -232,7 +236,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
-    <Folder Include="Areas\PersonnelAdmin\Data\" />
+    <Folder Include="Areas\Personnel\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

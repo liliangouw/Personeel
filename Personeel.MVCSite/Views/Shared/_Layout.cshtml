@@ -20,16 +20,17 @@
 
 </head>
 <body>
-<nav class="navbar navbar-default no-margin">
+
+    <nav class="navbar navbar-default no-margin">
         <!-- Brand and toggle get grouped for better mobile display -->
         
             
-                <div class="navbar-header fixed-brand">
+        <div class="navbar-header fixed-brand">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
                         <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-4"></i>企业人事管理系统</a>
-                </div>
+            <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-4"></i>企业人事管理系统</a>
+        </div>
         
         <!-- navbar-header-->
 
@@ -39,6 +40,12 @@
                     <button class="navbar-toggle collapse in" data-toggle="collapse" id="menu-toggle-2"> <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span></button>
                 </li>
             </ul>
+        </div>
+        
+        <div class="nav navbar-nav navbar-right">
+            <a href="#">
+                @Html.ActionLink("退出登录", "Login", "Login", new {area ="Admin"}, null)
+            </a>
         </div>
         <!-- bs-example-navbar-collapse-1 -->
     </nav>

@@ -37,7 +37,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         public async Task<ActionResult> Delete(Guid id,string name)
         {
             IOperationManager operationManager = new OperationManager();
-            var info=await operationManager.GetOperationById(id,name);
+            var info=await operationManager.GetOperationById(id);
             OperationListViewModel model = new OperationListViewModel()
             {
                 Id = info.Id,

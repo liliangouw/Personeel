@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.MVCSite.Models.UserViewModels;
 
-namespace Personeel.MVCSite.Areas.Admin.Controllers
+namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
     public class LoginController : Controller
     {
@@ -61,11 +61,11 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                     }
                     else if (user.UserPower == 1)
                     {
-                        return RedirectToAction("Index", "Employee", new { area = "Employee" });
+                        return RedirectToAction("Index", "Personnel", new { area = "Personnel" });
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Personnel", new { area = "Personnel" });
+                        return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }
 
                 }

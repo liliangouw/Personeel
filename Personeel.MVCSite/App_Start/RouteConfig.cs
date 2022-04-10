@@ -16,8 +16,9 @@ namespace Personeel.MVCSite
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Admin", action = "Index",id = UrlParameter.Optional}
-            ).DataTokens.Add("Area", "Admin");
+                defaults: new {controller = "Home", action = "Login", id = UrlParameter.Optional}
+            );
+            //.DataTokens.Add("Area", "Admin");
         }
     }
 }

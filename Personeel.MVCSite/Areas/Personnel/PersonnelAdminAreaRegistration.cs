@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Personeel.MVCSite.Areas.PersonnelAdmin
+namespace Personeel.MVCSite.Areas.Personnel
 {
     public class PersonnelAdminAreaRegistration : AreaRegistration 
     {
@@ -8,15 +8,15 @@ namespace Personeel.MVCSite.Areas.PersonnelAdmin
         {
             get 
             {
-                return "PersonnelAdmin";
+                return "Personnel";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "PersonnelAdmin_default",
-                "PersonnelAdmin/{controller}/{action}/{id}",
+                "Personnel_default",
+                "Personnel/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

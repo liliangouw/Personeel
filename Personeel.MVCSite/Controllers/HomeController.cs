@@ -62,11 +62,11 @@ namespace Personeel.MVCSite.Controllers
                     }
                     else if(user.UserPower==1)
                     {
-                        return RedirectToAction("Index", "Employee", new { area = "Employee" });
+                        return RedirectToAction("Index", "Personnel", new { area = "Personnel" });
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Personnel", new { area = "PersonnelAdmin" });
+                        return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }
 
                 }

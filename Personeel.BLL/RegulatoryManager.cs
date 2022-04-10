@@ -44,21 +44,22 @@ namespace Personeel.BLL
                   }).ToListAsync();
             }
         }
-        public async Task<RegulatoryInfoDto> GetOneRegulatory(Guid id,string name)
+        public async Task<RegulatoryInfoDto> GetOneRegulatory(Guid id)
         {
             using (IDAL.IRegulatoryService regulatoryService = new DAL.RegulatoryService())
             {
-                var regulatory = await regulatoryService.GetOneByIdAsync(id);
-                RegulatoryInfoDto info = new RegulatoryInfoDto()
+                return await regulatoryService.GetAllAsync()
+                    .Include(m=>m.User)
+                    .Where(m => m.Id == id).Select(m => new RegulatoryInfoDto()
                 {
-                    Id = regulatory.Id,
-                    CreateTime = regulatory.CreateTime,
-                    Des = regulatory.RoleDes,
-                    Title = regulatory.Title,
-                    Name = name,
-                    Text = regulatory.RoleText
-                };
-                return info;
+                    CreateTime = m.CreateTime,
+                    Des = m.RoleText,
+                    Id = m.Id,
+                    Name = m.User.Name,
+                    Text = m.RoleText,
+                    Title = m.Title
+                }).FirstAsync();
+
             }
         }
 

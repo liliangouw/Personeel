@@ -56,11 +56,11 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<ActionResult> Details(Guid id,string name)
+        public async Task<ActionResult> Details(Guid id)
         {
 
             IRegulatoryManager regulatoryManager = new RegulatoryManager();
-            DTO.RegulatoryInfoDto item = await regulatoryManager.GetOneRegulatory(id,name);
+            DTO.RegulatoryInfoDto item = await regulatoryManager.GetOneRegulatory(id);
             ArticleListViewModel articleDetail = new ArticleListViewModel()
             {
                 Id = item.Id,
@@ -74,10 +74,10 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Edit(Guid id,string name)
+        public async Task<ActionResult> Edit(Guid id)
         {
             IRegulatoryManager regulatoryManager = new RegulatoryManager();
-            DTO.RegulatoryInfoDto item = await regulatoryManager.GetOneRegulatory(id,name);
+            DTO.RegulatoryInfoDto item = await regulatoryManager.GetOneRegulatory(id);
             ArticleListViewModel  articleList = new ArticleListViewModel()
             {
                 Title = item.Title,
@@ -97,10 +97,10 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Delete(Guid id,string name)
+        public async Task<ActionResult> Delete(Guid id)
         {
             IRegulatoryManager regulatoryManager = new RegulatoryManager();
-            DTO.RegulatoryInfoDto item = await regulatoryManager.GetOneRegulatory(id,name);
+            DTO.RegulatoryInfoDto item = await regulatoryManager.GetOneRegulatory(id);
             ArticleListViewModel articleList = new ArticleListViewModel()
             {
                 Id = item.Id,

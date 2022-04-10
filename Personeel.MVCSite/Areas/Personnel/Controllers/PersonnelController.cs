@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Personeel.MVCSite.Areas.PersonnelAdmin.Controllers
+namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
     public class PersonnelController : Controller
     {

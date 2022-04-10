@@ -11,7 +11,7 @@ namespace Personeel.IBLL
     {
         Task AddOperation(Guid userId, string text);
         Task<List<DTO.OperationinfoDto> >GetAllOperation();
-        Task<OperationinfoDto> GetOperationById(Guid id,string name);
+        Task<OperationinfoDto> GetOperationById(Guid id);
         Task RemoveOperation(Guid id);
     }
 }

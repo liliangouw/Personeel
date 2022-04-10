@@ -40,19 +40,20 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task<OperationinfoDto> GetOperationById(Guid id,string name)
+        public async Task<OperationinfoDto> GetOperationById(Guid id)
         {
             using (IOperationService operationService = new OperationService())
             {
-                var operationInfo = await operationService.GetOneByIdAsync(id);
-                OperationinfoDto operationInfoDto = new OperationinfoDto()
-                {
-                    CreateTime = operationInfo.CreateTime,
-                    Id = operationInfo.Id,
-                    Name = name,
-                    Text = operationInfo.Logdes
-                };
-                return operationInfoDto;
+                return await operationService.GetAllAsync()
+                    .Include(m =>m.User)
+                    .Where(m => m.Id == id)
+                    .Select(m => new OperationinfoDto()
+                    {
+                        CreateTime = m.CreateTime,
+                        Id = m.Id,
+                        Name = m.User.Name,
+                        Text = m.Logdes
+                    }).FirstAsync();
             }
         }
 
