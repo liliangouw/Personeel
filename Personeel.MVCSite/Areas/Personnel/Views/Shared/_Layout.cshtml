@@ -1,7 +1,5 @@
 ﻿@{
-    var userEmail = Session["userEmail"] == null ? Request.Cookies["userEmail"].Value : Session["userEmail"].ToString();
-    var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
-    var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
+
 }
 <!DOCTYPE html>
 <html>
@@ -61,33 +59,32 @@
 
                 </li>
                 <li>
-
                     <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-group fa-stack-1x "></i></span>
+                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-book-o fa-stack-1x "></i></span>
                         员工档案
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-bank fa-stack-1x "></i></span>
+                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar-minus-o fa-stack-1x "></i></span>
                        公告管理
                     </a>
 
                 </li>
                 <li>
                     <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-card fa-stack-1x "></i></span>
+                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>
                        培训管理
                     </a>
                 </li>
                 
                 <li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cog fa-stack-1x "></i></span>薪酬管理</a>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>薪酬管理</a>
                     <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                         <li>
                             <a href="#">
-                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>
+                                <span class="fa-stack fa-lg pull-left"></span>
                                 工资管理
                             </a>
                         </li>
@@ -102,7 +99,7 @@
                 </li>
 
                 <li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cog fa-stack-1x "></i></span>人事管理</a>
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-group fa-stack-1x "></i></span>人事管理</a>
                     <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                         <li>
                             <a href="#">
@@ -121,7 +118,14 @@
                             <a href="#">
                                 <span class="fa-stack fa-lg pull-left">
                                 </span>
-                                申请审批
+                                请假审批
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left">
+                                </span>
+                                通用审批
                             </a>
                         </li>
                     </ul>
