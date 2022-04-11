@@ -63,7 +63,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                     {
                         return RedirectToAction("Index", "Personnel", new { area = "Personnel" });
                     }
-                    else
+                    else if (user.UserPower==2)
                     {
                         return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }

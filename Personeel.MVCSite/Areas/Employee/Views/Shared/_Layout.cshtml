@@ -1,5 +1,7 @@
 ﻿@{
-
+    var userEmail = Session["userEmail"] == null ? Request.Cookies["userEmail"].Value : Session["userEmail"].ToString();
+    var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
+    var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
 }
 <!DOCTYPE html>
 <html>
@@ -41,7 +43,7 @@
         <div class="nav navbar-nav navbar-right">
             <ul class="nav navbar-nav">
                 <li>
-                    @Html.ActionLink("退出登录", "Login", "Login", new { area = "Admin" }, null)
+                    @Html.ActionLink("退出登录", "Login", "Login", new { area = "Employee" }, null)
                 </li>
             </ul>
         </div>
@@ -117,7 +119,7 @@
                         <li>
                             <a href="#">
                                 <span class="fa-stack fa-lg pull-left"></span>
-                               培训信息
+                                培训信息
                             </a>
                         </li>
 

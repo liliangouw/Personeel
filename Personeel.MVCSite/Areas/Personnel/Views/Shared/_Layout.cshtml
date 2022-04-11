@@ -1,5 +1,7 @@
 ﻿@{
-
+    var userEmail = Session["userEmail"] == null ? Request.Cookies["userEmail"].Value : Session["userEmail"].ToString();
+    var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
+    var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
 }
 <!DOCTYPE html>
 <html>
@@ -41,7 +43,7 @@
         <div class="nav navbar-nav navbar-right">
             <ul class="nav navbar-nav">
                 <li>
-                    @Html.ActionLink("退出登录", "Login", "Login", new { area = "Admin" }, null)
+                    @Html.ActionLink("退出登录", "Login", "Login", new { area = "Personnel" }, null)
                 </li>
             </ul>
         </div>
@@ -69,17 +71,17 @@
                 <li>
                     <a href="#">
                         <span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar-minus-o fa-stack-1x "></i></span>
-                       公告管理
+                        @Html.ActionLink("公告管理", "Index", "Announce", new { Area = "Personnel" }, null)
                     </a>
 
                 </li>
                 <li>
                     <a href="#">
                         <span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>
-                       培训管理
+                        培训管理
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>薪酬管理</a>
                     <ul class="nav-pills nav-stacked" style="list-style-type:none;">
@@ -93,7 +95,7 @@
                             <a href="#">
                                 <span class="fa-stack fa-lg pull-left">
                                 </span>
-                               调薪管理
+                                调薪管理
                             </a>
                         </li>
                     </ul>

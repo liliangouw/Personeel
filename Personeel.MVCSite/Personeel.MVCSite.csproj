@@ -137,6 +137,7 @@
     <Compile Include="Areas\Employee\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
+    <Compile Include="Areas\Personnel\Controllers\AnnounceController.cs" />
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
     <Compile Include="Areas\Personnel\Controllers\UserController.cs" />
@@ -213,6 +214,11 @@
     <Content Include="Areas\Personnel\Views\User\AddUser.cshtml" />
     <Content Include="Areas\Personnel\Views\User\Details.cshtml" />
     <Content Include="Areas\Personnel\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\Announce\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Announce\CreateArticle.cshtml" />
+    <Content Include="Areas\Personnel\Views\Announce\Details.cshtml" />
+    <Content Include="Areas\Personnel\Views\Announce\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\Announce\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnnounceInfoDto.cs" />
     <Compile Include="DepInfoDto.cs" />
     <Compile Include="OperationinfoDto.cs" />
     <Compile Include="PositionInfoDto.cs" />
