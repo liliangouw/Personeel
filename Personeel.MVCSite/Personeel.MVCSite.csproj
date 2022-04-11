@@ -139,6 +139,7 @@
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\UserController.cs" />
     <Compile Include="Areas\Personnel\PersonnelAdminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\PersonnelAuthAttribute.cs" />
@@ -208,6 +209,10 @@
     <Content Include="Areas\Admin\Views\Operation\Delete.cshtml" />
     <Content Include="Areas\Employee\Views\Login\Login.cshtml" />
     <Content Include="Areas\Personnel\Views\Login\Login.cshtml" />
+    <Content Include="Areas\Personnel\Views\User\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\User\AddUser.cshtml" />
+    <Content Include="Areas\Personnel\Views\User\Details.cshtml" />
+    <Content Include="Areas\Personnel\Views\User\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
