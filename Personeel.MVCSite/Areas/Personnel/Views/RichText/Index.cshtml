@@ -1,0 +1,44 @@
+﻿
+@{
+    var userEmail = Session["userEmail"] == null ? Request.Cookies["userEmail"].Value : Session["userEmail"].ToString();
+    var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
+    var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+ 
+        $(function () {
+ 
+            tinymce.init({
+                selector: '#textContent',
+                plugins: "table image",
+                toolbar: 'bold italic underline alignleft aligncenter alignright alignjustify fontselect fontsizeselect table image ',
+                images_upload_url: '/file/uploadpic',
+                images_upload_base_path: '',
+            });
+ 
+        });  //end page ready
+ 
+    </script>
+</head>
+<body>
+<div>
+    <div> 
+        <form action="/RichText/SaveInfo" method="post" enctype="multipart/form-data">
+            <input type="submit" id="btnSAVE" name="btnSAVE" value="save" />
+            <textarea id="textTitle" name="textContent"></textarea>
+            <textarea id="textDes" name="textContent"></textarea>
+            <textarea id="textContent" name="textContent"></textarea>
+        </form>
+    </div>
+</div>
+</body>
+</html>

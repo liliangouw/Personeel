@@ -1,0 +1,39 @@
+﻿ 
+@{
+    Layout = null;
+}
+ 
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewE</title>
+ 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+ 
+    <script type="text/javascript">
+ 
+        $(function () {
+ 
+            tinymce.init({
+                selector: '#readT',
+                toolbar: false,
+                height: 800,
+                readonly:1
+            });
+ 
+        });   //end page ready
+ 
+    </script>
+ 
+</head>
+<body>
+<div> 
+    <form>
+        <textarea name="readT" id="readT">@Html.Raw(ViewBag.File)</textarea>
+    </form>
+</div>
+</body>
+</html>
