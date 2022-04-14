@@ -30,17 +30,14 @@ namespace Personeel.Models
         [Required, StringLength(100), Column(TypeName = "varchar")]
         public string EventReason { get; set; }
         /// <summary>
-        /// 是否通过
+        /// 审批状态
         /// </summary>
-        public bool IsPass { get; set; }
+        [Required, StringLength(10), Column(TypeName = "varchar")]
+        public string IsPassState { get; set; }
         /// <summary>
         /// 不通过原因
         /// </summary>
-        [Required, StringLength(100), Column(TypeName = "varchar")]
+        [StringLength(100), Column(TypeName = "varchar")]
         public string NotReason { get; set; }
-        /// <summary>
-        /// 提交日期
-        /// </summary>
-        public DateTime ApproveTime { get; set; }
     }
 }

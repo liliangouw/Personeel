@@ -66,6 +66,10 @@
     <Compile Include="Migrations\202203291312456_createPersoneelDB.designer.cs">
       <DependentUpon>202203291312456_createPersoneelDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204141123085_InitialCreate.cs" />
+    <Compile Include="Migrations\202204141123085_InitialCreate.designer.cs">
+      <DependentUpon>202204141123085_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Operationlog.cs" />
     <Compile Include="PersoneelContext.cs" />
@@ -86,6 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202203291312456_createPersoneelDB.resx">
       <DependentUpon>202203291312456_createPersoneelDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204141123085_InitialCreate.resx">
+      <DependentUpon>202204141123085_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

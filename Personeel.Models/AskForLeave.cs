@@ -30,9 +30,10 @@ namespace Personeel.Models
         [Required, StringLength(100), Column(TypeName = "varchar")]
         public string LeaveReason { get; set; }
         /// <summary>
-        /// 是否通过
+        /// 审批状态
         /// </summary>
-        public bool LeaveIsPass { get; set; }
+        [Required, StringLength(10), Column(TypeName = "varchar")]
+        public string LeaveState { get; set; }
         /// <summary>
         /// 不通过原因
         /// </summary>

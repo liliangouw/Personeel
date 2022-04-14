@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Personeel.Models
 {
+    /// <summary>
+    /// 人事调动
+    /// </summary>
     public class Transfer:BaseEntity
     {
         /// <summary>

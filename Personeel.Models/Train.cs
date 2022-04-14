@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Personeel.Models
 {
+    /// <summary>
+    /// 培训
+    /// </summary>
     public class Train:BaseEntity
     {
         /// <summary>

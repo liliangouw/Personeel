@@ -21,5 +21,9 @@ namespace Personeel.Models
         /// </summary>
         [StringLength(200), Column(TypeName = "varchar")]
         public string Depdescribe { get; set; }
+        /// <summary>
+        /// 部门主管
+        /// </summary>
+        public Guid UserGuid { get; set; }
     }
 }
