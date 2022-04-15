@@ -57,6 +57,7 @@
     <Compile Include="OperationManager.cs" />
     <Compile Include="PositionManager.cs" />
     <Compile Include="RegulatoryManager.cs" />
+    <Compile Include="TrainManager.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

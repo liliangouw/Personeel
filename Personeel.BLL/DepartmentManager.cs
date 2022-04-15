@@ -14,25 +14,27 @@ namespace Personeel.BLL
 {
     public class DepartmentManager :IDepartmentManager
     {
-        public async Task AddDep(string depName, string depDes)
+        public async Task AddDep(string depName, string depDes,Guid depUser)
         {
             using(IDepartmentService departmentService=new DepartmentService())
             {
                 await departmentService.CreateAsync(new Department()
                 {
                     Depname = depName,
-                    Depdescribe = depDes
+                    Depdescribe = depDes,
+                    UserGuid = depUser
                 });
             }
         }
 
-        public async Task EditDep(string depName, string depDes)
+        public async Task EditDep(string depName, string depDes,Guid depUser)
         {
             using(IDepartmentService departmentService=new DepartmentService())
             {
                 var Dep = await departmentService.GetAllAsync().FirstAsync(m => m.Depname == depName);
                 Dep.Depname = depName;
                 Dep.Depdescribe = depDes;
+                Dep.UserGuid = depUser;
                 await departmentService.EditAsync(Dep);
             }
         }
@@ -45,7 +47,8 @@ namespace Personeel.BLL
                 {
                     DepGuid = m.Id,
                     DepName=m.Depname,
-                    DepDes=m.Depdescribe
+                    DepDes=m.Depdescribe,
+                    DepUserGuid = m.UserGuid
                 }).ToListAsync();
 
             }
@@ -55,15 +58,14 @@ namespace Personeel.BLL
         {
             using (IDepartmentService departmentService = new DepartmentService())
             {
-                 Models.Department department= await departmentService.GetAllAsync().Where(m=>m.Id==id).FirstAsync();
-                 DepInfoDto infoDto = new DepInfoDto()
-                 {
-                     DepGuid = department.Id,
-                     DepName = department.Depname,
-                     DepDes = department.Depdescribe
-                 };
-                 return infoDto;
-
+                    return await departmentService.GetAllAsync()
+                    .Where(m => m.Id == id).Select(m => new DepInfoDto()
+                    {
+                        DepGuid = m.Id,
+                        DepName = m.Depname,
+                        DepDes = m.Depdescribe,
+                        DepUserGuid = m.UserGuid
+                    }).FirstAsync();
             }
         }
 
@@ -71,14 +73,14 @@ namespace Personeel.BLL
         {
             using (IDepartmentService departmentService = new DepartmentService())
             {
-                Models.Department department = await departmentService.GetAllAsync().Where(m => m.Depname ==depName ).FirstAsync();
-                DepInfoDto infoDto = new DepInfoDto()
-                {
-                    DepGuid = department.Id,
-                    DepName = department.Depname,
-                    DepDes = department.Depdescribe
-                };
-                return infoDto;
+                return await departmentService.GetAllAsync()
+                    .Where(m => m.Depname == depName).Select(m => new DepInfoDto()
+                    {
+                        DepGuid = m.Id,
+                        DepName = m.Depname,
+                        DepDes = m.Depdescribe,
+                        DepUserGuid = m.UserGuid
+                    }).FirstAsync();
 
             }
         }

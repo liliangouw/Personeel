@@ -16,5 +16,12 @@ namespace Personeel.MVCSite.Models.DepartmentViewModels
         [Required]
         [Display(Name = "部门描述")]
         public string DepDes { get; set; }
+        [Required]
+        [Display(Name = "部门主管ID")]
+        public Guid DepUserId { get; set; }
+
+        [Required]
+        [Display(Name = "部门主管")]
+        public string  DepUser { get; set; }
     }
 }

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Personeel.Models
 {
+    /// <summary>
+    /// 事务
+    /// </summary>
     public class Event:BaseEntity
     {
         /// <summary>
@@ -39,5 +42,14 @@ namespace Personeel.Models
         /// </summary>
         [StringLength(100), Column(TypeName = "varchar")]
         public string NotReason { get; set; }
+        /// <summary>
+        /// 部门ID
+        /// </summary>
+        [ForeignKey(nameof(Department))]
+        public Guid DepId { get; set; }
+        /// <summary>
+        /// 部门
+        /// </summary>
+        public Department Department { get; set; }
     }
 }

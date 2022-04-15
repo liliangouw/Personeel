@@ -11,5 +11,7 @@ namespace Personeel.DTO
         public  Guid DepGuid { get; set; }
         public string DepName { get; set; }
        public string DepDes { get; set; }
+       public string DepUser { get; set; }
+       public  Guid DepUserGuid { get; set; }
     }
 }

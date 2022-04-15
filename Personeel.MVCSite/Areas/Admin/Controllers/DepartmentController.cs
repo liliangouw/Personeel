@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Personeel.BLL;
+using Personeel.DTO;
 using Personeel.IBLL;
 using Personeel.MVCSite.Filters;
 using Personeel.MVCSite.Models.DepartmentViewModels;
@@ -22,10 +23,16 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             List<DepListViewModel> depList = new List<DepListViewModel>();
             foreach (var item in depInfo)
             {
-                DepListViewModel tempModel = new DepListViewModel();
-                tempModel.DepGuid= item.DepGuid;
-                tempModel.DepName = item.DepName;
-                tempModel.DepDes = item.DepDes;
+                IBLL.IUserManager userManager = new UserManager();
+                 UserInfoDto user = await userManager.GetUserById(item.DepUserGuid);
+                DepListViewModel tempModel = new DepListViewModel
+                {
+                    DepGuid = item.DepGuid,
+                    DepName = item.DepName,
+                    DepDes = item.DepDes,
+                    DepUser = user.Name,
+                    DepUserId = item.DepUserGuid
+                };
                 depList.Add(tempModel);
             }
             return View(depList);
@@ -34,18 +41,23 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         // GET: Admin/Department/Details/5
         public async Task<ActionResult> Details(Guid id)
         {
-            
+            IBLL.IUserManager userManager = new UserManager();
             IBLL.IDepartmentManager departmentManager = new DepartmentManager();
             DepListViewModel dep = new DepListViewModel();
             DTO.DepInfoDto depinfo =await departmentManager.GetInfoById(id);
+            DTO.UserInfoDto User=await userManager.GetUserById(depinfo.DepUserGuid);
             dep.DepGuid = depinfo.DepGuid;
             dep.DepName = depinfo.DepName;
             dep.DepDes = depinfo.DepDes;
+            dep.DepUserId = depinfo.DepUserGuid;
+            dep.DepUser = User.Name;
+             
             return View(dep);
         }
         [HttpGet]
-        public ActionResult AddDepartment()
+        public async Task<ActionResult> AddDepartment()
         {
+            ViewBag.Users = await new UserManager().GetAllUser();
             return View();
         }
         [HttpPost]
@@ -56,7 +68,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             {
                 
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
-                await departmentManager.AddDep(model.DepName, model.DepDes);
+                await departmentManager.AddDep(model.DepName, model.DepDes,model.DepUser);
                 BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
@@ -66,12 +78,14 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         // GET: Admin/Department/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
+            ViewBag.Users = await new UserManager().GetAllUser();
             IBLL.IDepartmentManager departmentManager = new DepartmentManager();
             DepListViewModel dep = new DepListViewModel();
             DTO.DepInfoDto depinfo = await departmentManager.GetInfoById(id);
             dep.DepGuid = depinfo.DepGuid;
             dep.DepName = depinfo.DepName;
             dep.DepDes = depinfo.DepDes;
+            dep.DepUserId = depinfo.DepUserGuid;
             return View(dep);
         }
 
@@ -82,7 +96,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             try
             {
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
-                departmentManager.EditDep(model.DepName, model.DepDes);
+                departmentManager.EditDep(model.DepName, model.DepDes,model.DepUserId);
                 BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString()+":"+Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }

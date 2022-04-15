@@ -142,6 +142,7 @@
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
     <Compile Include="Areas\Personnel\Controllers\RichTextController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\TrainController.cs" />
     <Compile Include="Areas\Personnel\Controllers\UserController.cs" />
     <Compile Include="Areas\Personnel\PersonnelAdminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Models\OperationViewModels\OperationListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
     <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
+    <Compile Include="Models\TrainViewModels\AddTrainViewModel.cs" />
     <Compile Include="Models\UserViewModels\AddViewModel.cs" />
     <Compile Include="Models\UserViewModels\LoginViewModel.cs" />
     <Compile Include="Models\UserViewModels\UserListViewModel.cs" />
@@ -313,6 +315,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Personnel\Data\" />
+    <Folder Include="Areas\Personnel\Views\Train\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

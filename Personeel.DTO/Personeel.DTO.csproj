@@ -56,6 +56,7 @@
     <Compile Include="OperationinfoDto.cs" />
     <Compile Include="PositionInfoDto.cs" />
     <Compile Include="RegulatoryInfoDto.cs" />
+    <Compile Include="TrainInfoDto.cs" />
     <Compile Include="UserInfoDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

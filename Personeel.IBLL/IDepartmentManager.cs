@@ -8,8 +8,8 @@ namespace Personeel.IBLL
 {
     public interface IDepartmentManager
     {
-        Task AddDep(string depName, string depDes);
-        Task EditDep(string depName, string depDes);
+        Task AddDep(string depName, string depDes,Guid depUser);
+        Task EditDep(string depName, string depDes,Guid depUser);
         Task RemoveDep(Guid id);
         Task<List<DTO.DepInfoDto>>GetInfo();
         Task<DTO.DepInfoDto> GetInfoById(Guid id);

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Personeel.Models
 {
+    /// <summary>
+    /// 请假
+    /// </summary>
     public class AskForLeave:BaseEntity
     {
         /// <summary>
@@ -53,5 +56,14 @@ namespace Personeel.Models
         /// </summary>
         [Required]
         public DateTime EndTime { get; set; }
+        /// <summary>
+        /// 部门ID
+        /// </summary>
+        [ForeignKey(nameof(Department))]
+        public Guid DepId { get; set; }
+        /// <summary>
+        /// 部门
+        /// </summary>
+        public Department Department { get; set; }
     }
 }
