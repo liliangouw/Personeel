@@ -50,6 +50,8 @@ namespace Personeel.MVCSite.Models.UserViewModels
         public DateTime NotWorkDate { get; set; }
         [Display(Name = "性别")]
         public string Gender { get; set; }
+        [Display(Name = "权限")]
+        public Guid Right { get; set; }
 
     }
 }

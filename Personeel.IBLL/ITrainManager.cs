@@ -11,7 +11,7 @@ namespace Personeel.IBLL
         Task AddTrain(string trainSort,string trainDes,DateTime startTime,DateTime endTime,Guid userGuid);
         Task<List<DTO.TrainInfoDto>> GetAllTrain();
         Task<DTO.TrainInfoDto> GetOneById(Guid id);
-        Task EditTrain(Guid id, string trainResult, string trainComment);
+        Task EditTrain(Guid id, string trainSort, string trainDes, DateTime startTime, DateTime endTime, Guid userGuid);
         Task RemoveTrain(Guid id);
     }
 }

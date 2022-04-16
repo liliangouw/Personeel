@@ -139,6 +139,7 @@
     <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Personnel\Controllers\AnnounceController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\EncourageOrChastisementController.cs" />
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
     <Compile Include="Areas\Personnel\Controllers\RichTextController.cs" />
@@ -197,10 +198,8 @@
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
     <Content Include="Areas\Employee\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Employee\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Employee\Views\Employee\Index.cshtml" />
     <Content Include="Areas\Personnel\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Personnel\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Personnel\Views\Personnel\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
@@ -225,6 +224,11 @@
     <Content Include="Areas\Personnel\Views\Announce\Delete.cshtml" />
     <Content Include="Areas\Personnel\Views\RichText\Index.cshtml" />
     <Content Include="Areas\Personnel\Views\RichText\ViewE.cshtml" />
+    <Content Include="Areas\Personnel\Views\Train\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Train\Details.cshtml" />
+    <Content Include="Areas\Personnel\Views\Train\Create.cshtml" />
+    <Content Include="Areas\Personnel\Views\Train\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\Train\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -315,7 +319,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Personnel\Data\" />
-    <Folder Include="Areas\Personnel\Views\Train\" />
+    <Folder Include="Areas\Personnel\Views\EncourageOrChastisement\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

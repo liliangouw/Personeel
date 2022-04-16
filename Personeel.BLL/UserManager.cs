@@ -98,7 +98,8 @@ namespace Personeel.BLL
                         Department = m.Department.Depname,
                         Position = m.Position.Posname,
                         BasicMoney = m.Basicmoney,
-                        UserPower = m.UserRight.UserPower
+                        UserPower = m.UserRight.UserPower,
+                        UserRightId = m.UserRightID
                     }).ToListAsync();
             }
         }
@@ -133,7 +134,8 @@ namespace Personeel.BLL
                             Department = m.Department.Depname,
                             Position = m.Position.Posname,
                             BasicMoney = m.Basicmoney,
-                            UserPower = m.UserRight.UserPower
+                            UserPower = m.UserRight.UserPower,
+                            UserRightId = m.UserRightID
                         }).FirstAsync();
                 }
                 else
@@ -151,7 +153,7 @@ namespace Personeel.BLL
                 await userService.RemoveAsync(user.Id);
             }
         }
-        public bool Login(string email, string password,out Guid userId,out string userName)
+        public bool Login(string email, string password,out Guid userId,out string userName,out Guid userRight)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
             {
@@ -162,16 +164,16 @@ namespace Personeel.BLL
                 {
                     userName = "用户";
                     userId = new Guid();
+                    userRight = new Guid();
                     return false;
                 }
                 else
                 {
                     userId = data.Id;
                     userName = data.Name;
+                    userRight = data.UserRightID;
                     return true;
                 }
-                
-                
             }
         }
 
@@ -205,13 +207,24 @@ namespace Personeel.BLL
                             Department = m.Department.Depname,
                             Position = m.Position.Posname,
                             BasicMoney = m.Basicmoney,
-                            UserPower = m.UserRight.UserPower
+                            UserPower = m.UserRight.UserPower,
+                            UserRightId = m.UserRightID
                         }).FirstAsync();
                 }
                 else
                 {
                     throw new ArgumentException(message: "ID不存在");
                 }
+            }
+        }
+
+        public async Task ChangePower(Guid id, Guid powerId)
+        {
+            using (IDAL.IUserService userService = new DAL.UserService())
+            {
+                var user = await userService.GetAllAsync().FirstAsync(m => m.Id == id);
+                user.UserRightID = powerId;
+                await userService.EditAsync(user);
             }
         }
     }

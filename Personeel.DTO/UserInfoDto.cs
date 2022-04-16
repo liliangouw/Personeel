@@ -93,8 +93,11 @@ namespace Personeel.DTO
         /// 权限
         /// </summary>
         public int UserPower { get; set; }
+        /// <summary>
+        /// 权限ID
+        /// </summary>
 
-
+        public  Guid UserRightId { get; set; }
 
     }
 }

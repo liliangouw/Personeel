@@ -54,6 +54,7 @@
     <Compile Include="AnnounceService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="DepartmentService.cs" />
+    <Compile Include="EncourageService.cs" />
     <Compile Include="OperationService.cs" />
     <Compile Include="PositionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

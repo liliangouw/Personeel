@@ -125,6 +125,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 NativePlace = userInfo.NativePlace,
                 School = userInfo.School,
                 TipTopDegree = userInfo.TipTopDegree,
+                Right = userInfo.UserRightId
             };
             return View(model);
         }

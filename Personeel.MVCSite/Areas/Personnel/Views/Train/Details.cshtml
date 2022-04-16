@@ -1,0 +1,57 @@
+﻿@model Personeel.MVCSite.Models.TrainViewModels.AddTrainViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>培训详情</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainSort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainSort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainDes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("回到列表", "Index")
+</p>

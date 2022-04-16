@@ -26,7 +26,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 IBLL.IUserManager userManager = new UserManager();
                 Guid userId;
                 string userName;
-                if (userManager.Login(model.LoginName, model.LoginPwd, out userId, out userName))
+                Guid userRight;
+                if (userManager.Login(model.LoginName, model.LoginPwd, out userId, out userName, out userRight))
                 {
                     if (model.RememberMe)
                     {
@@ -45,14 +46,19 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                             Value = userName,
                             Expires = DateTime.Now.AddDays(7)
                         });
+                        Response.Cookies.Add(new HttpCookie("userRight")
+                        {
+                            Value = userRight.ToString(),
+                            Expires = DateTime.Now.AddDays(7)
+                        });
                     }
                     else
                     {
                         Session["userEmail"] = model.LoginName;
                         Session["userid"] = userId.ToString();
                         Session["userName"] = userName;
+                        Session["UserRight"] = userRight.ToString();
                     }
-                    BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                     //跳转
                     DTO.UserInfoDto user = await userManager.GetUserByEmail(model.LoginName);
                     if (user.UserPower == 0)
@@ -63,7 +69,11 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                     {
                         return RedirectToAction("Index", "Personnel", new { area = "Personnel" });
                     }
-                    else if (user.UserPower==2)
+                    else if (user.UserPower == 2)
+                    {
+                        return RedirectToAction("Index", "Employee", new { area = "Employee" });
+                    }
+                    else if (user.UserPower == 3)
                     {
                         return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }

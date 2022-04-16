@@ -2,6 +2,7 @@
     var userEmail = Session["userEmail"] == null ? Request.Cookies["userEmail"].Value : Session["userEmail"].ToString();
     var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
     var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
+    var userRight = Session["userRight"] == null ? Request.Cookies["userRight"].Value : Session["userRight"].ToString();
 }
 <!DOCTYPE html>
 <html>
@@ -49,72 +50,409 @@
             </ul>
         </div>
 
-        <!-- bs-example-navbar-collapse-1 -->
     </nav>
     <div id="wrapper">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+        <!-- 通过权限判断菜单栏的显示列 -->
+        @{
+            //管理员
+            if (userRight == "7b6dc9c0-e166-8323-527b-f5a6fe72756c")
+            {
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
 
-                <li>
-                    <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
-                        @Html.ActionLink("首页", "Index", "Admin", new { Area = "Admin" }, null)
-                    </a>
-
-                </li>
-                <li>
-
-                    <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-group fa-stack-1x "></i></span>
-                        @Html.ActionLink("用户管理", "Index", "User", new { Area = "Admin" }, null)
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-bank fa-stack-1x "></i></span>
-                        @Html.ActionLink("部门管理", "Index", "Department", new { Area = "Admin" }, null)
-                    </a>
-
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-card fa-stack-1x "></i></span>
-                        @Html.ActionLink("职位管理", "Index", "Position", new { Area = "Admin" }, null)
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>
-                        @Html.ActionLink("规章制度管理", "Index", "Regulatory", new { Area = "Admin" }, null)
-                    </a>
-                </li>
-
-
-                <li>
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cog fa-stack-1x "></i></span>系统管理</a>
-                    <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                         <li>
                             <a href="#">
-                                <span class="fa-stack fa-lg pull-left"></span>
-                                @Html.ActionLink("日志管理", "Index", "Operation", new { Area = "Admin" }, null)
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
+                                @Html.ActionLink("首页", "Index", "Admin", new { Area = "Admin" }, null)
+                            </a>
+                        </li>
+                        <li>
+
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-group fa-stack-1x "></i></span>
+                                @Html.ActionLink("用户管理", "Index", "User", new { Area = "Admin" }, null)
                             </a>
                         </li>
 
                         <li>
                             <a href="#">
-                                <span class="fa-stack fa-lg pull-left">
-                                </span>
-                                设备管理
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-bank fa-stack-1x "></i></span>
+                                @Html.ActionLink("部门管理", "Index", "Department", new { Area = "Admin" }, null)
                             </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-card fa-stack-1x "></i></span>
+                                @Html.ActionLink("职位管理", "Index", "Position", new { Area = "Admin" }, null)
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>
+                                @Html.ActionLink("规章制度管理", "Index", "Regulatory", new { Area = "Admin" }, null)
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cog fa-stack-1x "></i></span>系统管理</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        @Html.ActionLink("日志管理", "Index", "Operation", new { Area = "Admin" }, null)
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        设备管理
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            }
+            //人事
+            else if (userRight == "c487756a-10c5-8c77-d783-0f10ddf0837c")
+            {
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
+                                @Html.ActionLink("首页", "Index", "Personnel", new { Area = "Personnel" }, null)
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-book-o fa-stack-1x "></i></span>
+                                @Html.ActionLink("人事档案", "Index", "User", new { Area = "Personnel" }, null)
+                            </a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        @Html.ActionLink("人员档案", "Index", "User", new { Area = "Personnel" }, null)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        @Html.ActionLink("人员合同", "Index", "User", new { Area = "Personnel" }, null)
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar-minus-o fa-stack-1x "></i></span>
+                                @Html.ActionLink("公告管理", "Index", "Announce", new { Area = "Personnel" }, null)
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>
+                                @Html.ActionLink("培训管理", "Index", "Train", new { Area = "Personnel" }, null)
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>薪酬管理</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        工资管理
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        调薪管理
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        绩效管理
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-group fa-stack-1x "></i></span>人事管理</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        奖惩管理
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        人事调动
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        请假审批
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        通用审批
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>报表统计</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        人员统计
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        工资报表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        合同报表
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                     </ul>
-                </li>
-            </ul>
-        </div>
+                </div>
+            }
+            //部门主管
+            else if (userRight == "aeaeb207-2c3b-7e1d-265a-0ef856ce3871")
+            {
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
+                                @Html.ActionLink("首页", "Index", "Employee", new { Area = "Employee" }, null)
+                            </a>
+
+                        </li>
+                        <li>
+
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-book-o fa-stack-1x "></i></span>
+                                个人档案
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>
+                                个人薪酬
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-group fa-stack-1x "></i></span>人事办理</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        请假申请
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        调岗申请
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        转正申请
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        离职申请
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>学习中心</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        培训信息
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        公告信息
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        规章制度
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            }
+            //普通员工
+            else
+            {
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span>
+                                @Html.ActionLink("首页", "Index", "Employee", new { Area = "Employee" }, null)
+                            </a>
+
+                        </li>
+                        <li>
+
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-book-o fa-stack-1x "></i></span>
+                                个人档案
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>
+                                个人薪酬
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-group fa-stack-1x "></i></span>人事办理</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        请假申请
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        调岗申请
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        转正申请
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        离职申请
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-wrench fa-stack-1x "></i></span>学习中心</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        培训信息
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        公告信息
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        规章制度
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            }
+        }
+
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">

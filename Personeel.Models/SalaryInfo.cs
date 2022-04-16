@@ -23,6 +23,7 @@ namespace Personeel.Models
         /// 基本工资
         /// </summary>
         public int BasicSalary { get; set; }
+
         /// <summary>
         /// 奖惩
         /// </summary>

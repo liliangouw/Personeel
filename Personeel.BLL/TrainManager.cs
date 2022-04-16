@@ -12,7 +12,7 @@ using Personeel.Models;
 
 namespace Personeel.BLL
 {
-    internal class TrainManager : ITrainManager
+    public class TrainManager : ITrainManager
     {
         public async Task AddTrain(string trainSort, string trainDes, DateTime startTime, DateTime endTime,
             Guid userGuid)
@@ -41,7 +41,8 @@ namespace Personeel.BLL
                     TrainSort = m.TrainSort,
                     TrainDes = m.TrainDes,
                     TrainGuid = m.Id,
-                    UserId = m.UserId
+                    UserId = m.UserId,
+                    UserName = m.User.Name
                 }).ToListAsync();
             }
         }
@@ -58,8 +59,6 @@ namespace Personeel.BLL
                             TrainGuid = m.Id,
                             TrainSort = m.TrainSort,
                             TrainDes = m.TrainDes,
-                            TrainResult = m.TrainResult,
-                            TrainComment = m.TarinComment,
                             StartTime = m.StartTime,
                             EndTime = m.EndTime,
                             UserName = m.User.Name
@@ -67,13 +66,16 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task EditTrain(Guid id, string trainResult, string trainComment)
+        public async Task EditTrain(Guid id, string trainSort, string trainDes, DateTime startTime, DateTime endTime, Guid userGuid)
         {
             using (ITrainService trainService = new TrainService())
             {
                 Train train = await trainService.GetAllAsync().Where(m => m.Id == id).FirstAsync();
-                train.TrainResult = trainResult;
-                train.TarinComment = trainComment;
+                train.TrainSort = trainSort;
+                train.TrainDes = trainDes;
+                train.StartTime = startTime;
+                train.EndTime = endTime;
+                train.UserId = userGuid;
                 await trainService.EditAsync(train);
             }
         }

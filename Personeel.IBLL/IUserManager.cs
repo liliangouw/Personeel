@@ -8,7 +8,7 @@ namespace Personeel.IBLL
     public interface IUserManager
     {
         Task AddUser(string email, string password, string name, Guid userRight,int basicMoney,Guid department,Guid positionId);
-        bool Login(string email, string password,out Guid userId,out string userName);
+        bool Login(string email, string password,out Guid userId,out string userName,out Guid userRight);
         Task ChangePassword(Guid id,string email, string oldPwd, string newPwd);
         Task ChangeInfo(Guid id,string email,string name, string gender, DateTime birthday, int idNum, string wedlock,
                         string race, string nativePlace, string politic, int phone, string tipTopDegree, string school);
@@ -16,5 +16,6 @@ namespace Personeel.IBLL
         Task<DTO.UserInfoDto> GetUserByEmail(string email);
         Task<List<DTO.UserInfoDto>> GetAllUser();
         Task DeleteUser(Guid id);
+        Task ChangePower(Guid id, Guid powerId);
     }
 }

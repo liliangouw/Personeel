@@ -41,17 +41,5 @@ namespace Personeel.Models
         /// 结束时间
         /// </summary>
         public DateTime EndTime { get; set; }
-
-        /// <summary>
-        /// 培训结果
-        /// </summary>
-        [Required, StringLength(10), Column(TypeName = "varchar")]
-        public string TrainResult { get; set; } = "培训未结束";
-
-        /// <summary>
-        /// 培训评价
-        /// </summary>
-        [Required, StringLength(200), Column(TypeName = "varchar")]
-        public string TarinComment { get; set; } = "培训未结束";
     }
 }

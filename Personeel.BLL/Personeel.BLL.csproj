@@ -54,6 +54,7 @@
     <Compile Include="AnnounceManager.cs" />
     <Compile Include="BaseManager.cs" />
     <Compile Include="DepartmentManager.cs" />
+    <Compile Include="EncourageManage.cs" />
     <Compile Include="OperationManager.cs" />
     <Compile Include="PositionManager.cs" />
     <Compile Include="RegulatoryManager.cs" />

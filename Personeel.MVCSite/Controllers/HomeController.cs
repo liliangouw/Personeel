@@ -28,7 +28,8 @@ namespace Personeel.MVCSite.Controllers
                IBLL.IUserManager userManager = new UserManager();
                Guid userId;
                string userName;
-                if (  userManager.Login(model.LoginName, model.LoginPwd,out userId,out userName))
+               Guid userRight;
+                if (  userManager.Login(model.LoginName, model.LoginPwd,out userId,out userName,out userRight))
                 {
                     if (model.RememberMe)
                     {
@@ -47,12 +48,18 @@ namespace Personeel.MVCSite.Controllers
                             Value = userName,
                             Expires = DateTime.Now.AddDays(7)
                         });
+                        Response.Cookies.Add(new HttpCookie("userRight")
+                        {
+                            Value = userRight.ToString(),
+                            Expires = DateTime.Now.AddDays(7)
+                        });
                     }
                     else
                     {
                         Session["userEmail"] = model.LoginName;
                         Session["userid"] = userId.ToString();
                         Session["userName"] = userName;
+                        Session["UserRight"] = userRight.ToString();
                     }
                     //跳转
                     DTO.UserInfoDto user=await userManager.GetUserByEmail(model.LoginName);
@@ -64,7 +71,11 @@ namespace Personeel.MVCSite.Controllers
                     {
                         return RedirectToAction("Index", "Personnel", new { area = "Personnel" });
                     }
-                    else
+                    else if(user.UserPower==2)
+                    {
+                        return RedirectToAction("Index", "Employee", new { area = "Employee" });
+                    }
+                    else if (user.UserPower == 3)
                     {
                         return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }

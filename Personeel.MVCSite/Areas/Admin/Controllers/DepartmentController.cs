@@ -69,6 +69,8 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
                 await departmentManager.AddDep(model.DepName, model.DepDes,model.DepUser);
+                IUserManager userManager = new UserManager();
+                await userManager.ChangePower(model.DepUser, Guid.Parse("aeaeb207-2c3b-7e1d-265a-0ef856ce3871"));
                 BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
@@ -91,12 +93,16 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
 
         // POST: Admin/Department/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, DepListViewModel model)
+        public async Task<ActionResult> Edit(Guid id, DepListViewModel model)
         {
             try
             {
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
-                departmentManager.EditDep(model.DepName, model.DepDes,model.DepUserId);
+                DepInfoDto info=await departmentManager.GetInfoById(id);
+                IUserManager userManager = new UserManager();
+                await userManager.ChangePower(info.DepUserGuid, Guid.Parse("f740cd62-7161-d9b3-4fe7-4d63caa4a143"));
+                await userManager.ChangePower(model.DepUserId, Guid.Parse("aeaeb207-2c3b-7e1d-265a-0ef856ce3871"));
+                await departmentManager.EditDep(model.DepName, model.DepDes,model.DepUserId);
                 BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString()+":"+Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }

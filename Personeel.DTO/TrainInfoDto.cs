@@ -25,15 +25,5 @@ namespace Personeel.DTO
         /// 结束时间
         /// </summary>
         public DateTime EndTime { get; set; }
-
-        /// <summary>
-        /// 培训结果
-        /// </summary>
-        public string TrainResult { get; set; }
-
-        /// <summary>
-        /// 培训评价
-        /// </summary>
-        public string TrainComment { get; set; }
     }
 }
