@@ -148,7 +148,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        @Html.ActionLink("人员合同", "Index", "User", new { Area = "Personnel" }, null)
+                                        人员合同
                                     </a>
                                 </li>
                             </ul>
@@ -201,7 +201,14 @@
                                 <li>
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left"></span>
-                                        奖惩管理
+                                        @Html.ActionLink("奖惩管理", "Index", "EncourageOrChastisement", new { Area = "Personnel" }, null)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        考勤管理
                                     </a>
                                 </li>
                                 <li>

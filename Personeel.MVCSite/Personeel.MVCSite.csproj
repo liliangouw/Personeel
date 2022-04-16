@@ -155,6 +155,7 @@
     <Compile Include="Models\ArticleViewModels\CreateArticleViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\AddViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\DepListViewModel.cs" />
+    <Compile Include="Models\EncourageViewModels\EncourageViewModel.cs" />
     <Compile Include="Models\OperationViewModels\OperationListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
     <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
@@ -229,6 +230,11 @@
     <Content Include="Areas\Personnel\Views\Train\Create.cshtml" />
     <Content Include="Areas\Personnel\Views\Train\Edit.cshtml" />
     <Content Include="Areas\Personnel\Views\Train\Delete.cshtml" />
+    <Content Include="Areas\Personnel\Views\EncourageOrChastisement\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\EncourageOrChastisement\Details.cshtml" />
+    <Content Include="Areas\Personnel\Views\EncourageOrChastisement\Create.cshtml" />
+    <Content Include="Areas\Personnel\Views\EncourageOrChastisement\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\EncourageOrChastisement\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -319,7 +325,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Personnel\Data\" />
-    <Folder Include="Areas\Personnel\Views\EncourageOrChastisement\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
