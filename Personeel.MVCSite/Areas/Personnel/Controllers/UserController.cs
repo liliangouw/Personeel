@@ -136,5 +136,44 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             return RedirectToAction("Index");
 
         }
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            IUserManager userManager = new UserManager();
+            UserInfoDto userInfo = await userManager.GetUserById(id);
+            UserListViewModel userList = new UserListViewModel()
+            {
+                Email = userInfo.Email,
+                Name = userInfo.Name,
+                Gender = userInfo.Gender,
+                Department = userInfo.Department,
+                Position = userInfo.Position,
+                Phone = userInfo.Phone,
+                UserNum = userInfo.UserNum,
+                UserPower = userInfo.UserPower,
+                BasicMoney = userInfo.BasicMoney,
+                Birthday = userInfo.Birthday,
+                IdNumber = userInfo.IdNumber,
+                Politic = userInfo.Politic,
+                Wedlock = userInfo.Wedlock,
+                Race = userInfo.Race,
+                NativePlace = userInfo.NativePlace,
+                School = userInfo.School,
+                TipTopDegree = userInfo.TipTopDegree,
+            };
+            return View(userList);
+        }
+
+        // POST: Admin/User/Delete/5
+        [HttpPost]
+        public async Task<ActionResult> Delete(Guid id, FormCollection collection)
+        {
+
+
+            IUserManager userManager = new UserManager();
+            await userManager.DeleteUser(id);
+            BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
+            return RedirectToAction("Index");
+
+        }
     }
 }

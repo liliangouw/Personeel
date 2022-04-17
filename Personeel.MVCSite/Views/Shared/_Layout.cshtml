@@ -18,7 +18,13 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="/Content/style.css">
     <link href="~/fonts/iconfont.css" rel="stylesheet" />
-
+    @if (TempData["message"] != null)
+    {
+        <script type="text/javascript">
+            var message = @Html.Raw(Json.Encode(TempData["message"]));
+            alert(message);
+        </script>
+    }
 </head>
 <body>
 
@@ -208,7 +214,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        考勤管理
+                                        @Html.ActionLink("考勤管理", "Index", "Checking", new { Area = "Personnel" }, null)
                                     </a>
                                 </li>
                                 <li>
@@ -290,7 +296,15 @@
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>
                                 个人薪酬
                             </a>
+                        </li>
 
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left">
+                                    <i class="fa fa-address-book-o fa-stack-1x "></i>
+                                </span>
+                                @Html.ActionLink("个人打卡", "Index", "Checking", new { Area = "Employee" }, null)
+                            </a>
                         </li>
 
                         <li>
@@ -308,14 +322,6 @@
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
                                         调岗申请
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <span class="fa-stack fa-lg pull-left">
-                                        </span>
-                                        转正申请
                                     </a>
                                 </li>
 
@@ -388,6 +394,15 @@
                                 个人薪酬
                             </a>
 
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left">
+                                    <i class="fa fa-address-book-o fa-stack-1x "></i>
+                                </span>
+                                @Html.ActionLink("个人打卡", "Index", "Checking", new { Area = "Employee" }, null)
+                            </a>
                         </li>
 
                         <li>

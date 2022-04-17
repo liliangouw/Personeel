@@ -36,7 +36,7 @@ namespace Personeel.Models
         public DbSet<EncourageOrChastisement> EncourageOrChastisements { get; set; }
         public DbSet<ChangeSalary> ChangeSalaries { get; set; }
         public DbSet<AskForLeave> AskForLeaves { get; set; }
-
+        public DbSet<Checking>Checkings { get; set; }
             
     }
 

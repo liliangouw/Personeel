@@ -135,10 +135,12 @@
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
     <Compile Include="Areas\Admin\Controllers\RegulatoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Employee\Controllers\CheckingController.cs" />
     <Compile Include="Areas\Employee\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Personnel\Controllers\AnnounceController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\CheckingController.cs" />
     <Compile Include="Areas\Personnel\Controllers\EncourageOrChastisementController.cs" />
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
@@ -153,6 +155,7 @@
     </Compile>
     <Compile Include="Models\ArticleViewModels\ArticleListViewModel.cs" />
     <Compile Include="Models\ArticleViewModels\CreateArticleViewModel.cs" />
+    <Compile Include="Models\CheckingViewModels\CheckingViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\AddViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\DepListViewModel.cs" />
     <Compile Include="Models\EncourageViewModels\EncourageViewModel.cs" />
@@ -235,6 +238,9 @@
     <Content Include="Areas\Personnel\Views\EncourageOrChastisement\Create.cshtml" />
     <Content Include="Areas\Personnel\Views\EncourageOrChastisement\Edit.cshtml" />
     <Content Include="Areas\Personnel\Views\EncourageOrChastisement\Delete.cshtml" />
+    <Content Include="Areas\Employee\Views\Checking\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Checking\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\User\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

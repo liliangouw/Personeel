@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICheckingService.cs" />
     <Compile Include="IEncourageService.cs" />
     <Compile Include="IAnnounceService.cs" />
     <Compile Include="IBaseService.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="IOperationService.cs" />
     <Compile Include="IPositionService.cs" />
     <Compile Include="IRegulatoryService.cs" />
+    <Compile Include="ISalaryService.cs" />
     <Compile Include="ITrainService.cs" />
     <Compile Include="IUserRightService.cs" />
     <Compile Include="IUserService.cs" />

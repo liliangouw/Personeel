@@ -53,12 +53,14 @@
   <ItemGroup>
     <Compile Include="AnnounceService.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="CheckingService.cs" />
     <Compile Include="DepartmentService.cs" />
     <Compile Include="EncourageService.cs" />
     <Compile Include="OperationService.cs" />
     <Compile Include="PositionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegulatoryService.cs" />
+    <Compile Include="SalaryService.cs" />
     <Compile Include="TrainService.cs" />
     <Compile Include="UserRightService.cs" />
     <Compile Include="UserService.cs" />

@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Personeel.Models
+namespace Personeel.DTO
 {
-    public class SalaryInfo:BaseEntity
+    public class SalaryInfoDto
     {
-        /// <summary>
-        /// 用户外键
-        /// </summary>
-        [ForeignKey(nameof(User))]
+        public Guid Id { get; set; }
         public Guid UserId { get; set; }
         /// <summary>
         /// 用户
         /// </summary>
-        public User User { get; set; }
-        
+        public string UserName { get; set; }
+
         /// <summary>
         /// 基本工资
         /// </summary>
@@ -60,7 +55,6 @@ namespace Personeel.Models
         /// <summary>
         /// 发薪日期
         /// </summary>
-        [StringLength(30), Column(TypeName = "varchar")]
-        public string SalaryDate { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
+        public string SalaryDate { get; set; }
     }
 }

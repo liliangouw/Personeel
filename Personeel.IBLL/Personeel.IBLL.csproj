@@ -51,12 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICheckingManager.cs" />
     <Compile Include="IAnnounceManager.cs" />
     <Compile Include="IDepartmentManager.cs" />
     <Compile Include="IEncourageManager.cs" />
     <Compile Include="IOperationManager.cs" />
     <Compile Include="IPositionManager.cs" />
     <Compile Include="IRegulatoryManager.cs" />
+    <Compile Include="ISalaryManager.cs" />
     <Compile Include="ITrainManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
