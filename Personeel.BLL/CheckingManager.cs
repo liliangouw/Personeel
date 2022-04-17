@@ -18,24 +18,30 @@ namespace Personeel.BLL
         {
             using (ICheckingService checkingService = new CheckingService())
             {
-                //判断打卡状态
-                string status;
-                DateTime dt=DateTime.Now;
-                if (dt.Hour<=8||(dt.Hour <= 8 && dt.Minute <= 30))
+                string day = DateTime.Now.ToString("yyyy-MM-dd");
+                Checking info = await checkingService.GetAllAsync().Where(m => m.DayTime == day && m.UserGuid == userGuid).FirstAsync();
+                //如果不存在此记录
+                if (info == null)
                 {
-                    status = "正常";
+                    //判断打卡状态
+                    string status;
+                    DateTime dt = DateTime.Now;
+                    if (dt.Hour <= 8 || (dt.Hour <= 8 && dt.Minute <= 30))
+                    {
+                        status = "正常";
+                    }
+                    else
+                    {
+                        status = "异常";
+                    }
+                    DateTime createTime = DateTime.Now;
+                    await checkingService.CreateAsync(new Checking()
+                    {
+                        UserGuid = userGuid,
+                        BeginTime = createTime,
+                        Status = status
+                    });
                 }
-                else
-                {
-                    status = "异常";
-                }
-                DateTime createTime=DateTime.Now;
-                await checkingService.CreateAsync(new Checking()
-                {
-                    UserGuid = userGuid,
-                    BeginTime = createTime,
-                    Status = status
-                });
             }
         }
 

@@ -12,7 +12,7 @@ using Personeel.Models;
 
 namespace Personeel.BLL
 {
-    internal class SalaryManager:ISalaryManager
+    public class SalaryManager:ISalaryManager
     {
         public async Task AddSalary(Guid userId, int basicMoney, int encourageOrChastisement, int shouldDays, int actualDays, int subsidies, int accumulationfund, int socialSecurity, int tax, string month)
         {
@@ -101,6 +101,7 @@ namespace Personeel.BLL
                         int basicMoney = user.Basicmoney;
                         SalaryInfoDto salaryInfo = new SalaryInfoDto()
                         {
+                            UserName = user.Name,
                             BasicSalary = basicMoney,
                             EncourageOrChastisement = count,
                             ShouldDays = shouldDays,

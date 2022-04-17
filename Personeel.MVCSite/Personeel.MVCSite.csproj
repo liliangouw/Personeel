@@ -145,6 +145,7 @@
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
     <Compile Include="Areas\Personnel\Controllers\RichTextController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\SalaryController.cs" />
     <Compile Include="Areas\Personnel\Controllers\TrainController.cs" />
     <Compile Include="Areas\Personnel\Controllers\UserController.cs" />
     <Compile Include="Areas\Personnel\PersonnelAdminAreaRegistration.cs" />
@@ -162,6 +163,9 @@
     <Compile Include="Models\OperationViewModels\OperationListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
     <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
+    <Compile Include="Models\SalaryViewModels\AddSalaryViewModel.cs" />
+    <Compile Include="Models\SalaryViewModels\SalaryListViewModel.cs" />
+    <Compile Include="Models\SalaryViewModels\SelectUserViewModel.cs" />
     <Compile Include="Models\TrainViewModels\AddTrainViewModel.cs" />
     <Compile Include="Models\UserViewModels\AddViewModel.cs" />
     <Compile Include="Models\UserViewModels\LoginViewModel.cs" />
@@ -241,6 +245,11 @@
     <Content Include="Areas\Employee\Views\Checking\Index.cshtml" />
     <Content Include="Areas\Personnel\Views\Checking\Index.cshtml" />
     <Content Include="Areas\Personnel\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Personnel\Views\Salary\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Salary\Details.cshtml" />
+    <Content Include="Areas\Personnel\Views\Salary\Select.cshtml" />
+    <Content Include="Areas\Personnel\Views\Salary\Create.cshtml" />
+    <Content Include="Areas\Personnel\Views\Salary\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

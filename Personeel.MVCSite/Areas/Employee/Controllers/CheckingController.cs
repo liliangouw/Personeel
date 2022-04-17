@@ -42,7 +42,7 @@ namespace Personeel.MVCSite.Areas.Employee.Controllers
                 var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
                 await checkingManager.Begin(Guid.Parse(userId));
                 TempData["message"] = "上班打卡成功";
-                return View("Index");
+                return RedirectToAction("Index");
         }
 
         public async Task<ActionResult> End()
