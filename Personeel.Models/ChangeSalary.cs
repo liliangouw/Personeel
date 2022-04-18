@@ -25,6 +25,11 @@ namespace Personeel.Models
         [Required, StringLength(100), Column(TypeName = "varchar")]
         public string ChangeReason { get; set; }
         /// <summary>
+        /// 调前薪资
+        /// </summary>
+        [Required]
+        public int BeforeSalary { get; set; }
+        /// <summary>
         /// 调后薪资
         /// </summary>
         [Required]

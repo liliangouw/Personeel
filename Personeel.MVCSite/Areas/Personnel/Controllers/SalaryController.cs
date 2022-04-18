@@ -96,7 +96,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             AddSalaryViewModel list = new AddSalaryViewModel()
             {
                 UserName = info.UserName,
-                UserId = id,
+                UserId = info.UserId,
                 BasicSalary = info.BasicSalary,
                 ActualDays = info.ActualDays,
                 ShouldDays = info.ShouldDays,
@@ -104,7 +104,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 SalaryDate = info.SalaryDate,
                 ActualSalary = info.ActualSalary,
                 Accumulationfund = info.Accumulationfund,
-                Id = info.Id,
+                Id = id,
                 Tax = info.Tax,
                 SocialSecurity = info.SocialSecurity,
                 Subsidies = info.Subsidies,
@@ -114,10 +114,13 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
 
         // POST: Personnel/Salary/Edit/5
         [HttpPost]
-        public ActionResult Edit(Guid id, AddSalaryViewModel model)
+        public async Task<ActionResult> Edit(Guid id, AddSalaryViewModel model)
         {
             try
             {
+               await  salaryManager.EditSalary(id, model.BasicSalary, model.EncourageOrChastisement, model.ShouldDays,
+                    model.ActualDays, model.Subsidies, model.Accumulationfund, model.SocialSecurity, model.Tax,
+                    model.SalaryDate);
                 return RedirectToAction("Index");
             }
             catch

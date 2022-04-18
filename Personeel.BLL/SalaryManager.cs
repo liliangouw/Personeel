@@ -14,6 +14,8 @@ namespace Personeel.BLL
 {
     public class SalaryManager:ISalaryManager
     {
+        #region 薪酬管理
+
         public async Task AddSalary(Guid userId, int basicMoney, int encourageOrChastisement, int shouldDays, int actualDays, int subsidies, int accumulationfund, int socialSecurity, int tax, string month)
         {
             using (ISalaryService salaryService = new SalaryService())
@@ -194,6 +196,27 @@ namespace Personeel.BLL
             }
         }
 
+        public async Task EditSalary(Guid Id, int basicMoney, int encourageOrChastisement, int shouldDays, int actualDays, int subsidies,
+            int accumulationfund, int socialSecurity, int tax, string month)
+        {
+            using (ISalaryService salaryService = new SalaryService())
+            {
+               var info= await  salaryService.GetAllAsync().Where(m => m.Id == Id).FirstAsync();
+               info.BasicSalary = basicMoney;
+               info.EncourageOrChastisement = encourageOrChastisement;
+               info.ShouldDays = shouldDays;
+               info.ActualDays = actualDays;
+               info.Subsidies = subsidies;
+               info.Accumulationfund = accumulationfund;
+               info.SocialSecurity = socialSecurity;
+               info.Tax = tax;
+               info.SalaryDate = month;
+               info.ActualSalary = basicMoney + encourageOrChastisement + subsidies + accumulationfund +
+                                   socialSecurity + tax;
+               await salaryService.EditAsync(info);
+            }
+        }
+
         public async Task Remove(Guid id)
         {
             using (ISalaryService salaryService = new SalaryService())
@@ -201,5 +224,110 @@ namespace Personeel.BLL
                 await salaryService.RemoveAsync(id);
             }
         }
+
+
+        #endregion
+
+        #region 调薪管理
+        public async Task<List<UserInfoDto>> GetAllUserBasicSalary()
+        {
+            using (IUserService userService=new UserService())
+            {
+               return await userService.GetAllAsync().Select(m => new UserInfoDto()
+                {
+                   UserId = m.Id,
+                   Name = m.Name,
+                   Position = m.Position.Posname,
+                   BasicMoney = m.Basicmoney,
+                   Department = m.Department.Depname
+                }).ToListAsync();
+            }
+        }
+
+        public async Task EditUserBasicSalary(Guid userGuid,string reason, int basicSalary)
+        {
+            using (IUserService userService = new UserService())
+            {
+               var user= await userService.GetOneByIdAsync(userGuid);
+               user.Basicmoney = basicSalary;
+               //添加调薪记录
+               using (IChangeSalaryService changeSalaryService = new ChangeSalaryService())
+               {
+                   await changeSalaryService.CreateAsync(new ChangeSalary()
+                   {
+                       BeforeSalary = user.Basicmoney,
+                       UserId = userGuid,
+                       ChangeReason = reason,
+                       ChangedSalary = basicSalary
+                   });
+               }
+               //调薪
+               await userService.EditAsync(user);
+            }
+        }
+
+        public async Task<UserInfoDto> GetOneBasicSalary(Guid userGuid)
+        {
+            using (IUserService userService = new UserService())
+            {
+                return await userService.GetAllAsync().Where(m => m.Id == userGuid).Select(m => new UserInfoDto()
+                {
+                    UserId = m.Id,
+                    Name = m.Name,
+                    Position = m.Position.Posname,
+                    BasicMoney = m.Basicmoney,
+                    Department = m.Department.Depname
+                }).FirstAsync();
+            }
+        }
+
+
+
+        #endregion
+
+        #region 调薪记录管理
+
+        public async Task<List<ChangeSalaryInfoDto>> GetAllChangeRecord()
+        {
+            using (IChangeSalaryService changeSalaryService = new ChangeSalaryService())
+            {
+                return await changeSalaryService.GetAllAsync().Select(m => new ChangeSalaryInfoDto()
+                {
+                    Id = m.Id,
+                    UserGuid = m.UserId,
+                    UserName = m.User.Name,
+                    BeforeSalary = m.BeforeSalary,
+                    ChangedSalary = m.ChangedSalary,
+                    ChangeReason = m.ChangeReason
+                }).ToListAsync();
+            }
+        }
+
+        public async Task<List<ChangeSalaryInfoDto>> GetRecordByUserId(Guid id)
+        {
+            using (IChangeSalaryService changeSalaryService = new ChangeSalaryService())
+            {
+                return await changeSalaryService.GetAllAsync().Where(m=>m.UserId==id).Select(m => new ChangeSalaryInfoDto()
+                {
+                    Id = m.Id,
+                    UserGuid = m.UserId,
+                    UserName = m.User.Name,
+                    BeforeSalary = m.BeforeSalary,
+                    ChangedSalary = m.ChangedSalary,
+                    ChangeReason = m.ChangeReason
+                }).ToListAsync();
+            }
+        }
+
+        public async Task RemoveRecord(Guid id)
+        {
+            using (IChangeSalaryService changeSalaryService = new ChangeSalaryService())
+            {
+                await changeSalaryService.RemoveAsync(id);
+            }
+        }
+
+        #endregion
+
     }
 }

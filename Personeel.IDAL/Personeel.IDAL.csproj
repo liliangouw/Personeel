@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IChangeSalaryService.cs" />
     <Compile Include="ICheckingService.cs" />
     <Compile Include="IEncourageService.cs" />
     <Compile Include="IAnnounceService.cs" />

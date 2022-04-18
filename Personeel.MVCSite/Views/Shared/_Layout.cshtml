@@ -188,7 +188,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        调薪管理
+                                        @Html.ActionLink("调薪管理", "Index", "ChangeSalary", new { Area = "Personnel" }, null)
                                     </a>
                                 </li>
                                 <li>
@@ -303,7 +303,7 @@
                                 <span class="fa-stack fa-lg pull-left">
                                     <i class="fa fa-address-book-o fa-stack-1x "></i>
                                 </span>
-                                @Html.ActionLink("个人打卡", "Index", "Checking", new { Area = "Employee" }, null)
+                                @Html.ActionLink("考勤打卡", "Index", "Checking", new { Area = "Employee" }, null)
                             </a>
                         </li>
 
@@ -401,7 +401,7 @@
                                 <span class="fa-stack fa-lg pull-left">
                                     <i class="fa fa-address-book-o fa-stack-1x "></i>
                                 </span>
-                                @Html.ActionLink("个人打卡", "Index", "Checking", new { Area = "Employee" }, null)
+                                @Html.ActionLink("考勤打卡", "Index", "Checking", new { Area = "Employee" }, null)
                             </a>
                         </li>
 

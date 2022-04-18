@@ -140,6 +140,7 @@
     <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Personnel\Controllers\AnnounceController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\ChangeSalaryController.cs" />
     <Compile Include="Areas\Personnel\Controllers\CheckingController.cs" />
     <Compile Include="Areas\Personnel\Controllers\EncourageOrChastisementController.cs" />
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
     <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
     <Compile Include="Models\SalaryViewModels\AddSalaryViewModel.cs" />
+    <Compile Include="Models\SalaryViewModels\ChangeBasicSalaryViewModel.cs" />
     <Compile Include="Models\SalaryViewModels\SalaryListViewModel.cs" />
     <Compile Include="Models\SalaryViewModels\SelectUserViewModel.cs" />
     <Compile Include="Models\TrainViewModels\AddTrainViewModel.cs" />
@@ -250,6 +252,9 @@
     <Content Include="Areas\Personnel\Views\Salary\Select.cshtml" />
     <Content Include="Areas\Personnel\Views\Salary\Create.cshtml" />
     <Content Include="Areas\Personnel\Views\Salary\Delete.cshtml" />
+    <Content Include="Areas\Personnel\Views\Salary\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\ChangeSalary\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\ChangeSalary\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
