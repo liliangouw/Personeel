@@ -18,5 +18,7 @@ namespace Personeel.MVCSite.Models.SalaryViewModels
         public  string Department { get; set; }
         [Display(Name = "职位")]
         public  string Position { get; set; }
+        [Display(Name = "调薪原因")]
+        public  string Reason { get; set; }
     }
 }

@@ -14,5 +14,6 @@ namespace Personeel.DTO
         public string ChangeReason { get; set; }
         public int BeforeSalary { get; set; }
         public int ChangedSalary { get; set; }
+        public DateTime ChangedDate { get; set; }
     }
 }

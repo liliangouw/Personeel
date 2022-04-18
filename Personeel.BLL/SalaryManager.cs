@@ -249,7 +249,7 @@ namespace Personeel.BLL
             using (IUserService userService = new UserService())
             {
                var user= await userService.GetOneByIdAsync(userGuid);
-               user.Basicmoney = basicSalary;
+               
                //添加调薪记录
                using (IChangeSalaryService changeSalaryService = new ChangeSalaryService())
                {
@@ -262,6 +262,7 @@ namespace Personeel.BLL
                    });
                }
                //调薪
+               user.Basicmoney = basicSalary;
                await userService.EditAsync(user);
             }
         }
@@ -298,7 +299,8 @@ namespace Personeel.BLL
                     UserName = m.User.Name,
                     BeforeSalary = m.BeforeSalary,
                     ChangedSalary = m.ChangedSalary,
-                    ChangeReason = m.ChangeReason
+                    ChangeReason = m.ChangeReason,
+                    ChangedDate = m.CreateTime
                 }).ToListAsync();
             }
         }
@@ -314,7 +316,8 @@ namespace Personeel.BLL
                     UserName = m.User.Name,
                     BeforeSalary = m.BeforeSalary,
                     ChangedSalary = m.ChangedSalary,
-                    ChangeReason = m.ChangeReason
+                    ChangeReason = m.ChangeReason,
+                    ChangedDate = m.CreateTime
                 }).ToListAsync();
             }
         }

@@ -49,7 +49,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         {
             try
             {
-                await salaryManager.EditUserBasicSalary(id, model.BasicSalary);
+                await salaryManager.EditUserBasicSalary(id,model.Reason ,model.BasicSalary);
                 return RedirectToAction("Index");
             }
             catch
