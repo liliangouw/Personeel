@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Personeel.MVCSite.Models.DepartmentViewModels.TransferRecordViewModel>
+
+@{
+    ViewBag.Title = "RecordIndex";
+}
+
+<h2>调动记录</h2>
+
+<p>
+    @Html.ActionLink("返回", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeforeDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeforePos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransferDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransferPos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransferDateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeforeDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeforePos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransferDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransferPos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransferDateTime)
+        </td>
+    </tr>
+}
+
+</table>

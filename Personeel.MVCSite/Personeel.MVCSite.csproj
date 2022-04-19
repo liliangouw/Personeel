@@ -149,6 +149,7 @@
     <Compile Include="Areas\Personnel\Controllers\RichTextController.cs" />
     <Compile Include="Areas\Personnel\Controllers\SalaryController.cs" />
     <Compile Include="Areas\Personnel\Controllers\TrainController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\TransferController.cs" />
     <Compile Include="Areas\Personnel\Controllers\UserController.cs" />
     <Compile Include="Areas\Personnel\PersonnelAdminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -161,6 +162,8 @@
     <Compile Include="Models\CheckingViewModels\CheckingViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\AddViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\DepListViewModel.cs" />
+    <Compile Include="Models\DepartmentViewModels\TransferRecordViewModel.cs" />
+    <Compile Include="Models\DepartmentViewModels\UserDepartmentsViewModel.cs" />
     <Compile Include="Models\EncourageViewModels\EncourageViewModel.cs" />
     <Compile Include="Models\OperationViewModels\OperationListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
@@ -258,6 +261,9 @@
     <Content Include="Areas\Personnel\Views\ChangeSalary\Index.cshtml" />
     <Content Include="Areas\Personnel\Views\ChangeSalary\Edit.cshtml" />
     <Content Include="Areas\Personnel\Views\ChangeSalaryRecords\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Transfer\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Transfer\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\Transfer\RecordIndex.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

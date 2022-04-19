@@ -28,6 +28,17 @@ namespace Personeel.Models
         [Required, StringLength(50), Column(TypeName = "varchar")]
         public string TransferReason { get; set; }
         /// <summary>
+        /// 调前部门
+        /// </summary>
+        [Required, StringLength(20), Column(TypeName = "varchar")]
+        public string BeforeTransferDep { get; set; }
+        /// <summary>
+        /// 调前岗位
+        /// </summary>
+        [Required, StringLength(20), Column(TypeName = "varchar")]
+        public string BeforeTransferPos { get; set; }
+
+        /// <summary>
         /// 调后部门
         /// </summary>
         [Required, StringLength(20), Column(TypeName = "varchar")]

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Personeel.MVCSite.Models.DepartmentViewModels.UserDepartmentsViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>人员职位表</h2>
+
+<p>
+    @Html.ActionLink("调动记录", "RecordIndex")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPos)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserPos)
+        </td>
+        <td>
+            @Html.ActionLink("调岗", "Edit", new { userGuid=item.UserGuid })
+        </td>
+    </tr>
+}
+
+</table>

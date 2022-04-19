@@ -33,9 +33,9 @@
 
 
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
-                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-            </button>
+            <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" id="menu-toggle">
+                 <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                 </button>-->
             <a class="navbar-brand" href="#"><i class="fa fa-rocket fa-4"></i>企业人事管理系统</a>
         </div>
 
@@ -195,13 +195,6 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        @Html.ActionLink("调薪记录", "Index", "ChangeSalaryRecords", new { Area = "Personnel" }, null)
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="fa-stack fa-lg pull-left">
-                                        </span>
                                         绩效管理
                                     </a>
                                 </li>
@@ -228,7 +221,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        人事调动
+                                        @Html.ActionLink("人事调动", "Index", "Transfer", new { Area = "Personnel" }, null)
                                     </a>
                                 </li>
                                 <li>

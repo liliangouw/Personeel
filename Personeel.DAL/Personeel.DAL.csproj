@@ -63,6 +63,7 @@
     <Compile Include="RegulatoryService.cs" />
     <Compile Include="SalaryService.cs" />
     <Compile Include="TrainService.cs" />
+    <Compile Include="TransferService.cs" />
     <Compile Include="UserRightService.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
