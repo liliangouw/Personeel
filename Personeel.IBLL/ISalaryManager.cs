@@ -20,6 +20,7 @@ namespace Personeel.IBLL
 
         Task RemoveAccount(Guid id);
         //薪酬管理
+        Task AddSalarys();
         Task AddSalary(Guid userId, int basicMoney, int encourageOrChastisement, int shouldDays, int actualDays,
             int subsidies, int accumulationfund, int socialSecurity, int tax, string month);
 

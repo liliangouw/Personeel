@@ -93,6 +93,51 @@ namespace Personeel.BLL
 
         #region 薪酬管理
 
+        /// <summary>
+        /// 批量添加薪酬
+        /// </summary>
+        /// <returns></returns>
+        public async Task AddSalarys()
+        {
+            using (IUserService userService = new UserService())
+            {
+                List <User>userList= await userService.GetAllAsync().ToListAsync();
+                List<SalaryInfoDto> salaryInfos = new List<SalaryInfoDto>();
+                //获取所有用户的考勤，奖惩等信息
+                foreach (var item in userList)
+                {
+                    SalaryInfoDto salaryInfo=await GetInfoByUserId(item.Id);
+                    salaryInfos.Add(salaryInfo);
+                }
+                using (IPayRollAccountService payRollAccountService = new PayRollAccountService()) 
+                {
+                    //获取所有工资账套
+                    List<PayRollAccount>payRollAccounts=await payRollAccountService.GetAllAsync().ToListAsync();
+                    for (int i = 0; i < payRollAccounts.Count; i++)
+                    {
+                       await AddSalary(payRollAccounts[i].UserGuid,payRollAccounts[i].BasicSalary,salaryInfos[i].EncourageOrChastisement,
+                           salaryInfos[i].ShouldDays,salaryInfos[i].ActualDays,payRollAccounts[i].Subsidies,payRollAccounts[i].Accumulationfund,
+                           payRollAccounts[i].SocialSecurity,payRollAccounts[i].Tax,salaryInfos[i].SalaryDate);
+                    }
+                }
+       
+            }
+        }      
+        
+        /// <summary>
+        /// 添加单条薪资记录
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="basicMoney"></param>
+        /// <param name="encourageOrChastisement"></param>
+        /// <param name="shouldDays"></param>
+        /// <param name="actualDays"></param>
+        /// <param name="subsidies"></param>
+        /// <param name="accumulationfund"></param>
+        /// <param name="socialSecurity"></param>
+        /// <param name="tax"></param>
+        /// <param name="month"></param>
+        /// <returns></returns>
         public async Task AddSalary(Guid userId, int basicMoney, int encourageOrChastisement, int shouldDays, int actualDays, int subsidies, int accumulationfund, int socialSecurity, int tax, string month)
         {
             using (ISalaryService salaryService = new SalaryService())
@@ -138,7 +183,8 @@ namespace Personeel.BLL
                 }
                 dateTime.AddDays(1);
             }
-            //工作日等于当月总天数减去非工作日
+            //工作日等于当月总天数减去非
+            //工作日
             int workDays = days - weekDays;
             return workDays;
         }
