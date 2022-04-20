@@ -58,6 +58,7 @@
     <Compile Include="IBaseService.cs" />
     <Compile Include="IDepartmentService.cs" />
     <Compile Include="IOperationService.cs" />
+    <Compile Include="IPayRollAccountService.cs" />
     <Compile Include="IPositionService.cs" />
     <Compile Include="IRegulatoryService.cs" />
     <Compile Include="ISalaryService.cs" />

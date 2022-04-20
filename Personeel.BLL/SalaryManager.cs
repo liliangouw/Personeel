@@ -14,6 +14,83 @@ namespace Personeel.BLL
 {
     public class SalaryManager:ISalaryManager
     {
+        #region 账套管理
+        public async Task AddAccount(Guid userId, int basicMoney, int subsidies, int accumulationfund, int socialSecurity, int tax)
+        {
+            using (IPayRollAccountService payRollAccountService = new PayRollAccountService())
+            {
+                await payRollAccountService.CreateAsync(new PayRollAccount()
+                {
+                    UserGuid = userId,
+                    Accumulationfund = accumulationfund,
+                    BasicSalary = basicMoney,
+                    SocialSecurity = socialSecurity,
+                    Subsidies = subsidies,
+                    Tax = tax
+                });
+            }
+        }
+
+        public async Task<List<SalaryInfoDto>> GetAllAccount()
+        {
+            using (IPayRollAccountService payRollAccountService = new PayRollAccountService())
+            {
+              return  await payRollAccountService.GetAllAsync().Select(m => new SalaryInfoDto()
+                {
+                    UserId = m.UserGuid,
+                    UserName = m.User.Name,
+                    BasicSalary = m.BasicSalary,
+                    Subsidies = m.Subsidies,
+                    Accumulationfund = m.Accumulationfund,
+                    SocialSecurity = m.SocialSecurity,
+                    Tax = m.Tax
+                }).ToListAsync();
+            }
+        }
+
+        public async Task EditAccount(Guid id, int subsidies, int accumulationfund, int socialSecurity, int tax)
+        {
+            using (IPayRollAccountService payRollAccountService = new PayRollAccountService())
+            {
+               var account=await payRollAccountService.GetOneByIdAsync(id);
+               account.Subsidies = subsidies;
+               account.Accumulationfund = accumulationfund;
+               account.SocialSecurity = socialSecurity;
+               account.Tax = tax;
+               await payRollAccountService.EditAsync(account);
+            }
+        }
+
+        public async Task<SalaryInfoDto> GetOneAccountById(Guid id)
+        {
+            using (IPayRollAccountService payRollAccountService = new PayRollAccountService())
+            {
+              return await payRollAccountService.GetAllAsync().Include(m => m.User).Where(m => m.Id == id).Select(m =>
+                    new SalaryInfoDto()
+                    {
+                        UserId = m.UserGuid,
+                        UserName = m.User.Name,
+                        BasicSalary = m.BasicSalary,
+                        Subsidies = m.Subsidies,
+                        Accumulationfund = m.Accumulationfund,
+                        SocialSecurity = m.SocialSecurity,
+                        Tax = m.Tax
+                    }).FirstAsync();
+            }
+            
+        }
+
+        public async Task RemoveAccount(Guid id)
+        {
+            using (IPayRollAccountService payRollAccountService = new PayRollAccountService())
+            {
+                await payRollAccountService.RemoveAsync(id);
+            }
+        }
+
+
+        #endregion
+
         #region 薪酬管理
 
         public async Task AddSalary(Guid userId, int basicMoney, int encourageOrChastisement, int shouldDays, int actualDays, int subsidies, int accumulationfund, int socialSecurity, int tax, string month)
@@ -195,7 +272,20 @@ namespace Personeel.BLL
                 }).ToListAsync();
             }
         }
-
+        /// <summary>
+        /// 修改薪资
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="basicMoney"></param>
+        /// <param name="encourageOrChastisement"></param>
+        /// <param name="shouldDays"></param>
+        /// <param name="actualDays"></param>
+        /// <param name="subsidies"></param>
+        /// <param name="accumulationfund"></param>
+        /// <param name="socialSecurity"></param>
+        /// <param name="tax"></param>
+        /// <param name="month"></param>
+        /// <returns></returns>
         public async Task EditSalary(Guid Id, int basicMoney, int encourageOrChastisement, int shouldDays, int actualDays, int subsidies,
             int accumulationfund, int socialSecurity, int tax, string month)
         {

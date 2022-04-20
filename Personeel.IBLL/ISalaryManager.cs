@@ -9,6 +9,16 @@ namespace Personeel.IBLL
 {
     public interface ISalaryManager
     {
+        //工资账套管理
+        Task AddAccount(Guid userId,int basicMoney,int subsidies,int accumulationfund, int socialSecurity, int tax);
+
+        Task<List<SalaryInfoDto>> GetAllAccount();
+
+        Task EditAccount(Guid id, int subsidies, int accumulationfund, int socialSecurity, int tax);
+
+        Task<SalaryInfoDto> GetOneAccountById(Guid id);
+
+        Task RemoveAccount(Guid id);
         //薪酬管理
         Task AddSalary(Guid userId, int basicMoney, int encourageOrChastisement, int shouldDays, int actualDays,
             int subsidies, int accumulationfund, int socialSecurity, int tax, string month);

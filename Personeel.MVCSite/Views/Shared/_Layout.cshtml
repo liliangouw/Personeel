@@ -177,11 +177,17 @@
 
                         <li>
                             <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>薪酬管理</a>
-                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                            <ul class="nav-pills nav-stacked" style="list-style-type: none;">
                                 <li>
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left"></span>
-                                        @Html.ActionLink("薪资管理", "Index", "Salary", new { Area = "Personnel" }, null)
+                                        @Html.ActionLink("工资账套", "Index", "Salary", new { Area = "Personnel" }, null)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        @Html.ActionLink("月末处理", "Index", "Salary", new { Area = "Personnel" }, null)
                                     </a>
                                 </li>
                                 <li>
