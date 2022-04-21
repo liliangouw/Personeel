@@ -4,7 +4,7 @@
     ViewBag.Title = "Select";
 }
 
-<h2>请选择要发放工资的员工</h2>
+<h2>选择员工</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -15,16 +15,15 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-         @Html.LabelFor(model => model.UserGuid, htmlAttributes: new { @class = "control-label col-md-2" })
-         <div class="col-md-10">
-             @foreach (var userItem in ViewBag.Users)
-             {
-                 <div class="radio">
-                     <label><input type="radio" name="UserGuid" value="@userItem.UserId">@userItem.Name</label>
-                 </div>
-             }
-             
-         </div>
+            @Html.LabelFor(model => model.UserGuid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="radio">
+                    @foreach (var userItem in ViewBag.Users)
+                    {
+                        <label><input type="radio" name="UserGuid" value="@userItem.UserId">@userItem.Name</label>
+                    }
+                </div>
+            </div>
         </div>
 
         <div class="form-group">

@@ -265,6 +265,11 @@
     <Content Include="Areas\Personnel\Views\Transfer\Index.cshtml" />
     <Content Include="Areas\Personnel\Views\Transfer\Edit.cshtml" />
     <Content Include="Areas\Personnel\Views\Transfer\RecordIndex.cshtml" />
+    <Content Include="Areas\Personnel\Views\PayRollAccount\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\PayRollAccount\Select.cshtml" />
+    <Content Include="Areas\Personnel\Views\PayRollAccount\Create.cshtml" />
+    <Content Include="Areas\Personnel\Views\PayRollAccount\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\PayRollAccount\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -355,7 +360,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Personnel\Data\" />
-    <Folder Include="Areas\Personnel\Views\PayRollAccount\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

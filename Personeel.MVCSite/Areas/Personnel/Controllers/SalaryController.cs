@@ -59,35 +59,12 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
 
         // POST: Personnel/Salary/Create
         [HttpPost]
-        public ActionResult Select(SelectUserViewModel model)
+        public async Task<ActionResult> Select(SelectUserViewModel model)
         {
-            return  RedirectToAction("Create", new {id=model.UserGuid});
+            await salaryManager.AddSalarys(model.UserGuid);
+            return  RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> Create(Guid id)
-        {
-            var info = await salaryManager.GetInfoByUserId(id);
-            AddSalaryViewModel list = new AddSalaryViewModel()
-            {
-                UserName = info.UserName,
-                UserId = id,
-                BasicSalary = info.BasicSalary,
-                ActualDays = info.ActualDays,
-                ShouldDays = info.ShouldDays,
-                EncourageOrChastisement = info.EncourageOrChastisement,
-                SalaryDate = info.SalaryDate
-            };
-            return View(list);
-        }
-        [HttpPost]
-        public async Task<ActionResult> Create(AddSalaryViewModel model)
-        {
-            await salaryManager.AddSalary(model.UserId,model.BasicSalary
-                ,model.EncourageOrChastisement,model.ShouldDays
-                ,model.ActualDays,model.Subsidies,model.Accumulationfund,model.SocialSecurity
-                ,model.Tax,model.SalaryDate);
-            return RedirectToAction("Index");
-        }
 
         // GET: Personnel/Salary/Edit/5
         public async Task<ActionResult> Edit(Guid id)

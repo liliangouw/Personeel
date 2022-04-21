@@ -13,12 +13,15 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     public class PayRollAccountController : Controller
     {
         public ISalaryManager salaryManager = new SalaryManager();
+
+        public IUserManager UserManager = new UserManager();
         // GET: Personnel/PayRollAccount
         public async Task<ActionResult> Index()
         {
             var info = await salaryManager.GetAllAccount();
             List<AddSalaryViewModel> list = info.Select(m => new AddSalaryViewModel()
             {
+                Id = m.Id,
                 UserId = m.UserId,
                 UserName = m.UserName,
                 BasicSalary = m.BasicSalary,
@@ -30,19 +33,40 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             return View(list);
         }
 
-        // GET: Personnel/PayRollAccount/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Select()
         {
+            ViewBag.Users = await new UserManager().GetAllUser();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Select(SelectUserViewModel model)
+        {
+            Guid userGuid = model.UserGuid[0];
+            return RedirectToAction("Create", new { id = userGuid });
+        }
+
+        // GET: Personnel/PayRollAccount/Create
+        public async Task<ActionResult> Create(Guid id)
+        {
+           var info= await UserManager.GetUserById(id);
+           AddSalaryViewModel list = new AddSalaryViewModel()
+           {
+               UserId = info.UserId,
+               UserName = info.Name,
+               BasicSalary = info.BasicMoney
+           };
+            return View(list);
         }
 
         // POST: Personnel/PayRollAccount/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(AddSalaryViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+               await salaryManager.AddAccount(model.UserId, model.BasicSalary, model.Subsidies, model.Accumulationfund,
+                    model.SocialSecurity, model.Tax);
 
                 return RedirectToAction("Index");
             }
@@ -53,19 +77,30 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         }
 
         // GET: Personnel/PayRollAccount/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+           var info=await salaryManager.GetOneAccountById(id);
+           AddSalaryViewModel list = new AddSalaryViewModel()
+           {
+               Id = info.Id,
+               UserId = info.UserId,
+               UserName = info.UserName,
+               BasicSalary = info.BasicSalary,
+               Accumulationfund = info.Accumulationfund,
+               SocialSecurity = info.SocialSecurity,
+               Subsidies = info.Subsidies,
+               Tax = info.Tax
+           };
+            return View(list);
         }
 
         // POST: Personnel/PayRollAccount/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit(Guid id, AddSalaryViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
-
+                await salaryManager.EditAccount(id, model.Subsidies, model.Accumulationfund, model.SocialSecurity, model.Tax);
                 return RedirectToAction("Index");
             }
             catch
@@ -75,19 +110,30 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         }
 
         // GET: Personnel/PayRollAccount/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            return View();
+            var info = await salaryManager.GetOneAccountById(id);
+            AddSalaryViewModel list = new AddSalaryViewModel()
+            {
+                Id = info.Id,
+                UserId = info.UserId,
+                UserName = info.UserName,
+                BasicSalary = info.BasicSalary,
+                Accumulationfund = info.Accumulationfund,
+                SocialSecurity = info.SocialSecurity,
+                Subsidies = info.Subsidies,
+                Tax = info.Tax
+            };
+            return View(list);
         }
 
         // POST: Personnel/PayRollAccount/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(Guid id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                await salaryManager.RemoveAccount(id);
                 return RedirectToAction("Index");
             }
             catch

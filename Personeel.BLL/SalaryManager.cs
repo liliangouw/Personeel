@@ -35,8 +35,9 @@ namespace Personeel.BLL
         {
             using (IPayRollAccountService payRollAccountService = new PayRollAccountService())
             {
-              return  await payRollAccountService.GetAllAsync().Select(m => new SalaryInfoDto()
+               return await payRollAccountService.GetAllAsync().Select(m => new SalaryInfoDto()
                 {
+                    Id=m.Id,
                     UserId = m.UserGuid,
                     UserName = m.User.Name,
                     BasicSalary = m.BasicSalary,
@@ -97,16 +98,16 @@ namespace Personeel.BLL
         /// 批量添加薪酬
         /// </summary>
         /// <returns></returns>
-        public async Task AddSalarys()
+        public async Task AddSalarys(List<Guid>userId)
         {
             using (IUserService userService = new UserService())
             {
                 List <User>userList= await userService.GetAllAsync().ToListAsync();
                 List<SalaryInfoDto> salaryInfos = new List<SalaryInfoDto>();
                 //获取所有用户的考勤，奖惩等信息
-                foreach (var item in userList)
+                foreach (var item in userId)
                 {
-                    SalaryInfoDto salaryInfo=await GetInfoByUserId(item.Id);
+                    SalaryInfoDto salaryInfo=await GetInfoByUserId(item);
                     salaryInfos.Add(salaryInfo);
                 }
                 using (IPayRollAccountService payRollAccountService = new PayRollAccountService()) 

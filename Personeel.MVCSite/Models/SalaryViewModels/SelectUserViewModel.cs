@@ -9,6 +9,6 @@ namespace Personeel.MVCSite.Models.SalaryViewModels
     public class SelectUserViewModel
     {
         [Display(Name = "用户名称")]
-        public Guid UserGuid { get; set; }
+        public List<Guid> UserGuid { get; set; }
     }
 }
