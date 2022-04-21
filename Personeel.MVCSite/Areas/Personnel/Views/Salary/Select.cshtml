@@ -19,9 +19,7 @@
          <div class="col-md-10">
              @foreach (var userItem in ViewBag.Users)
              {
-                 <div class="radio">
-                     <label><input type="radio" name="UserGuid" value="@userItem.UserId">@userItem.Name</label>
-                 </div>
+                 <label><input type="checkbox" name="UserGuid" value="@userItem.UserId">@userItem.Name</label>
              }
              
          </div>

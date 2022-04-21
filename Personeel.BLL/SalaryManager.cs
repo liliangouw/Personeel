@@ -102,26 +102,26 @@ namespace Personeel.BLL
         {
             using (IUserService userService = new UserService())
             {
-                List <User>userList= await userService.GetAllAsync().ToListAsync();
-                List<SalaryInfoDto> salaryInfos = new List<SalaryInfoDto>();
-                //获取所有用户的考勤，奖惩等信息
-                foreach (var item in userId)
+                using (IPayRollAccountService payRollAccountService = new PayRollAccountService())
                 {
-                    SalaryInfoDto salaryInfo=await GetInfoByUserId(item);
-                    salaryInfos.Add(salaryInfo);
-                }
-                using (IPayRollAccountService payRollAccountService = new PayRollAccountService()) 
-                {
-                    //获取所有工资账套
-                    List<PayRollAccount>payRollAccounts=await payRollAccountService.GetAllAsync().ToListAsync();
+                    List<User> userList = await userService.GetAllAsync().ToListAsync();
+                    List<SalaryInfoDto> salaryInfos = new List<SalaryInfoDto>();
+                    List<PayRollAccount> payRollAccounts = new List<PayRollAccount>();
+                    //获取所有用户的考勤，奖惩等信息
+                    foreach (var item in userId)
+                    {
+                        SalaryInfoDto salaryInfo = await GetInfoByUserId(item);
+                        PayRollAccount payRollInfo = await payRollAccountService.GetAllAsync().Where(m=>m.UserGuid==item).FirstAsync();
+                        payRollAccounts.Add(payRollInfo);
+                        salaryInfos.Add(salaryInfo);
+                    }
                     for (int i = 0; i < payRollAccounts.Count; i++)
                     {
-                       await AddSalary(payRollAccounts[i].UserGuid,payRollAccounts[i].BasicSalary,salaryInfos[i].EncourageOrChastisement,
-                           salaryInfos[i].ShouldDays,salaryInfos[i].ActualDays,payRollAccounts[i].Subsidies,payRollAccounts[i].Accumulationfund,
-                           payRollAccounts[i].SocialSecurity,payRollAccounts[i].Tax,salaryInfos[i].SalaryDate);
+                        await AddSalary(payRollAccounts[i].UserGuid, payRollAccounts[i].BasicSalary, salaryInfos[i].EncourageOrChastisement,
+                            salaryInfos[i].ShouldDays, salaryInfos[i].ActualDays, payRollAccounts[i].Subsidies, payRollAccounts[i].Accumulationfund,
+                            payRollAccounts[i].SocialSecurity, payRollAccounts[i].Tax, salaryInfos[i].SalaryDate);
                     }
                 }
-       
             }
         }      
         

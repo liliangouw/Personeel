@@ -71,7 +71,7 @@ namespace Personeel.DAL
 
         public async Task<T> GetOneByIdAsync(Guid id)
         {
-           return await GetAllAsync().FirstAsync(m => m.Id == id);
+           return await GetAllAsync().Where(m=>m.Id==id).FirstAsync();
         }
 
         public async Task RemoveAsync(Guid id, bool saved = true)

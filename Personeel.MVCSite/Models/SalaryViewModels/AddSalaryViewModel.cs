@@ -33,7 +33,7 @@ namespace Personeel.MVCSite.Models.SalaryViewModels
         public int Tax { get; set; }
         [Display(Name = "实发工资")]
         public int ActualSalary { get; set; }
-        [Display(Name = "工资日期")]
+        [Display(Name = "工资发放日期")]
         public string SalaryDate { get; set; }
     }
 }
