@@ -35,10 +35,10 @@ namespace Personeel.Models
         /// <summary>
         /// 审批状态
         /// </summary>
-        [Required, StringLength(10), Column(TypeName = "varchar")]
-        public string IsPassState { get; set; }
+        [Required]
+        public int IsPassState { get; set; }
         /// <summary>
-        /// 不通过原因
+        /// 备注
         /// </summary>
         [StringLength(100), Column(TypeName = "varchar")]
         public string NotReason { get; set; }

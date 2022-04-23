@@ -75,6 +75,10 @@
     <Compile Include="Migrations\202204170811278_ChangSalaryDate.designer.cs">
       <DependentUpon>202204170811278_ChangSalaryDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204231004153_更新事务.cs" />
+    <Compile Include="Migrations\202204231004153_更新事务.designer.cs">
+      <DependentUpon>202204231004153_更新事务.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Operationlog.cs" />
     <Compile Include="PayRollAccount.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204170811278_ChangSalaryDate.resx">
       <DependentUpon>202204170811278_ChangSalaryDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204231004153_更新事务.resx">
+      <DependentUpon>202204231004153_更新事务.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -52,10 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnnounceManager.cs" />
+    <Compile Include="AskForLeaveManager.cs" />
     <Compile Include="BaseManager.cs" />
     <Compile Include="CheckingManager.cs" />
     <Compile Include="DepartmentManager.cs" />
     <Compile Include="EncourageManage.cs" />
+    <Compile Include="EventManager.cs" />
     <Compile Include="OperationManager.cs" />
     <Compile Include="PositionManager.cs" />
     <Compile Include="RegulatoryManager.cs" />

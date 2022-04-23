@@ -52,11 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnnounceService.cs" />
+    <Compile Include="AskForLeaveService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="ChangeSalaryService.cs" />
     <Compile Include="CheckingService.cs" />
     <Compile Include="DepartmentService.cs" />
     <Compile Include="EncourageService.cs" />
+    <Compile Include="EventService.cs" />
     <Compile Include="OperationService.cs" />
     <Compile Include="PayRollAccountService.cs" />
     <Compile Include="PositionService.cs" />

@@ -51,12 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAskForLeaveService.cs" />
     <Compile Include="IChangeSalaryService.cs" />
     <Compile Include="ICheckingService.cs" />
     <Compile Include="IEncourageService.cs" />
     <Compile Include="IAnnounceService.cs" />
     <Compile Include="IBaseService.cs" />
     <Compile Include="IDepartmentService.cs" />
+    <Compile Include="IEventService.cs" />
     <Compile Include="IOperationService.cs" />
     <Compile Include="IPayRollAccountService.cs" />
     <Compile Include="IPositionService.cs" />

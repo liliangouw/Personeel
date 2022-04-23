@@ -32,13 +32,14 @@ namespace Personeel.Models
         /// </summary>
         [Required, StringLength(100), Column(TypeName = "varchar")]
         public string LeaveReason { get; set; }
+
         /// <summary>
         /// 审批状态
         /// </summary>
-        [Required, StringLength(10), Column(TypeName = "varchar")]
-        public string LeaveState { get; set; }
+        [Required]
+        public int LeaveState { get; set; }
         /// <summary>
-        /// 不通过原因
+        /// 备注
         /// </summary>
         [StringLength(100), Column(TypeName = "varchar")]
         public string LeaveNotReason { get; set; }
