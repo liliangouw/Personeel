@@ -10,7 +10,7 @@ namespace Personeel.IBLL
     public interface IAskForLeaveManager
     {
         //提交申请
-        Task AddAskForLeave(Guid userGuid,string leaveSort,string leaveReason,DateTime startDate,DateTime endDate,Guid departmentGuid);
+        Task AddAskForLeave(Guid userGuid,string leaveSort,string leaveReason,DateTime startDate,DateTime endDate);
         //修改申请
         Task EditAsk(Guid id, string leaveSort, string leaveReason, DateTime startDate, DateTime endDate);
         //获取个人所有申请

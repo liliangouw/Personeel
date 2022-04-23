@@ -135,6 +135,7 @@
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
     <Compile Include="Areas\Admin\Controllers\RegulatoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Employee\Controllers\AskForLeaveController.cs" />
     <Compile Include="Areas\Employee\Controllers\CheckingController.cs" />
     <Compile Include="Areas\Employee\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Models\DepartmentViewModels\TransferRecordViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\UserDepartmentsViewModel.cs" />
     <Compile Include="Models\EncourageViewModels\EncourageViewModel.cs" />
+    <Compile Include="Models\EventViewModels\EventIndexViewModel.cs" />
     <Compile Include="Models\OperationViewModels\OperationListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
     <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
@@ -270,6 +272,10 @@
     <Content Include="Areas\Personnel\Views\PayRollAccount\Create.cshtml" />
     <Content Include="Areas\Personnel\Views\PayRollAccount\Edit.cshtml" />
     <Content Include="Areas\Personnel\Views\PayRollAccount\Delete.cshtml" />
+    <Content Include="Areas\Employee\Views\AskForLeave\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\AskForLeave\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\AskForLeave\Create.cshtml" />
+    <Content Include="Areas\Employee\Views\AskForLeave\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -417,7 +417,7 @@
                                 <li>
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left"></span>
-                                        请假申请
+                                        @Html.ActionLink("请假申请", "Index", "AskForLeave", new { Area = "Employee",userGuid=@userId }, null)
                                     </a>
                                 </li>
 
@@ -425,23 +425,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        调岗申请
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <span class="fa-stack fa-lg pull-left">
-                                        </span>
-                                        转正申请
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <span class="fa-stack fa-lg pull-left">
-                                        </span>
-                                        离职申请
+                                        通用申请
                                     </a>
                                 </li>
                             </ul>

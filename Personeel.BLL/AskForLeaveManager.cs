@@ -15,22 +15,46 @@ namespace Personeel.BLL
     public class AskForLeaveManager : IAskForLeaveManager
     {
         public async Task AddAskForLeave(Guid userGuid, string leaveSort, string leaveReason, DateTime startDate,
-            DateTime endDate,
-            Guid departmentGuid)
+            DateTime endDate)
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
-                await askForLeaveService.CreateAsync(new AskForLeave()
+                using (IUserService userService = new UserService())
                 {
-                    ApproveTime = DateTime.Now,
-                    DepId = departmentGuid,
-                    UserId = userGuid,
-                    LeaveSort = leaveSort,
-                    LeaveReason = leaveReason,
-                    StartTime = startDate,
-                    EndTime = endDate,
-                    LeaveState = (int)AskState.部门主管审批
-                });
+                    int power = await userService.GetAllAsync().Where(m => m.Id == userGuid)
+                        .Select(m => m.UserRight.UserPower).FirstAsync();
+                    Guid depGuid = await userService.GetAllAsync().Where(m => m.Id == userGuid)
+                        .Select(m => m.DepartmentID).FirstAsync();
+                    if (power == 3)
+                    {
+                        await askForLeaveService.CreateAsync(new AskForLeave()
+                        {
+                            ApproveTime = DateTime.Now,
+                            DepId = depGuid,
+                            UserId = userGuid,
+                            LeaveSort = leaveSort,
+                            LeaveReason = leaveReason,
+                            StartTime = startDate,
+                            EndTime = endDate,
+                            LeaveState = (int)AskState.部门主管审批
+                        });
+                    }
+                    else if (power == 2)
+                    {
+                        await askForLeaveService.CreateAsync(new AskForLeave()
+                        {
+                            ApproveTime = DateTime.Now,
+                            DepId = depGuid,
+                            UserId = userGuid,
+                            LeaveSort = leaveSort,
+                            LeaveReason = leaveReason,
+                            StartTime = startDate,
+                            EndTime = endDate,
+                            LeaveState = (int)AskState.人事审批
+                        });
+                    }
+                }
+                
             }
         }
 
@@ -52,7 +76,9 @@ namespace Personeel.BLL
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
-                return await askForLeaveService.GetAllAsync().Where(m => m.UserId == userGuid).Select(m =>
+
+                List<AskForLeave> info= await askForLeaveService.GetAllAsync().Include(m=>m.User).Include(m=>m.Department).Where(m => m.UserId == userGuid).ToListAsync();
+                List<AskLeaveInfoDto>list= info.Select(m =>
                     new AskLeaveInfoDto()
                     {
                         Id = m.Id,
@@ -61,7 +87,8 @@ namespace Personeel.BLL
                         LeaveSort = m.LeaveSort,
                         LeaveState = Enum.GetName(typeof(AskState), m.LeaveState),
                         ApproveTime = m.CreateTime
-                    }).ToListAsync();
+                    }).ToList();
+                return list;
             }
         }
 
@@ -79,7 +106,8 @@ namespace Personeel.BLL
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
-                return await askForLeaveService.GetAllAsync().Where(m => m.DepId == depGuid && m.LeaveState==(int)AskState.部门主管审批).Select(m =>
+                List<AskForLeave> info = await askForLeaveService.GetAllAsync().Include(m => m.User).Include(m => m.Department).Where(m => m.DepId ==depGuid).ToListAsync();
+                List<AskLeaveInfoDto> list = info.Select(m =>
                     new AskLeaveInfoDto()
                     {
                         Id = m.Id,
@@ -88,7 +116,8 @@ namespace Personeel.BLL
                         LeaveSort = m.LeaveSort,
                         LeaveState = Enum.GetName(typeof(AskState), m.LeaveState),
                         ApproveTime = m.CreateTime
-                    }).ToListAsync();
+                    }).ToList();
+                return list;
             }
         }
 
@@ -96,20 +125,21 @@ namespace Personeel.BLL
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
-                return await askForLeaveService.GetAllAsync().Where(m => m.Id == id).Select(m =>
-                    new AskLeaveInfoDto()
+                AskForLeave info= await askForLeaveService.GetAllAsync().Include(m => m.User).Include(m => m.Department).Where(m => m.Id == id).FirstAsync();
+                AskLeaveInfoDto list = new AskLeaveInfoDto()
                     {
-                        Id = m.Id,
-                        UserName = m.User.Name,
-                        Department = m.Department.Depname,
-                        LeaveSort = m.LeaveSort,
-                        LeaveReason = m.LeaveReason,
-                        LeaveState = Enum.GetName(typeof(AskState),m.LeaveState),
-                        LeaveNotReason = m.LeaveNotReason,
-                        StartTime = m.StartTime,
-                        EndTime = m.EndTime,
-                        ApproveTime = m.ApproveTime
-                    }).FirstAsync();
+                        Id = info.Id,
+                        UserId = info.UserId,
+                        UserName = info.User.Name,
+                        Department = info.Department.Depname,
+                        LeaveSort = info.LeaveSort,
+                        LeaveReason = info.LeaveReason,
+                        StartTime = info.StartTime,
+                        EndTime = info.EndTime,
+                        LeaveState = Enum.GetName(typeof(AskState), info.LeaveState),
+                        ApproveTime = info.CreateTime
+                    };
+                return list;
             }
             
         }
@@ -163,7 +193,8 @@ namespace Personeel.BLL
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
-                return await askForLeaveService.GetAllAsync().Select(m =>
+                List<AskForLeave> info = await askForLeaveService.GetAllAsync().Include(m => m.User).Include(m => m.Department).ToListAsync();
+                List<AskLeaveInfoDto> list = info.Select(m =>
                     new AskLeaveInfoDto()
                     {
                         Id = m.Id,
@@ -172,7 +203,8 @@ namespace Personeel.BLL
                         LeaveSort = m.LeaveSort,
                         LeaveState = Enum.GetName(typeof(AskState), m.LeaveState),
                         ApproveTime = m.CreateTime
-                    }).ToListAsync();
+                    }).ToList();
+                return list;
             }
         }
 
