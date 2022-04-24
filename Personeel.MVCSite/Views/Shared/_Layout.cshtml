@@ -234,14 +234,14 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        请假审批
+                                        @Html.ActionLink("请假审批", "Index", "LeaveApproval", new { Area = "Personnel", UserRight = @userRight, userId = @userId }, null)
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        通用审批
+                                        @Html.ActionLink("通用审批", "Index", "EventApproval", new { Area = "Personnel", UserRight = @userRight, userId = @userId }, null)
                                     </a>
                                 </li>
                             </ul>
@@ -320,14 +320,14 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        请假审批
+                                        @Html.ActionLink("请假审批", "Index", "LeaveApproval", new { Area = "Personnel", userRight = @userRight, userId = @userId }, null)
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        通用审批
+                                        @Html.ActionLink("通用审批", "Index", "EventApproval", new { Area = "Personnel", UserRight = @userRight, userId = @userId }, null)
                                     </a>
                                 </li>
                             </ul>

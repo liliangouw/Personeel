@@ -146,6 +146,8 @@
     <Compile Include="Areas\Personnel\Controllers\ChangeSalaryRecordsController.cs" />
     <Compile Include="Areas\Personnel\Controllers\CheckingController.cs" />
     <Compile Include="Areas\Personnel\Controllers\EncourageOrChastisementController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\EventApprovalController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\LeaveApprovalController.cs" />
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PayRollAccountController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
@@ -281,6 +283,14 @@
     <Content Include="Areas\Employee\Views\Event\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Event\Create.cshtml" />
     <Content Include="Areas\Employee\Views\Event\Delete.cshtml" />
+    <Content Include="Areas\Personnel\Views\LeaveApproval\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\LeaveApproval\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\LeaveApproval\History.cshtml" />
+    <Content Include="Areas\Personnel\Views\LeaveApproval\Details.cshtml" />
+    <Content Include="Areas\Personnel\Views\EventApproval\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\EventApproval\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\EventApproval\History.cshtml" />
+    <Content Include="Areas\Personnel\Views\EventApproval\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -63,7 +63,7 @@ namespace Personeel.MVCSite.Areas.Employee.Controllers
             {
                await askForLeaveManager.AddAskForLeave(model.UserId, model.EventSort, model.EventReason, model.StartTime,
                     model.EndTime);
-                return RedirectToAction("Index",new{userGuid=model.UserId});
+                return RedirectToAction("Index",new{userGuid=model.UserId,});
             }
             catch
             {

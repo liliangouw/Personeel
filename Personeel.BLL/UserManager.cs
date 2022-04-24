@@ -135,7 +135,8 @@ namespace Personeel.BLL
                             Position = m.Position.Posname,
                             BasicMoney = m.Basicmoney,
                             UserPower = m.UserRight.UserPower,
-                            UserRightId = m.UserRightID
+                            UserRightId = m.UserRightID,
+                            DepGuid = m.DepartmentID
                         }).FirstAsync();
                 }
                 else

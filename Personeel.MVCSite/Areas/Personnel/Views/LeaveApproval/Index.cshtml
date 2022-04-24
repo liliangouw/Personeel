@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Personeel.MVCSite.Models.EventViewModels.EventIndexViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("审批记录", "History",new{userRight=ViewBag.userRight,userId=ViewBag.userId})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventSort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApproveTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventSort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApproveTime)
+            </td>
+            <td>
+                @Html.ActionLink("审批", "Edit", new { id=item.Id , userRight=item.userPower})
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -58,20 +58,6 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task EditAsk(Guid id, string leaveSort, string leaveReason, DateTime startDate, DateTime endDate)
-        {
-            using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
-            {
-                var ask = await askForLeaveService.GetOneByIdAsync(id);
-                ask.LeaveSort = leaveSort;
-                ask.LeaveReason = leaveReason;
-                ask.StartTime = startDate;
-                ask.EndTime = endDate;
-                ask.LeaveState = (int) AskState.部门主管审批;
-                await askForLeaveService.EditAsync(ask);
-            }
-        }
-
         public async Task<List<AskLeaveInfoDto>> GetAllAskByUserId(Guid userGuid)
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
@@ -81,6 +67,7 @@ namespace Personeel.BLL
                 List<AskLeaveInfoDto>list= info.Select(m =>
                     new AskLeaveInfoDto()
                     {
+                        UserId = m.UserId,
                         Id = m.Id,
                         UserName = m.User.Name,
                         Department = m.Department.Depname,
@@ -106,10 +93,11 @@ namespace Personeel.BLL
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
-                List<AskForLeave> info = await askForLeaveService.GetAllAsync().Include(m => m.User).Include(m => m.Department).Where(m => m.DepId ==depGuid).ToListAsync();
+                List<AskForLeave> info = await askForLeaveService.GetAllAsync().Include(m => m.User).Include(m => m.Department).Where(m => m.DepId ==depGuid&&m.LeaveState==(int)AskState.部门主管审批).ToListAsync();
                 List<AskLeaveInfoDto> list = info.Select(m =>
                     new AskLeaveInfoDto()
                     {
+                        UserId = m.UserId,
                         Id = m.Id,
                         UserName = m.User.Name,
                         Department = m.Department.Depname,
@@ -144,14 +132,15 @@ namespace Personeel.BLL
             
         }
 
-        public async Task EditAsk(Guid id, int power,bool pass ,string leaveNotReason)
+        public async Task EditAsk(Guid id, Guid userRightId,bool pass ,string leaveNotReason)
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
                 AskForLeave ask = await askForLeaveService.GetOneByIdAsync(id);
                 if (pass)
                 {
-                    if (power == 1)
+                    //人事
+                    if (userRightId == Guid.Parse("c487756a-10c5-8c77-d783-0f10ddf0837c"))
                     {
                         ask.LeaveState = (int) AskState.审批通过;
                         ask.LeaveNotReason = leaveNotReason;
@@ -159,6 +148,7 @@ namespace Personeel.BLL
                     else
                     {
                         ask.LeaveState = (int) AskState.人事审批;
+                        ask.LeaveNotReason = leaveNotReason;
                     }
                 }
                 else
@@ -176,16 +166,19 @@ namespace Personeel.BLL
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
-                int state = (int) AskState.人事审批;
-                return await askForLeaveService.GetAllAsync().Where(m => m.LeaveState == state).Select(m =>
+                List<AskForLeave> info = await askForLeaveService.GetAllAsync().Include(m => m.User).Include(m => m.Department).Where(m => m.LeaveState == (int)AskState.人事审批).ToListAsync();
+                List<AskLeaveInfoDto> list = info.Select(m =>
                     new AskLeaveInfoDto()
                     {
+                        UserId = m.UserId,
                         Id = m.Id,
                         UserName = m.User.Name,
                         Department = m.Department.Depname,
                         LeaveSort = m.LeaveSort,
+                        LeaveState = Enum.GetName(typeof(AskState), m.LeaveState),
                         ApproveTime = m.CreateTime
-                    }).ToListAsync();
+                    }).ToList();
+                return list;
             }
         }
 
@@ -197,6 +190,27 @@ namespace Personeel.BLL
                 List<AskLeaveInfoDto> list = info.Select(m =>
                     new AskLeaveInfoDto()
                     {
+                        UserId = m.UserId,
+                        Id = m.Id,
+                        UserName = m.User.Name,
+                        Department = m.Department.Depname,
+                        LeaveSort = m.LeaveSort,
+                        LeaveState = Enum.GetName(typeof(AskState), m.LeaveState),
+                        ApproveTime = m.CreateTime
+                    }).ToList();
+                return list;
+            }
+        }
+
+        public async Task<List<AskLeaveInfoDto>> GetAskHistoryByDepId(Guid depGuid)
+        {
+            using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
+            {
+                List<AskForLeave> info = await askForLeaveService.GetAllAsync().Include(m => m.User).Include(m => m.Department).Where(m=>m.DepId==depGuid).ToListAsync();
+                List<AskLeaveInfoDto> list = info.Select(m =>
+                    new AskLeaveInfoDto()
+                    {
+                        UserId = m.UserId,
                         Id = m.Id,
                         UserName = m.User.Name,
                         Department = m.Department.Depname,

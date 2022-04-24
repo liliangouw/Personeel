@@ -36,5 +36,8 @@ namespace Personeel.MVCSite.Models.EventViewModels
         public Guid DepId { get; set; }
         [Display(Name = "部门名称")]
         public string Department { get; set; }
+        [Display(Name = "是否通过")]
+        public bool IsPass { get; set; }
+        public string userPower { get; set; }
     }
 }

@@ -98,6 +98,7 @@ namespace Personeel.DTO
         /// </summary>
 
         public  Guid UserRightId { get; set; }
+        public Guid DepGuid { get; set; }
 
     }
 }

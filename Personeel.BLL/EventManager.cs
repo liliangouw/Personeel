@@ -52,28 +52,15 @@ namespace Personeel.BLL
 
             }
         }
-        //修改申请
-        public async Task EditEvent(Guid id, string eventSort, string eventReason)
-        {
-            int state = (int)AskState.部门主管审批;
-            using (IEventService eventService = new EventService())
-            {
-              var info= await eventService.GetOneByIdAsync(id);
-              info.EventSort = eventSort;
-              info.EventReason = eventReason;
-              info.IsPassState = state;
-              await eventService.EditAsync(info);
-            }
-        }
         //审批
-        public async Task EditEvent(Guid id,Guid userGuid, int power, bool pass, string eventSort, string leaveNotReason)
+        public async Task EditEvent(Guid id,Guid userGuid, Guid userRightId, bool pass, string leaveNotReason)
         {
             using (IEventService eventService = new EventService())
             {
                 Event info = await eventService.GetOneByIdAsync(id);
                     if (pass)
                     {
-                        if (power == 1)
+                        if (userRightId == Guid.Parse("c487756a-10c5-8c77-d783-0f10ddf0837c"))
                         {
                             info.IsPassState = (int)AskState.审批通过;
                             info.NotReason = leaveNotReason;
@@ -81,7 +68,8 @@ namespace Personeel.BLL
                         else
                         {
                             info.IsPassState = (int)AskState.人事审批;
-                        }
+                            info.NotReason = leaveNotReason;
+                    }
                     }
                     else
                     {
@@ -97,16 +85,19 @@ namespace Personeel.BLL
         {
             using (IEventService eventService = new EventService())
             {
-                int state = (int)AskState.人事审批;
-                return await eventService.GetAllAsync().Where(m => m.IsPassState == state).Select(m =>
+                List<Event> info = await eventService.GetAllAsync().Include(m => m.User).Include(m => m.Department).Where(m => m.IsPassState == (int)AskState.人事审批).ToListAsync();
+                List<EventInfoDto> list = info.Select(m =>
                     new EventInfoDto()
                     {
+                        UserId = m.UserId,
                         Id = m.Id,
                         UserName = m.User.Name,
                         Department = m.Department.Depname,
                         EventSort = m.EventSort,
+                        EventState = Enum.GetName(typeof(AskState), m.IsPassState),
                         ApproveTime = m.CreateTime
-                    }).ToListAsync();
+                    }).ToList();
+                return list;
             }
         }
 
@@ -115,10 +106,11 @@ namespace Personeel.BLL
             using (IEventService eventService = new EventService())
             {
                 List<Event> info = await eventService.GetAllAsync().Include(m => m.User).Include(m => m.Department)
-                    .Where(m => m.DepId ==depGuid).ToListAsync();
+                    .Where(m => m.DepId ==depGuid&&m.IsPassState==(int)AskState.部门主管审批).ToListAsync();
                 List<EventInfoDto> list = info.Select(m =>
                     new EventInfoDto()
                     {
+                        UserId = m.UserId,
                         Id = m.Id,
                         UserName = m.User.Name,
                         Department = m.Department.Depname,
@@ -139,6 +131,7 @@ namespace Personeel.BLL
                 List<EventInfoDto> list= info.Select(m =>
                     new EventInfoDto()
                     {
+                        UserId = m.UserId,
                         Id = m.Id,
                         UserName = m.User.Name,
                         Department = m.Department.Depname,
@@ -158,6 +151,27 @@ namespace Personeel.BLL
                 List<EventInfoDto> list = info.Select(m =>
                     new EventInfoDto()
                     {
+                        UserId = m.UserId,
+                        Id = m.Id,
+                        UserName = m.User.Name,
+                        Department = m.Department.Depname,
+                        EventSort = m.EventSort,
+                        EventState = Enum.GetName(typeof(AskState), m.IsPassState),
+                        ApproveTime = m.CreateTime
+                    }).ToList();
+                return list;
+            }
+        }
+
+        public async Task<List<EventInfoDto>> GetEventHistoryByDepId(Guid depGuid)
+        {
+            using (IEventService eventService = new EventService())
+            {
+                List<Event> info = await eventService.GetAllAsync().Include(m => m.User).Include(m => m.Department).Where(m=>m.DepId==depGuid).ToListAsync();
+                List<EventInfoDto> list = info.Select(m =>
+                    new EventInfoDto()
+                    {
+                        UserId = m.UserId,
                         Id = m.Id,
                         UserName = m.User.Name,
                         Department = m.Department.Depname,
