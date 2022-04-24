@@ -10,59 +10,60 @@ using Personeel.MVCSite.Models.EventViewModels;
 
 namespace Personeel.MVCSite.Areas.Employee.Controllers
 {
-    public class AskForLeaveController : Controller
+    public class EventController : Controller
     {
-        private IAskForLeaveManager askForLeaveManager = new AskForLeaveManager();
-        // GET: Employee/AskForLeave
+        private IEventManager eventManager = new EventManager();
+        // GET: Employee/Event
         public async Task<ActionResult> Index(Guid userGuid)
         {
-            List<DTO.AskLeaveInfoDto>info=await askForLeaveManager.GetAllAskByUserId(userGuid);
+            List<DTO.EventInfoDto> info = await eventManager.GetAllEventByUserId(userGuid);
             List<EventIndexViewModel> list = info.Select(m => new EventIndexViewModel()
             {
                 Id = m.Id,
                 UserName = m.UserName,
-                EventSort = m.LeaveSort,
+                EventSort = m.EventSort,
                 ApproveTime = m.ApproveTime,
-                EventState = m.LeaveState
+                EventState = m.EventState
             }).ToList();
+
             return View(list);
         }
 
-        // GET: Employee/AskForLeave/Details/5
+        // GET: Employee/Event/Details/5
         public async Task<ActionResult> Details(Guid id)
         {
-            var info = await askForLeaveManager.GetOneById(id);
+            var info = await eventManager.GetOneById(id);
             EventIndexViewModel list = new EventIndexViewModel()
             {
                 UserId = info.UserId,
                 Id = info.Id,
-                EventState = info.LeaveState,
+                EventState = info.EventState,
                 UserName = info.UserName,
-                EventSort = info.LeaveSort,
-                EventReason = info.LeaveReason,
+                EventSort = info.EventSort,
+                EventReason = info.EventReason,
                 Department = info.Department,
                 ApproveTime = info.ApproveTime,
-                EventNotReason = info.LeaveNotReason,
+                EventNotReason = info.EventNotReason,
                 StartTime = info.StartTime,
                 EndTime = info.EndTime
             };
             return View(list);
         }
 
-        // GET: Employee/AskForLeave/Create
+        // GET: Employee/Event/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Employee/AskForLeave/Create
+        // POST: Employee/Event/Create
         [HttpPost]
         public async Task<ActionResult> Create(EventIndexViewModel model)
         {
             try
             {
-               await askForLeaveManager.AddAskForLeave(model.UserId, model.EventSort, model.EventReason, model.StartTime,
-                    model.EndTime);
+               await eventManager.AddEvent(model.UserId, model.EventSort, model.EventReason);
+
                 return RedirectToAction("Index",new{userGuid=model.UserId});
             }
             catch
@@ -71,35 +72,37 @@ namespace Personeel.MVCSite.Areas.Employee.Controllers
             }
         }
 
-        // GET: Employee/AskForLeave/Delete/5
+        // GET: Employee/Event/Edit/
+
+        // GET: Employee/Event/Delete/5
         public async Task<ActionResult> Delete(Guid id)
         {
-           var info= await askForLeaveManager.GetOneById(id);
-           EventIndexViewModel list = new EventIndexViewModel()
-           {
-               UserId = info.UserId,
-               Id = info.Id,
-               EventState = info.LeaveState,
-               UserName = info.UserName,
-               EventSort = info.LeaveSort,
-               EventReason = info.LeaveReason,
-               Department = info.Department,
-               ApproveTime = info.ApproveTime,
-               EventNotReason = info.LeaveNotReason,
-               StartTime = info.StartTime,
-               EndTime = info.EndTime
-           };
-           return View(list);
+            var info = await eventManager.GetOneById(id);
+            EventIndexViewModel list = new EventIndexViewModel()
+            {
+                UserId = info.UserId,
+                Id = info.Id,
+                EventState = info.EventState,
+                UserName = info.UserName,
+                EventSort = info.EventSort,
+                EventReason = info.EventReason,
+                Department = info.Department,
+                ApproveTime = info.ApproveTime,
+                EventNotReason = info.EventNotReason,
+                StartTime = info.StartTime,
+                EndTime = info.EndTime
+            };
+            return View(list);
         }
 
-        // POST: Employee/AskForLeave/Delete/5
+        // POST: Employee/Event/Delete/5
         [HttpPost]
         public async Task<ActionResult> Delete(Guid id, EventIndexViewModel model)
         {
             try
-            { 
-               await askForLeaveManager.RemoveAsk(id);
-               return RedirectToAction("Index", new { userGuid = model.UserId });
+            {
+                await eventManager.RemoveEvent(id);
+                return RedirectToAction("Index",new { userGuid = model.UserId });
             }
             catch
             {

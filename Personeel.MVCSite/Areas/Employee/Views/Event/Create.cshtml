@@ -1,0 +1,65 @@
+﻿@model Personeel.MVCSite.Models.EventViewModels.EventIndexViewModel
+
+@{
+    ViewBag.Title = "Create";
+    var userEmail = Session["userEmail"] == null ? Request.Cookies["userEmail"].Value : Session["userEmail"].ToString();
+    var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
+    var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
+    var userRight = Session["userRight"] == null ? Request.Cookies["userRight"].Value : Session["userRight"].ToString();
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>EventIndexViewModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group" hidden>
+        @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label><input type="text" name="UserId" value="@userId">@userId</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @userName
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EventSort, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select name="EventSort">
+                <option>转正申请</option>
+                <option>调岗申请</option>
+                <option>离职申请</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EventReason, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EventReason, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EventReason, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index",new {userGuid=@userId })
+</div>

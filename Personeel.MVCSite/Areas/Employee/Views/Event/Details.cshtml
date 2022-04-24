@@ -1,0 +1,74 @@
+﻿@model Personeel.MVCSite.Models.EventViewModels.EventIndexViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EventIndexViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventSort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventSort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventReason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventReason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventNotReason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventNotReason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApproveTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApproveTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", new { userGuid = Model.UserId })
+</p>

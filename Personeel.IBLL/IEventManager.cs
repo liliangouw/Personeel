@@ -10,7 +10,7 @@ namespace Personeel.IBLL
     public interface IEventManager
     {
         //提交申请
-        Task AddEvent(Guid userGuid, string eventSort, string eventReason,Guid departmentGuid);
+        Task AddEvent(Guid userGuid, string eventSort, string eventReason);
         //修改申请
         Task EditEvent(Guid id, string eventSort, string eventReason);
         //获取个人所有申请

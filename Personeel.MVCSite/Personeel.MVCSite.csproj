@@ -138,6 +138,7 @@
     <Compile Include="Areas\Employee\Controllers\AskForLeaveController.cs" />
     <Compile Include="Areas\Employee\Controllers\CheckingController.cs" />
     <Compile Include="Areas\Employee\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Employee\Controllers\EventController.cs" />
     <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Personnel\Controllers\AnnounceController.cs" />
@@ -276,6 +277,10 @@
     <Content Include="Areas\Employee\Views\AskForLeave\Details.cshtml" />
     <Content Include="Areas\Employee\Views\AskForLeave\Create.cshtml" />
     <Content Include="Areas\Employee\Views\AskForLeave\Delete.cshtml" />
+    <Content Include="Areas\Employee\Views\Event\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\Event\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\Event\Create.cshtml" />
+    <Content Include="Areas\Employee\Views\Event\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
