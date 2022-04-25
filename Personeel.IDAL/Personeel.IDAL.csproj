@@ -54,6 +54,7 @@
     <Compile Include="IAskForLeaveService.cs" />
     <Compile Include="IChangeSalaryService.cs" />
     <Compile Include="ICheckingService.cs" />
+    <Compile Include="IContractService.cs" />
     <Compile Include="IEncourageService.cs" />
     <Compile Include="IAnnounceService.cs" />
     <Compile Include="IBaseService.cs" />

@@ -60,6 +60,7 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="ChangeSalary.cs" />
     <Compile Include="Checking.cs" />
+    <Compile Include="Contract.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="EncourageOrChastisement.cs" />
     <Compile Include="Event.cs" />
@@ -78,6 +79,10 @@
     <Compile Include="Migrations\202204231004153_更新事务.cs" />
     <Compile Include="Migrations\202204231004153_更新事务.designer.cs">
       <DependentUpon>202204231004153_更新事务.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204251243260_addcontract.cs" />
+    <Compile Include="Migrations\202204251243260_addcontract.designer.cs">
+      <DependentUpon>202204251243260_addcontract.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Operationlog.cs" />
@@ -109,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204231004153_更新事务.resx">
       <DependentUpon>202204231004153_更新事务.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204251243260_addcontract.resx">
+      <DependentUpon>202204251243260_addcontract.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

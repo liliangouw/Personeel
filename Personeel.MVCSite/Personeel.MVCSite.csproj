@@ -145,6 +145,7 @@
     <Compile Include="Areas\Personnel\Controllers\ChangeSalaryController.cs" />
     <Compile Include="Areas\Personnel\Controllers\ChangeSalaryRecordsController.cs" />
     <Compile Include="Areas\Personnel\Controllers\CheckingController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\ContractController.cs" />
     <Compile Include="Areas\Personnel\Controllers\EncourageOrChastisementController.cs" />
     <Compile Include="Areas\Personnel\Controllers\EventApprovalController.cs" />
     <Compile Include="Areas\Personnel\Controllers\LeaveApprovalController.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Models\DepartmentViewModels\UserDepartmentsViewModel.cs" />
     <Compile Include="Models\EncourageViewModels\EncourageViewModel.cs" />
     <Compile Include="Models\EventViewModels\EventIndexViewModel.cs" />
+    <Compile Include="Models\FileViewModels\ContractViewModel.cs" />
     <Compile Include="Models\OperationViewModels\OperationListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
     <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
@@ -291,6 +293,10 @@
     <Content Include="Areas\Personnel\Views\EventApproval\Edit.cshtml" />
     <Content Include="Areas\Personnel\Views\EventApproval\History.cshtml" />
     <Content Include="Areas\Personnel\Views\EventApproval\Details.cshtml" />
+    <Content Include="Areas\Personnel\Views\Contract\Create.cshtml" />
+    <Content Include="Areas\Personnel\Views\Contract\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Contract\Delete.cshtml" />
+    <Content Include="Areas\Personnel\Views\Contract\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -381,6 +387,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Personnel\Data\" />
+    <Folder Include="File\Contract\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

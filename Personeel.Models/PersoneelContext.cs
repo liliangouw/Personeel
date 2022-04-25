@@ -38,6 +38,7 @@ namespace Personeel.Models
         public DbSet<AskForLeave> AskForLeaves { get; set; }
         public DbSet<Checking>Checkings { get; set; }
         public DbSet<PayRollAccount>PayRollAccounts { get; set; }
+        public DbSet<Contract>Contract { get; set; }
             
     }
 

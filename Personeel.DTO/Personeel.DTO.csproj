@@ -56,6 +56,7 @@
     <Compile Include="ChangeDepartmentInfoDto.cs" />
     <Compile Include="ChangeSalaryInfoDto.cs" />
     <Compile Include="CheckingInfoDto.cs" />
+    <Compile Include="ContractInfoDto.cs" />
     <Compile Include="DepInfoDto.cs" />
     <Compile Include="EncourageInfoDto.cs" />
     <Compile Include="EventInfoDto.cs" />

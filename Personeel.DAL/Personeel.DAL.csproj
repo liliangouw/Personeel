@@ -56,6 +56,7 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="ChangeSalaryService.cs" />
     <Compile Include="CheckingService.cs" />
+    <Compile Include="ContractService.cs" />
     <Compile Include="DepartmentService.cs" />
     <Compile Include="EncourageService.cs" />
     <Compile Include="EventService.cs" />

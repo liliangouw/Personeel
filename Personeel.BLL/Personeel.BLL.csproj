@@ -55,6 +55,7 @@
     <Compile Include="AskForLeaveManager.cs" />
     <Compile Include="BaseManager.cs" />
     <Compile Include="CheckingManager.cs" />
+    <Compile Include="ContractManager.cs" />
     <Compile Include="DepartmentManager.cs" />
     <Compile Include="EncourageManage.cs" />
     <Compile Include="EventManager.cs" />

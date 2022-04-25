@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Personeel.Models;
 
-namespace Test
+namespace Personeel.IDAL
 {
-    public class Class1
+    public interface IContractService:IBaseService<Contract>
     {
     }
 }
