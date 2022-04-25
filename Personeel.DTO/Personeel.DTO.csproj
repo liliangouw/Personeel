@@ -65,6 +65,7 @@
     <Compile Include="RegulatoryInfoDto.cs" />
     <Compile Include="SalaryInfoDto.cs" />
     <Compile Include="TrainInfoDto.cs" />
+    <Compile Include="TrainInfoInfoDto.cs" />
     <Compile Include="UserInfoDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

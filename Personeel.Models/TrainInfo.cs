@@ -14,23 +14,18 @@ namespace Personeel.Models
     public class TrainInfo:BaseEntity
     {
         /// <summary>
-        /// 用户外键
-        /// </summary>
-        [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; }
-        /// <summary>
-        /// 用户
-        /// </summary>
-        public User User { get; set; }
-        /// <summary>
         /// 标题
         /// </summary>
         [Required, StringLength(50), Column(TypeName = "varchar")]
         public string Title { get; set; }
         /// <summary>
-        /// 详情
+        /// 分类
         /// </summary>
-        [Required, Column(TypeName = "ntext")]
-        public string Roletext { get; set; }
+        [Required, StringLength(10), Column(TypeName = "varchar")]
+        public string Sort { get; set; }
+        
+        //文件路径
+        [Required, StringLength(100), Column(TypeName = "varchar")]
+        public string FilePath { get; set; }
     }
 }

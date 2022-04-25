@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.DeadLine)
         </td>
         <td>
-            <a href="/Contract/Download?filePath=@item.FilePath&fileName='人事合同.pdf'">下载</a>
+            <a href="/Contract/Download?filePath=@item.FilePath&fileName=@Path.GetFileName(item.FilePath)'">下载</a>
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |

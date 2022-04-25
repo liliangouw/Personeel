@@ -84,6 +84,10 @@
     <Compile Include="Migrations\202204251243260_addcontract.designer.cs">
       <DependentUpon>202204251243260_addcontract.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204251502102_updatetrainInfo.cs" />
+    <Compile Include="Migrations\202204251502102_updatetrainInfo.designer.cs">
+      <DependentUpon>202204251502102_updatetrainInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Operationlog.cs" />
     <Compile Include="PayRollAccount.cs" />
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204251243260_addcontract.resx">
       <DependentUpon>202204251243260_addcontract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204251502102_updatetrainInfo.resx">
+      <DependentUpon>202204251502102_updatetrainInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

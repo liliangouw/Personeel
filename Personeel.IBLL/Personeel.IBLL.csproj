@@ -62,6 +62,7 @@
     <Compile Include="IPositionManager.cs" />
     <Compile Include="IRegulatoryManager.cs" />
     <Compile Include="ISalaryManager.cs" />
+    <Compile Include="ITrainInfoManager.cs" />
     <Compile Include="ITrainManager.cs" />
     <Compile Include="IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -155,6 +155,7 @@
     <Compile Include="Areas\Personnel\Controllers\RichTextController.cs" />
     <Compile Include="Areas\Personnel\Controllers\SalaryController.cs" />
     <Compile Include="Areas\Personnel\Controllers\TrainController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\TrainInfoController.cs" />
     <Compile Include="Areas\Personnel\Controllers\TransferController.cs" />
     <Compile Include="Areas\Personnel\Controllers\UserController.cs" />
     <Compile Include="Areas\Personnel\PersonnelAdminAreaRegistration.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Models\EncourageViewModels\EncourageViewModel.cs" />
     <Compile Include="Models\EventViewModels\EventIndexViewModel.cs" />
     <Compile Include="Models\FileViewModels\ContractViewModel.cs" />
+    <Compile Include="Models\FileViewModels\TrainInfoViewModel.cs" />
     <Compile Include="Models\OperationViewModels\OperationListViewModel.cs" />
     <Compile Include="Models\PositionViewModels\AddViewModel.cs" />
     <Compile Include="Models\PositionViewModels\PosListViewModel.cs" />
@@ -297,6 +299,10 @@
     <Content Include="Areas\Personnel\Views\Contract\Index.cshtml" />
     <Content Include="Areas\Personnel\Views\Contract\Delete.cshtml" />
     <Content Include="Areas\Personnel\Views\Contract\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\TrainInfo\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\TrainInfo\Create.cshtml" />
+    <Content Include="Areas\Personnel\Views\TrainInfo\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\TrainInfo\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -388,6 +394,7 @@
     <Folder Include="Areas\Employee\Data\" />
     <Folder Include="Areas\Personnel\Data\" />
     <Folder Include="File\Contract\" />
+    <Folder Include="File\TrainInfo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

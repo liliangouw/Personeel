@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegulatoryService.cs" />
     <Compile Include="SalaryService.cs" />
+    <Compile Include="TrainInfoService.cs" />
     <Compile Include="TrainService.cs" />
     <Compile Include="TransferService.cs" />
     <Compile Include="UserRightService.cs" />

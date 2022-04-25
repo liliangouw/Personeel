@@ -65,6 +65,7 @@
     <Compile Include="IPositionService.cs" />
     <Compile Include="IRegulatoryService.cs" />
     <Compile Include="ISalaryService.cs" />
+    <Compile Include="ITrainInfoService.cs" />
     <Compile Include="ITrainService.cs" />
     <Compile Include="ITransferService.cs" />
     <Compile Include="IUserRightService.cs" />

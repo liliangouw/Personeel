@@ -173,6 +173,21 @@
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>
                                 @Html.ActionLink("培训管理", "Index", "Train", new { Area = "Personnel" }, null)
                             </a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        @Html.ActionLink("培训安排", "Index", "Train", new { Area = "Personnel" }, null)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        @Html.ActionLink("培训资料", "Index", "TrainInfo", new { Area = "Personnel" }, null)
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li>
