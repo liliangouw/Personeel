@@ -51,6 +51,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         // GET: Personnel/Assess/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
+            
             var info =await assessManager.GetOneById(id);
             EditAssess list = new EditAssess()
             {
@@ -66,6 +67,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         [HttpPost]
         public async Task<ActionResult>Edit(EditAssess model)
         {
+            
             await assessManager.Edit(model.Id, model.Result, 1);
             return RedirectToAction("Index");
         }

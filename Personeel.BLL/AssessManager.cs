@@ -75,7 +75,27 @@ namespace Personeel.BLL
         {
             using (IAssessService assessService = new AssessService())
             {
-                string result = "A/" + grade.ToString();
+
+                string result = "";
+                string a = grade.ToString();
+                if (grade >= 85)
+                {
+                    result = "A/";
+                }
+                else if(75<=grade&&grade<85)
+                {
+                    result = "B/";
+                }
+                else if(60<=grade&&grade<75)
+                {
+                    result = "C/";
+                }
+                else
+                {
+                    result = "D/";
+                }
+
+                result += a;
                 var info = await assessService.GetOneByIdAsync(id);
                 info.Result = result;
                 info.State = state;

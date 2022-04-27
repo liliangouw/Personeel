@@ -6,12 +6,19 @@
 @section headers
 {
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript">
-       get= function () {
-            var sum = jQuery("#1").val() * 0.2 + jQuery("#2").val() * 0.2 + jQuery("#3").val() * 0.2 + jQuery("#4").val() * 0.2 + jQuery("#4").val() * 0.2;
-            alert(1);
-            @Model.Result = sum;
+    <script>
+
+        function getData(){
+            var content = parseInt(document.getElementById("1").value);
+            var content2 = parseInt(document.getElementById("2").value);
+            var content3 = parseInt(document.getElementById("3").value);
+            var content4 = parseInt(document.getElementById("4").value);
+            var content5 = parseInt(document.getElementById("5").value);
+            var sum = content * 0.2 + content2 * 0.2 + content3 * 0.2 + content4 * 0.2 + content5 * 0.2;
+            var a = document.getElementById("result");
+            a.value = sum;
         }
+
     </script>
 }
 <h2>绩效考核</h2>
@@ -19,27 +26,36 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
     <div>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         @Html.HiddenFor(model => model.Id)
-
 
         <b>@Html.DisplayNameFor(model => model.AssessName)</b>:
         @Html.DisplayFor(model => model.AssessName)
-        <br />
+        <br/>
 
         <b>@Html.DisplayNameFor(model => model.AssessType)</b>:
         @Html.DisplayFor(model => model.AssessType)
-        <br />
+        <br/>
 
         <b>@Html.DisplayNameFor(model => model.AssessDep)</b>:
         @Html.DisplayFor(model => model.AssessDep)
-        <br />
+        <br/>
         <b>@Html.DisplayNameFor(model => model.UserName)</b>:
         @Html.DisplayFor(model => model.UserName)
-        <br /><br />
+        <br/><br/>
+        
+
+        <div class="form-group" hidden>
+            @Html.LabelFor(model => model.Result, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="result" type="number" name="Result"/>
+            </div>
+        </div>
+        
+
         <table class="table">
             <tr>
                 <th>
@@ -60,15 +76,15 @@
                     此时此刻分我莫属
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br />
-                    2.工作中敢于做出取舍，承担责任<br />
-                    3.打破边界<br />
+                    1.独立思考，独立判断，不随波主流<br/>
+                    2.工作中敢于做出取舍，承担责任<br/>
+                    3.打破边界<br/>
                 </th>
                 <th>
                     20%
                 </th>
                 <th>
-                    <input name="purchase_num" value="" id="1" onchange="get" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                    <input name="purchase_num" value="" id="1" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
                 </th>
             </tr>
             <tr>
@@ -76,15 +92,15 @@
                     此时此刻分我莫属
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br />
-                    2.工作中敢于做出取舍，承担责任<br />
-                    3.打破边界<br />
+                    1.独立思考，独立判断，不随波主流<br/>
+                    2.工作中敢于做出取舍，承担责任<br/>
+                    3.打破边界<br/>
                 </th>
                 <th>
                     20%
                 </th>
                 <th>
-                    <input name="purchase_num" value="" id="2" onchange="get" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                    <input name="purchase_num" value="" id="2" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
                 </th>
             </tr>
             <tr>
@@ -92,15 +108,15 @@
                     此时此刻分我莫属
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br />
-                    2.工作中敢于做出取舍，承担责任<br />
-                    3.打破边界<br />
+                    1.独立思考，独立判断，不随波主流<br/>
+                    2.工作中敢于做出取舍，承担责任<br/>
+                    3.打破边界<br/>
                 </th>
                 <th>
                     20%
                 </th>
                 <th>
-                    <input name="purchase_num" value="" id="3" onchange="get" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                    <input name="purchase_num" value="" id="3" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
                 </th>
             </tr>
             <tr>
@@ -108,15 +124,15 @@
                     此时此刻分我莫属
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br />
-                    2.工作中敢于做出取舍，承担责任<br />
-                    3.打破边界<br />
+                    1.独立思考，独立判断，不随波主流<br/>
+                    2.工作中敢于做出取舍，承担责任<br/>
+                    3.打破边界<br/>
                 </th>
                 <th>
                     20%
                 </th>
                 <th>
-                    <input name="purchase_num" value="" id="4" onchange="get" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                    <input name="purchase_num" value="" id="4" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
                 </th>
             </tr>
             <tr>
@@ -124,22 +140,21 @@
                     此时此刻分我莫属
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br />
-                    2.工作中敢于做出取舍，承担责任<br />
-                    3.打破边界<br />
+                    1.独立思考，独立判断，不随波主流<br/>
+                    2.工作中敢于做出取舍，承担责任<br/>
+                    3.打破边界<br/>
                 </th>
                 <th>
                     20%
                 </th>
                 <th>
-                    <input name="purchase_num" value="" id="5" onchange="get()" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                    <input name="purchase_num" value="" id="5" onchange="getData()" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
                 </th>
             </tr>
         </table>
-        <input type="button" onclick="get()" />
         <div class="form-group">
             <div>
-                <input type="submit" value="提交" class="btn btn-default" />
+                <input type="submit" value="提交" class="btn btn-default"/>
             </div>
         </div>
     </div>
