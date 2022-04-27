@@ -142,6 +142,7 @@
     <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
     <Compile Include="Areas\Personnel\Controllers\AnnounceController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\AssessController.cs" />
     <Compile Include="Areas\Personnel\Controllers\ChangeSalaryController.cs" />
     <Compile Include="Areas\Personnel\Controllers\ChangeSalaryRecordsController.cs" />
     <Compile Include="Areas\Personnel\Controllers\CheckingController.cs" />
@@ -166,6 +167,9 @@
     </Compile>
     <Compile Include="Models\ArticleViewModels\ArticleListViewModel.cs" />
     <Compile Include="Models\ArticleViewModels\CreateArticleViewModel.cs" />
+    <Compile Include="Models\AssessViewModels\AddAssessViewModel.cs" />
+    <Compile Include="Models\AssessViewModels\AssessListViewModel.cs" />
+    <Compile Include="Models\AssessViewModels\EditAssess.cs" />
     <Compile Include="Models\CheckingViewModels\CheckingViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\AddViewModel.cs" />
     <Compile Include="Models\DepartmentViewModels\DepListViewModel.cs" />
@@ -198,6 +202,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\iconfont.css" />
+    <Content Include="fonts\show-password-toggle.css" />
+    <Content Include="fonts\show-password-toggle.min.css" />
     <Content Include="fonts\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -303,6 +309,10 @@
     <Content Include="Areas\Personnel\Views\TrainInfo\Create.cshtml" />
     <Content Include="Areas\Personnel\Views\TrainInfo\Edit.cshtml" />
     <Content Include="Areas\Personnel\Views\TrainInfo\Delete.cshtml" />
+    <Content Include="fonts\show-password-toggle.css.map" />
+    <Content Include="fonts\show-password-toggle.min.css.map" />
+    <Content Include="Areas\Personnel\Views\Assess\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Assess\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -315,6 +325,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\show-password-toggle.js" />
+    <Content Include="Scripts\show-password-toggle.min.js" />
     <Content Include="Scripts\tinymce\icons\default\icons.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\models\dom\model.min.js" />

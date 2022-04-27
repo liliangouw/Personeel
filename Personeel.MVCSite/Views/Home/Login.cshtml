@@ -8,14 +8,21 @@
 
 <html>
 <head>
-    @Styles.Render("~/Content/css")
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>登录</title>
+    <link rel="stylesheet" href="http://cdn.bootstrapmb.com/bootstrap/4.4.0/css/bootstrap.min.css">
+    <link href="~/fonts/show-password-toggle.css" rel="stylesheet" />
+    <style>
+        form {
+            max-width: 330px;
+            margin-top: 17%;
+        }
+    </style>
 </head>
-<body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
+<body class="text-center bg-light h-100">
 
     <div class="col-md-offset-4 col-lg-offset-4col-xl-offset-4">
         @using (Html.BeginForm())
@@ -59,6 +66,7 @@
                 </div>
             </div>
         }
+    <script src="~/Scripts/show-password-toggle.js"></script>
     </div>
 
 </body>

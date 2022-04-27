@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Announce.cs" />
     <Compile Include="AskForLeave.cs" />
+    <Compile Include="Assess.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="ChangeSalary.cs" />
     <Compile Include="Checking.cs" />
@@ -87,6 +88,10 @@
     <Compile Include="Migrations\202204251502102_updatetrainInfo.cs" />
     <Compile Include="Migrations\202204251502102_updatetrainInfo.designer.cs">
       <DependentUpon>202204251502102_updatetrainInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204271222487_assess.cs" />
+    <Compile Include="Migrations\202204271222487_assess.designer.cs">
+      <DependentUpon>202204271222487_assess.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Operationlog.cs" />
@@ -124,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204251502102_updatetrainInfo.resx">
       <DependentUpon>202204251502102_updatetrainInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204271222487_assess.resx">
+      <DependentUpon>202204271222487_assess.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

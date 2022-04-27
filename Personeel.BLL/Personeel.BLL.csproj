@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AnnounceManager.cs" />
     <Compile Include="AskForLeaveManager.cs" />
+    <Compile Include="AssessManager.cs" />
     <Compile Include="BaseManager.cs" />
     <Compile Include="CheckingManager.cs" />
     <Compile Include="ContractManager.cs" />

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAskForLeaveService.cs" />
+    <Compile Include="IAssessService.cs" />
     <Compile Include="IChangeSalaryService.cs" />
     <Compile Include="ICheckingService.cs" />
     <Compile Include="IContractService.cs" />

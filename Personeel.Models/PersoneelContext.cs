@@ -39,6 +39,7 @@ namespace Personeel.Models
         public DbSet<Checking>Checkings { get; set; }
         public DbSet<PayRollAccount>PayRollAccounts { get; set; }
         public DbSet<Contract>Contract { get; set; }
+        public DbSet<Assess>Assess { get; set; }
             
     }
 

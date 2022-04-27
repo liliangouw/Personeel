@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AnnounceInfoDto.cs" />
     <Compile Include="AskLeaveInfoDto.cs" />
+    <Compile Include="AssessInfoDto.cs" />
     <Compile Include="ChangeDepartmentInfoDto.cs" />
     <Compile Include="ChangeSalaryInfoDto.cs" />
     <Compile Include="CheckingInfoDto.cs" />
