@@ -1,0 +1,150 @@
+﻿@model Personeel.MVCSite.Models.AssessViewModels.EditAssess
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section headers
+{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+       get= function () {
+            var sum = jQuery("#1").val() * 0.2 + jQuery("#2").val() * 0.2 + jQuery("#3").val() * 0.2 + jQuery("#4").val() * 0.2 + jQuery("#4").val() * 0.2;
+            alert(1);
+            @Model.Result = sum;
+        }
+    </script>
+}
+<h2>绩效考核</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+
+        <b>@Html.DisplayNameFor(model => model.AssessName)</b>:
+        @Html.DisplayFor(model => model.AssessName)
+        <br />
+
+        <b>@Html.DisplayNameFor(model => model.AssessType)</b>:
+        @Html.DisplayFor(model => model.AssessType)
+        <br />
+
+        <b>@Html.DisplayNameFor(model => model.AssessDep)</b>:
+        @Html.DisplayFor(model => model.AssessDep)
+        <br />
+        <b>@Html.DisplayNameFor(model => model.UserName)</b>:
+        @Html.DisplayFor(model => model.UserName)
+        <br /><br />
+        <table class="table">
+            <tr>
+                <th>
+                    指标名称
+                </th>
+                <th>
+                    考核标准
+                </th>
+                <th>
+                    权重
+                </th>
+                <th>
+                    分值（百分制）
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    此时此刻分我莫属
+                </th>
+                <th>
+                    1.独立思考，独立判断，不随波主流<br />
+                    2.工作中敢于做出取舍，承担责任<br />
+                    3.打破边界<br />
+                </th>
+                <th>
+                    20%
+                </th>
+                <th>
+                    <input name="purchase_num" value="" id="1" onchange="get" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    此时此刻分我莫属
+                </th>
+                <th>
+                    1.独立思考，独立判断，不随波主流<br />
+                    2.工作中敢于做出取舍，承担责任<br />
+                    3.打破边界<br />
+                </th>
+                <th>
+                    20%
+                </th>
+                <th>
+                    <input name="purchase_num" value="" id="2" onchange="get" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    此时此刻分我莫属
+                </th>
+                <th>
+                    1.独立思考，独立判断，不随波主流<br />
+                    2.工作中敢于做出取舍，承担责任<br />
+                    3.打破边界<br />
+                </th>
+                <th>
+                    20%
+                </th>
+                <th>
+                    <input name="purchase_num" value="" id="3" onchange="get" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    此时此刻分我莫属
+                </th>
+                <th>
+                    1.独立思考，独立判断，不随波主流<br />
+                    2.工作中敢于做出取舍，承担责任<br />
+                    3.打破边界<br />
+                </th>
+                <th>
+                    20%
+                </th>
+                <th>
+                    <input name="purchase_num" value="" id="4" onchange="get" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    此时此刻分我莫属
+                </th>
+                <th>
+                    1.独立思考，独立判断，不随波主流<br />
+                    2.工作中敢于做出取舍，承担责任<br />
+                    3.打破边界<br />
+                </th>
+                <th>
+                    20%
+                </th>
+                <th>
+                    <input name="purchase_num" value="" id="5" onchange="get()" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100" />
+                </th>
+            </tr>
+        </table>
+        <input type="button" onclick="get()" />
+        <div class="form-group">
+            <div>
+                <input type="submit" value="提交" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("返回列表", "Index")
+</div>

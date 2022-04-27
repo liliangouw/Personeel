@@ -11,6 +11,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 企业人事管理系统</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     @Styles.Render("~/Content/css")
     @RenderSection("headers", required: false)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -24,6 +25,7 @@
             var message = @Html.Raw(Json.Encode(TempData["message"]));
             alert(message);
         </script>
+
     }
 </head>
 <body>

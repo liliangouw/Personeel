@@ -54,7 +54,7 @@ namespace Personeel.BLL
         {
             using (IAssessService assessService = new AssessService())
             {
-                var info = await assessService.GetOneByIdAsync(id);
+                var info = await assessService.GetAllAsync().Include(m=>m.User).Include(m=>m.User.Department).Where(m=>m.Id==id).FirstAsync();
                 AssessInfoDto list = new AssessInfoDto()
                 {
                     AssessName = info.AssessName,
@@ -71,13 +71,15 @@ namespace Personeel.BLL
             
         }
 
-        public async Task Edit(Guid id, string result, int state)
+        public async Task Edit(Guid id, int grade, int state)
         {
             using (IAssessService assessService = new AssessService())
             {
+                string result = "A/" + grade.ToString();
                 var info = await assessService.GetOneByIdAsync(id);
                 info.Result = result;
                 info.State = state;
+                await assessService.EditAsync(info);
             }
         }
 

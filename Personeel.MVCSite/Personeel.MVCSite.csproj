@@ -313,6 +313,8 @@
     <Content Include="fonts\show-password-toggle.min.css.map" />
     <Content Include="Areas\Personnel\Views\Assess\Index.cshtml" />
     <Content Include="Areas\Personnel\Views\Assess\Create.cshtml" />
+    <Content Include="Areas\Personnel\Views\Assess\Delete.cshtml" />
+    <Content Include="Areas\Personnel\Views\Assess\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

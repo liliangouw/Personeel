@@ -20,6 +20,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             var info=await assessManager.GetAll();
             List<AssessListViewModel> list = info.Select(m => new AssessListViewModel()
             {
+                Id = m.Id,
                 UserName = m.UserName,
                 UserDep = m.UserDep,
                 AssessName = m.AssessName,
@@ -31,11 +32,6 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             return View(list);
         }
 
-        // GET: Personnel/Assess/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Personnel/Assess/Create
         public async Task<ActionResult> Create()
@@ -55,8 +51,15 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         // GET: Personnel/Assess/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
-
-            return View();
+            var info =await assessManager.GetOneById(id);
+            EditAssess list = new EditAssess()
+            {
+                AssessName = info.AssessName,
+                AssessDep = info.UserDep,
+                UserName = info.UserName,
+                AssessType = info.AssessType
+            };
+            return View(list);
         }
 
         // POST: Personnel/Assess/Edit/5
@@ -68,26 +71,29 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         }
 
         // GET: Personnel/Assess/Delete/5
-        public ActionResult Delete(Guid id)
+        public async Task<ActionResult> Delete(Guid id)
         {
-
-            return View();
+            var info = await assessManager.GetOneById(id);
+            AssessListViewModel list = new AssessListViewModel()
+            {
+                AssessName = info.AssessName,
+                UserDep = info.UserDep,
+                UserName = info.UserName,
+                AssessType = info.AssessType,
+                CreateTime = info.CreateTime,
+                Id = info.Id,
+                Result = info.Result,
+                State = info.State
+            };
+            return View(list);
         }
 
         // POST: Personnel/Assess/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(Guid id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            await assessManager.Remove(id);
+            return RedirectToAction("Index");
         }
     }
 }
