@@ -8,6 +8,7 @@ namespace Personeel.DTO
 {
     public class UserInfoDto
     {
+        public bool IsManager { get; set; }
         public Guid UserId { get; set; }
         /// <summary>
         /// 账号

@@ -3,6 +3,7 @@
     var userName = Session["userName"] == null ? Request.Cookies["userName"].Value : Session["userName"].ToString();
     var userId = Session["userId"] == null ? Request.Cookies["userId"].Value : Session["userId"].ToString();
     var userRight = Session["userRight"] == null ? Request.Cookies["userRight"].Value : Session["userRight"].ToString();
+    var isManager = Session["isManager"] == null ? Request.Cookies["isManager"].Value : Session["isManager"].ToString();
 }
 <!DOCTYPE html>
 <html>
@@ -63,7 +64,7 @@
         <!-- 通过权限判断菜单栏的显示列 -->
         @{
             //管理员
-            if (userRight == "7b6dc9c0-e166-8323-527b-f5a6fe72756c")
+            if (@userRight== "7b6dc9c0-e166-8323-527b-f5a6fe72756c")
             {
                 <div id="sidebar-wrapper">
                     <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
@@ -96,12 +97,6 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>
-                                @Html.ActionLink("规章制度管理", "Index", "Regulatory", new { Area = "Admin" }, null)
-                            </a>
-                        </li>
 
 
                         <li>
@@ -128,7 +123,7 @@
                 </div>
             }
             //人事
-            else if (userRight == "c487756a-10c5-8c77-d783-0f10ddf0837c")
+            else if (@userRight== "c487756a-10c5-8c77-d783-0f10ddf0837c")
             {
                 <div id="sidebar-wrapper">
                     <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
@@ -170,6 +165,14 @@
                             </a>
 
                         </li>
+
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg pull-left"><i class="fa fa-server fa-stack-1x "></i></span>
+                                @Html.ActionLink("规章制度管理", "Index", "Regulatory", new { Area = "Personnel" }, null)
+                            </a>
+                        </li>
+
                         <li>
                             <a href="#">
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>
@@ -294,7 +297,7 @@
                 </div>
             }
             //部门主管
-            else if (userRight == "aeaeb207-2c3b-7e1d-265a-0ef856ce3871")
+            else if (@userRight== "f740cd62-7161-d9b3-4fe7-4d63caa4a143" && @isManager=="True")
             {
                 <div id="sidebar-wrapper">
                     <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
@@ -403,7 +406,7 @@
                 </div>
             }
             //普通员工
-            else
+            else if(userRight == "f740cd62-7161-d9b3-4fe7-4d63caa4a143" && @isManager == "False")
             {
                 <div id="sidebar-wrapper">
                     <ul class="sidebar-nav nav-pills nav-stacked" id="menu">

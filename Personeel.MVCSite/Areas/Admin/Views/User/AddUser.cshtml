@@ -68,25 +68,24 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="radio">
+            <select name="Department">
                 @foreach (var depItem in ViewBag.Departments)
                 {
-
-                    <label><input type="radio" name="Department" value="@depItem.DepGuid">@depItem.DepName</label>
+                    <option name="Department" value="@depItem.DepGuid">@depItem.DepName</option>
                 }
-            </div>
+            </select>
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="radio">
+            <select name="Position">
                 @foreach (var posItem in ViewBag.Positions)
                 {
-                    <label><input type="radio" name="Position" value="@posItem.PositionGuid">@posItem.PositionName</label>
+                    <option name="Position" value="@posItem.PositionGuid">@posItem.PositionName</option>
                 }
-            </div>
+            </select>
         </div>
     </div>
 

@@ -10,7 +10,7 @@ using Personeel.MVCSite.Filters;
 using Personeel.MVCSite.Models.ArticleViewModels;
 using Personeel.MVCSite.Models.DepartmentViewModels;
 
-namespace Personeel.MVCSite.Areas.Admin.Controllers
+namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
     [PersonnelAuth]
     public class RegulatoryController : Controller

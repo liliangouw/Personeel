@@ -25,6 +25,23 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             List<UserListViewModel> userListViewModels = new List<UserListViewModel>();
             foreach (var item in userList)
             {
+                string temp = "";
+                if (item.UserPower == 0)
+                {
+                    temp = "系统管理员";
+                }
+                else if(item.UserPower==1)
+                {
+                    temp = "人事管理员";
+                }
+                else if(item.UserPower==3&item.IsManager==true)
+                {
+                    temp = "部门主管";
+                }
+                else
+                {
+                    temp = "员工";
+                }
                 UserListViewModel tempModel = new UserListViewModel()
                 {
                     UserId = item.UserId,
@@ -33,7 +50,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                     Position = item.Position,
                     Department = item.Department,
                     Email = item.Email,
-                    UserPower = item.UserPower
+                    UserPower = temp
                 };
                 userListViewModels.Add(tempModel);
             }
@@ -55,7 +72,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 Position = userInfo.Position,
                 Phone = userInfo.Phone,
                 UserNum = userInfo.UserNum,
-                UserPower = userInfo.UserPower,
+                UserPower = userInfo.UserPower.ToString(),
                 BasicMoney = userInfo.BasicMoney,
                 Birthday = userInfo.Birthday,
                 IdNumber = userInfo.IdNumber,
@@ -115,7 +132,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 Position = userInfo.Position,
                 Phone = userInfo.Phone,
                 UserNum = userInfo.UserNum,
-                UserPower = userInfo.UserPower,
+                UserPower = userInfo.UserPower.ToString(),
                 BasicMoney = userInfo.BasicMoney,
                 Birthday = userInfo.Birthday,
                 IdNumber = userInfo.IdNumber,
@@ -150,6 +167,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             UserInfoDto userInfo=await userManager.GetUserById(id);
             UserListViewModel userList = new UserListViewModel()
             {
+                UserId = userInfo.UserId,
                 Email = userInfo.Email,
                 Name = userInfo.Name,
                 Gender = userInfo.Gender,
@@ -157,7 +175,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 Position = userInfo.Position,
                 Phone = userInfo.Phone,
                 UserNum = userInfo.UserNum,
-                UserPower = userInfo.UserPower,
+                UserPower = userInfo.UserPower.ToString(),
                 BasicMoney = userInfo.BasicMoney,
                 Birthday = userInfo.Birthday,
                 IdNumber = userInfo.IdNumber,
@@ -167,6 +185,9 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 NativePlace = userInfo.NativePlace,
                 School = userInfo.School,
                 TipTopDegree = userInfo.TipTopDegree,
+                BeginWorkDate = userInfo.BeginWorkDate,
+                BeFormDate = userInfo.BeFormDate,
+                NotWorkDate = userInfo.NotWorkDate
             };
             return View(userList);
         }

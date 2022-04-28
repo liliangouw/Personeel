@@ -99,7 +99,8 @@ namespace Personeel.BLL
                         Position = m.Position.Posname,
                         BasicMoney = m.Basicmoney,
                         UserPower = m.UserRight.UserPower,
-                        UserRightId = m.UserRightID
+                        UserRightId = m.UserRightID,
+                        IsManager = m.IsManager
                     }).ToListAsync();
             }
         }
@@ -136,7 +137,8 @@ namespace Personeel.BLL
                             BasicMoney = m.Basicmoney,
                             UserPower = m.UserRight.UserPower,
                             UserRightId = m.UserRightID,
-                            DepGuid = m.DepartmentID
+                            DepGuid = m.DepartmentID,
+                            IsManager = m.IsManager
                         }).FirstAsync();
                 }
                 else
@@ -154,7 +156,7 @@ namespace Personeel.BLL
                 await userService.RemoveAsync(user.Id);
             }
         }
-        public bool Login(string email, string password,out Guid userId,out string userName,out Guid userRight)
+        public bool Login(string email, string password,out Guid userId,out string userName,out Guid userRight, out bool isManager)
         {
             using (IDAL.IUserService userService = new DAL.UserService())
             {
@@ -166,6 +168,7 @@ namespace Personeel.BLL
                     userName = "用户";
                     userId = new Guid();
                     userRight = new Guid();
+                    isManager = false;
                     return false;
                 }
                 else
@@ -173,6 +176,7 @@ namespace Personeel.BLL
                     userId = data.Id;
                     userName = data.Name;
                     userRight = data.UserRightID;
+                    isManager = data.IsManager;
                     return true;
                 }
             }
@@ -209,7 +213,8 @@ namespace Personeel.BLL
                             Position = m.Position.Posname,
                             BasicMoney = m.Basicmoney,
                             UserPower = m.UserRight.UserPower,
-                            UserRightId = m.UserRightID
+                            UserRightId = m.UserRightID,
+                            IsManager = m.IsManager
                         }).FirstAsync();
                 }
                 else
@@ -225,6 +230,16 @@ namespace Personeel.BLL
             {
                 var user = await userService.GetAllAsync().FirstAsync(m => m.Id == id);
                 user.UserRightID = powerId;
+                await userService.EditAsync(user);
+            }
+        }
+
+        public async Task ChangeIsManager(Guid id, bool isManager)
+        {
+            using (IDAL.IUserService userService = new DAL.UserService())
+            {
+                var user = await userService.GetAllAsync().FirstAsync(m => m.Id == id);
+                user.IsManager = isManager;
                 await userService.EditAsync(user);
             }
         }

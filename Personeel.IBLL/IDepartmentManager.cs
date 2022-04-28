@@ -11,7 +11,7 @@ namespace Personeel.IBLL
     {
         //部门管理
         Task AddDep(string depName, string depDes,Guid depUser);
-        Task EditDep(string depName, string depDes,Guid depUser);
+        Task EditDep(Guid depGuid, string depName, string depDes, Guid depUser);
         Task RemoveDep(Guid id);
         Task<List<DTO.DepInfoDto>>GetInfo();
         Task<DTO.DepInfoDto> GetInfoById(Guid id);

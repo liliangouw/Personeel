@@ -133,7 +133,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OperationController.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
-    <Compile Include="Areas\Admin\Controllers\RegulatoryController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\RegulatoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Employee\Controllers\AnnounceController.cs" />
     <Compile Include="Areas\Employee\Controllers\AskForLeaveController.cs" />
@@ -239,11 +239,11 @@
     <Content Include="Areas\Personnel\Views\Personnel\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Regulatory\CreateArticle.cshtml" />
-    <Content Include="Areas\Admin\Views\Regulatory\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Regulatory\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Regulatory\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Regulatory\Delete.cshtml" />
+    <Content Include="Areas\Personnel\Views\Regulatory\CreateArticle.cshtml" />
+    <Content Include="Areas\Personnel\Views\Regulatory\Index.cshtml" />
+    <Content Include="Areas\Personnel\Views\Regulatory\Details.cshtml" />
+    <Content Include="Areas\Personnel\Views\Regulatory\Edit.cshtml" />
+    <Content Include="Areas\Personnel\Views\Regulatory\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Operation\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Operation\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Operation\Delete.cshtml" />

@@ -29,11 +29,11 @@ namespace Personeel.BLL
             }
         }
 
-        public async Task EditDep(string depName, string depDes,Guid depUser)
+        public async Task EditDep(Guid depGuid,string depName, string depDes,Guid depUser)
         {
             using(IDepartmentService departmentService=new DepartmentService())
             {
-                var Dep = await departmentService.GetAllAsync().FirstAsync(m => m.Depname == depName);
+                var Dep = await departmentService.GetAllAsync().FirstAsync(m => m.Id==depGuid);
                 Dep.Depname = depName;
                 Dep.Depdescribe = depDes;
                 Dep.UserGuid = depUser;

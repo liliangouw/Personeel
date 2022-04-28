@@ -11,7 +11,10 @@ namespace Personeel.Models
     
      public class User:BaseEntity
     {
-       
+       /// <summary>
+       /// 是否部门主管
+       /// </summary>
+        public bool IsManager { get; set; }
         /// <summary>
         /// 账号
         /// </summary>

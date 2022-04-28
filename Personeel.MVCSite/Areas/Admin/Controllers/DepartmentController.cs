@@ -66,11 +66,10 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
                 await departmentManager.AddDep(model.DepName, model.DepDes,model.DepUser);
                 IUserManager userManager = new UserManager();
-                await userManager.ChangePower(model.DepUser, Guid.Parse("aeaeb207-2c3b-7e1d-265a-0ef856ce3871"));
+                await userManager.ChangeIsManager(model.DepUser, true);
                 BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
@@ -95,21 +94,16 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(Guid id, DepListViewModel model)
         {
-            try
-            {
+            
                 IBLL.IDepartmentManager departmentManager = new DepartmentManager();
                 DepInfoDto info=await departmentManager.GetInfoById(id);
                 IUserManager userManager = new UserManager();
-                await userManager.ChangePower(info.DepUserGuid, Guid.Parse("f740cd62-7161-d9b3-4fe7-4d63caa4a143"));
-                await userManager.ChangePower(model.DepUserId, Guid.Parse("aeaeb207-2c3b-7e1d-265a-0ef856ce3871"));
-                await departmentManager.EditDep(model.DepName, model.DepDes,model.DepUserId);
+                await userManager.ChangeIsManager(info.DepUserGuid, false);
+                await userManager.ChangeIsManager(model.DepUserId, true);
+                await departmentManager.EditDep(model.DepGuid,model.DepName, model.DepDes,model.DepUserId);
                 BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString()+":"+Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            
         }
 
         // GET: Admin/Department/Delete/5

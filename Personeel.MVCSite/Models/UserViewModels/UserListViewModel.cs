@@ -9,6 +9,7 @@ namespace Personeel.MVCSite.Models.UserViewModels
 {
     public class UserListViewModel
     {
+        
         public Guid UserId { get; set; }
         [Display(Name = "工号")]
         public  int UserNum { get; set; }
@@ -21,7 +22,7 @@ namespace Personeel.MVCSite.Models.UserViewModels
         [Display(Name = "邮箱")]
         public  string Email { get; set; }
         [Display(Name = "角色")]
-        public  int UserPower { get; set; }
+        public  string UserPower { get; set; }
         [Display(Name = "生日")]
         public DateTime Birthday { get; set; }
         [Display(Name = "身份证号")]

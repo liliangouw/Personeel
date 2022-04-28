@@ -27,7 +27,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 Guid userId;
                 string userName;
                 Guid userRight;
-                if (userManager.Login(model.LoginName, model.LoginPwd, out userId, out userName, out userRight))
+                bool isManager;
+                if (userManager.Login(model.LoginName, model.LoginPwd, out userId, out userName, out userRight, out isManager))
                 {
                     if (model.RememberMe)
                     {
@@ -51,6 +52,11 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                             Value = userRight.ToString(),
                             Expires = DateTime.Now.AddDays(7)
                         });
+                        Response.Cookies.Add(new HttpCookie("isManger")
+                        {
+                            Value = isManager.ToString(),
+                            Expires = DateTime.Now.AddDays(7)
+                        });
                     }
                     else
                     {
@@ -58,6 +64,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                         Session["userid"] = userId.ToString();
                         Session["userName"] = userName;
                         Session["UserRight"] = userRight.ToString();
+                        Session["isManager"] = isManager;
                     }
                     //跳转
                     DTO.UserInfoDto user = await userManager.GetUserByEmail(model.LoginName);
@@ -70,10 +77,6 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                         return RedirectToAction("Index", "Personnel", new { area = "Personnel" });
                     }
                     else if (user.UserPower == 2)
-                    {
-                        return RedirectToAction("Index", "Employee", new { area = "Employee" });
-                    }
-                    else if (user.UserPower == 3)
                     {
                         return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }

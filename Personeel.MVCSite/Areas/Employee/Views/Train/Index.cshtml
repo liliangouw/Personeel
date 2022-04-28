@@ -4,19 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>培训首页</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TrainGuid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
@@ -38,12 +30,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TrainGuid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
@@ -59,7 +45,7 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) 
+            @Html.ActionLink("Details", "Details", new { id=item.TrainGuid }) 
 
         </td>
     </tr>

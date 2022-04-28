@@ -34,7 +34,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
 
 
         // GET: Personnel/TrainInfo/Create
-        public async Task<ActionResult> Create()
+        public  ActionResult Create()
         {
             return View();
         }

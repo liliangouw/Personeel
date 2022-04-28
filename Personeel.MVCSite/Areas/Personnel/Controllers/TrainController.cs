@@ -23,6 +23,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             {
                 AddTrainViewModel temp = new AddTrainViewModel()
                 {
+                    
                     TrainSort = item.TrainSort,
                     TrainDes = item.TrainDes,
                     TrainGuid = item.TrainGuid,
