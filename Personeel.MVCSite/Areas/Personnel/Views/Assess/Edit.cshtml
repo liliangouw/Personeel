@@ -13,11 +13,10 @@
             var content2 = parseInt(document.getElementById("2").value);
             var content3 = parseInt(document.getElementById("3").value);
             var content4 = parseInt(document.getElementById("4").value);
-            var content5 = parseInt(document.getElementById("5").value);
-            var sum = content * 0.2 + content2 * 0.2 + content3 * 0.2 + content4 * 0.2 + content5 * 0.2;
+            var sum = content * 0.5 + content2 * 0.3 + content3 * 0.2 + content4;
             var a = document.getElementById("result");
             a.value = sum;
-        }
+        }                             
 
     </script>
 }
@@ -73,15 +72,16 @@
             </tr>
             <tr>
                 <th>
-                    此时此刻分我莫属
+                    工作业绩
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br/>
-                    2.工作中敢于做出取舍，承担责任<br/>
-                    3.打破边界<br/>
+                    1. 根据公司要求，完成目标供应商引入数与入驻客户签约数，在引入和入驻阶段有节奏的把握好客户的商务合作体验。<br />
+                    2. 熟悉理解平台及产品，开发异业客户，维护现有客户。整理客户资料和数据并做日常统计分析。<br />
+                    3. 跨部门协调解决处理供应商和客户发生的问题与需求。<br />
+                    4. 通过各类途径与行业资源，有效接入商户，丰富平台商品。发展并维护公司客户，达成商务拓展计划与目标。<br />
                 </th>
                 <th>
-                    20%
+                    50%
                 </th>
                 <th>
                     <input name="purchase_num" value="" id="1" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
@@ -89,15 +89,17 @@
             </tr>
             <tr>
                 <th>
-                    此时此刻分我莫属
+                    工作能力
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br/>
-                    2.工作中敢于做出取舍，承担责任<br/>
-                    3.打破边界<br/>
+                    1. 合理安排自己和下属工作，人员没有闲置，工作能有序地开展<br />
+                    2. 定期员工沟通，了解下属情况，组员配合度高<br />
+                    3. 对工作中遇到的问题能够想方法去解决并及时反馈给上级领导<br />
+                    4. 熟练掌握本岗位所需理论知识并能灵活运用；<br />
+                    5. 具有不断学习本岗位技能知识的行动并运用到实际工作当中<br />
                 </th>
                 <th>
-                    20%
+                    30%
                 </th>
                 <th>
                     <input name="purchase_num" value="" id="2" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
@@ -105,12 +107,14 @@
             </tr>
             <tr>
                 <th>
-                    此时此刻分我莫属
+                    工作态度
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br/>
-                    2.工作中敢于做出取舍，承担责任<br/>
-                    3.打破边界<br/>
+                    1. 严格遵守规章制度，按时出勤，迟到或早退1次扣2分；旷工一次扣6分；请假1次以上扣3分；扣完为止<br />
+                    2. 团结同事与部门<br />
+                    3. 有良好的团队和集体意识，互帮互助<br />
+                    4. 自觉维护公司形象名誉，不说、不做有负面影响的事<br />
+                    5. 客户第一，心态上、工作中反映出来的高度负责责任意识<br />
                 </th>
                 <th>
                     20%
@@ -121,34 +125,20 @@
             </tr>
             <tr>
                 <th>
-                    此时此刻分我莫属
+                    加分项
                 </th>
                 <th>
-                    1.独立思考，独立判断，不随波主流<br/>
-                    2.工作中敢于做出取舍，承担责任<br/>
-                    3.打破边界<br/>
+                    1. 参于公司或部门组织的培训讲师并做好培训课程的 3分<br />
+                    2. 提出合理的意见或建议被公司采纳的 3分<br />
+                    3. 工作业绩突出并能帮助同事共同完成工作任务的 3分<br />
+                    4. 为公司推荐客户并形成有效商机的 3分<br />
+                    5. 为公司引荐优秀人才并成功转正的 3分<br />
                 </th>
                 <th>
-                    20%
+                    -
                 </th>
                 <th>
-                    <input name="purchase_num" value="" id="4" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    此时此刻分我莫属
-                </th>
-                <th>
-                    1.独立思考，独立判断，不随波主流<br/>
-                    2.工作中敢于做出取舍，承担责任<br/>
-                    3.打破边界<br/>
-                </th>
-                <th>
-                    20%
-                </th>
-                <th>
-                    <input name="purchase_num" value="" id="5" onchange="getData()" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
+                    <input name="purchase_num" value="" id="4" onchange="getData()" oninput="value=value.replace(/[^\d]/g,'');if(value>100)value=100"/>
                 </th>
             </tr>
         </table>

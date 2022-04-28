@@ -310,14 +310,14 @@
 
                             <a href="#">
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-book-o fa-stack-1x "></i></span>
-                                个人档案
+                                @Html.ActionLink("个人信息", "Index", "User", new { Area = "Employee",userGuid=@userId }, null)
                             </a>
                         </li>
 
                         <li>
                             <a href="#">
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>
-                                个人薪酬
+                                @Html.ActionLink("个人薪酬", "Index", "Salary", new { Area = "Employee", userGuid = @userId }, null)
                             </a>
                         </li>
 
@@ -376,7 +376,7 @@
                                 <li>
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left"></span>
-                                        培训信息
+                                        @Html.ActionLink("培训信息", "Index", "Train", new { Area = "Employee"}, null)
                                     </a>
                                 </li>
 
@@ -384,7 +384,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        公告信息
+                                        @Html.ActionLink("公告信息", "Index", "Announce", new { Area = "Employee"}, null)
                                     </a>
                                 </li>
 
@@ -392,7 +392,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        规章制度
+                                        @Html.ActionLink("规章制度", "Index", "Regulation", new { Area = "Employee" }, null)
                                     </a>
                                 </li>
 
@@ -419,14 +419,14 @@
 
                             <a href="#">
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-address-book-o fa-stack-1x "></i></span>
-                                个人档案
+                                @Html.ActionLink("个人信息", "Index", "User", new { Area = "Employee", userGuid = @userId }, null)
                             </a>
                         </li>
 
                         <li>
                             <a href="#">
                                 <span class="fa-stack fa-lg pull-left"><i class="fa fa-money fa-stack-1x "></i></span>
-                                个人薪酬
+                                @Html.ActionLink("个人薪酬", "Index", "Salary", new { Area = "Employee", userGuid = @userId }, null)
                             </a>
 
                         </li>
@@ -466,7 +466,7 @@
                                 <li>
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left"></span>
-                                        培训信息
+                                        @Html.ActionLink("培训信息", "Index", "Train", new { Area = "Employee" }, null)
                                     </a>
                                 </li>
 
@@ -474,7 +474,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        公告信息
+                                        @Html.ActionLink("公告信息", "Index", "Announce", new { Area = "Employee" }, null)
                                     </a>
                                 </li>
 
@@ -482,7 +482,7 @@
                                     <a href="#">
                                         <span class="fa-stack fa-lg pull-left">
                                         </span>
-                                        规章制度
+                                        @Html.ActionLink("规章制度", "Index", "Regulation", new { Area = "Employee" }, null)
                                     </a>
                                 </li>
 
