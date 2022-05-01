@@ -12,14 +12,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 企业人事管理系统</title>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
     @Styles.Render("~/Content/css")
-    @RenderSection("headers", required: false)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="/Content/style.css">
     <link href="~/fonts/iconfont.css" rel="stylesheet" />
+    <script src="~/Scripts/summernote/jquery.min.js"></script>
+    @RenderSection("headers", required: false)
+
     @if (TempData["message"] != null)
     {
         <script type="text/javascript">

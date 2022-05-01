@@ -5,6 +5,35 @@
     ViewBag.Title = "Edit";
 }
 
+@section headers{
+    <script type="text/javascript">
+       $(document).ready(function(){
+           var bir = document.getElementById("birthday"); 
+           var time = new Date('@(Model.Birthday)').format("yyyy-MM-dd");
+           bir.value= time;
+       });
+        Date.prototype.format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1,                 //月份
+                "d+": this.getDate(),                    //日
+                "h+": this.getHours(),                   //小时
+                "m+": this.getMinutes(),                 //分
+                "s+": this.getSeconds(),                 //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds()             //毫秒
+            };
+            if (/(y+)/.test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                }
+            }
+            return fmt;
+        };
+    </script>
+}
 <h2>修改</h2>
 
 @using (Html.BeginForm())
@@ -17,8 +46,8 @@
     <div class="form-group" style="display: none">
         @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control"} })
-            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger"  })
+            @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -27,6 +56,14 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.UserNum, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.UserNum, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -49,7 +86,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control" } })
+            <input id="birthday"  type="date" name="Birthday" />
             @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
         </div>
     </div>

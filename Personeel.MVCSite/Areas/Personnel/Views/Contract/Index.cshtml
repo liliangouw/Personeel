@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>人事合同管理</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("添加合同", "Create")
 </p>
 <table class="table">
     <tr>
@@ -47,8 +47,8 @@
             <a href="/Contract/Download?filePath=@item.FilePath&fileName=@Path.GetFileName(item.FilePath)'">下载</a>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+            @Html.ActionLink("修改", "Edit", new {id = item.Id}) |
+            @Html.ActionLink("删除", "Delete", new {id = item.Id})
         </td>
     </tr>
 }

@@ -344,6 +344,21 @@
     <Content Include="Scripts\script.js" />
     <Content Include="Scripts\show-password-toggle.js" />
     <Content Include="Scripts\show-password-toggle.min.js" />
+    <Content Include="Scripts\summernote\0.8.15\lang\summernote-zh-CN.js" />
+    <Content Include="Scripts\summernote\0.8.15\lang\summernote-zh-CN.min.js" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-bs4.css" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-bs4.js" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-bs4.min.css" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-bs4.min.js" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-lite.css" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-lite.js" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-lite.min.css" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-lite.min.js" />
+    <Content Include="Scripts\summernote\0.8.15\summernote.css" />
+    <Content Include="Scripts\summernote\0.8.15\summernote.js" />
+    <Content Include="Scripts\summernote\0.8.15\summernote.min.css" />
+    <Content Include="Scripts\summernote\jquery.js" />
+    <Content Include="Scripts\summernote\jquery.min.js" />
     <Content Include="Scripts\tinymce\icons\default\icons.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\models\dom\model.min.js" />
@@ -417,6 +432,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Scripts\tinymce\langs\README.md" />
+    <Content Include="Scripts\summernote\0.8.15\font\summernote.eot" />
+    <Content Include="Scripts\summernote\0.8.15\font\summernote.ttf" />
+    <Content Include="Scripts\summernote\0.8.15\font\summernote.woff" />
+    <Content Include="Scripts\summernote\0.8.15\font\summernote.woff2" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-bs4.js.map" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-bs4.min.js.map" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-lite.js.map" />
+    <Content Include="Scripts\summernote\0.8.15\summernote-lite.min.js.map" />
+    <Content Include="Scripts\summernote\0.8.15\summernote.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

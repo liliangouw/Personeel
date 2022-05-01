@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -151,8 +152,8 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit( UserListViewModel user)
         {
-            
-                IUserManager userManager = new UserManager();
+           
+            IUserManager userManager = new UserManager();
                await userManager.ChangeInfo(user.UserId,user.Email, user.Name, user.Gender, user.Birthday, user.IdNumber, user.Wedlock,
                     user.Race, user.NativePlace, user.Politic, user.Phone, user.TipTopDegree, user.School);
                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
