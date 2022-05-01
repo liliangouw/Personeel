@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Create";
 }
-
+@section headers{
+    
+    }
 <h2>添加培训</h2>
 
 @using (Html.BeginForm()) 
@@ -17,13 +19,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="radio">
+                <select name="UserId">
                     @foreach (var userItem in ViewBag.Users)
                     {
-
-                        <label><input type="radio" name="UserId" value="@userItem.UserId">@userItem.Name</label>
+                        <option value="@userItem.UserId">@userItem.Name</option>
                     }
-                </div>
+                </select>
             </div>
         </div>
 
@@ -46,7 +47,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                <input id="start" type="date" name="StartTime" />
                 @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +55,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                <input id="end" type="date" name="EndTime" />
                 @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
             </div>
         </div>

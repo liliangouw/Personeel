@@ -43,14 +43,12 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DepUserId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="radio">
                 <select name="DepUserId">
                     @foreach (var userItem in ViewBag.Users)
                     {
                         <option name="DepUserId" value="@userItem.UserId">@userItem.Name</option>
                     }
                 </select>
-            </div>
         </div>
     </div>
 

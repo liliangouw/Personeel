@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>人事合同管理</h2>
+<h2>工资账套管理</h2>
 
 <p>
     @Html.ActionLink("选择用户", "Select")
@@ -53,8 +53,8 @@
             @Html.DisplayFor(modelItem => item.Tax)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("修改", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
