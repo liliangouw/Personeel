@@ -80,7 +80,7 @@ namespace Personeel.MVCSite.Areas.Employee.Controllers
             await userManager.ChangeInfo(user.UserId, user.Email, user.Name, user.Gender, user.Birthday, user.IdNumber, user.Wedlock,
                     user.Race, user.NativePlace, user.Politic, user.Phone, user.TipTopDegree, user.School);
                 BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { userGuid = id});
             
         }
 

@@ -34,6 +34,7 @@ namespace Personeel.MVCSite.Areas.Employee.Controllers
             var info = await salaryManager.GetInfoById(id);
             var list = new AddSalaryViewModel()
             {
+                UserId=info.UserId,
                 Id = info.Id,
                 UserName = info.UserName,
                 BasicSalary = info.BasicSalary,

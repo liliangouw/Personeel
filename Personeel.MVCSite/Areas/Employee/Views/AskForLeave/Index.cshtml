@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>请假申请</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("添加申请", "Create")
 </p>
 <table class="table">
     <tr>
@@ -43,8 +43,8 @@
             @Html.DisplayFor(modelItem => item.ApproveTime)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("详情", "Details", new { id=item.Id }) |
+            @Html.ActionLink("撤销", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

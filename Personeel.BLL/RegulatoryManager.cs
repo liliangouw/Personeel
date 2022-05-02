@@ -53,7 +53,7 @@ namespace Personeel.BLL
                     .Where(m => m.Id == id).Select(m => new RegulatoryInfoDto()
                 {
                     CreateTime = m.CreateTime,
-                    Des = m.RoleText,
+                    Des = m.RoleDes,
                     Id = m.Id,
                     Name = m.User.Name,
                     Text = m.RoleText,
