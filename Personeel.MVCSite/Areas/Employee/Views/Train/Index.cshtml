@@ -5,7 +5,7 @@
 }
 
 <h2>培训首页</h2>
-
+@Html.ActionLink("培训资料", "Info")
 <table class="table">
     <tr>
 
@@ -27,28 +27,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrainSort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrainDes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.TrainGuid }) 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainSort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainDes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.TrainGuid })
 
-        </td>
-    </tr>
-}
+            </td>
+        </tr>
+    }
 
 </table>

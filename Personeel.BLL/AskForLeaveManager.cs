@@ -23,9 +23,11 @@ namespace Personeel.BLL
                 {
                     int power = await userService.GetAllAsync().Where(m => m.Id == userGuid)
                         .Select(m => m.UserRight.UserPower).FirstAsync();
+                    bool isManager= await userService.GetAllAsync().Where(m => m.Id == userGuid)
+                        .Select(m => m.IsManager).FirstAsync();
                     Guid depGuid = await userService.GetAllAsync().Where(m => m.Id == userGuid)
                         .Select(m => m.DepartmentID).FirstAsync();
-                    if (power == 3)
+                    if (power == 3&&!isManager)
                     {
                         await askForLeaveService.CreateAsync(new AskForLeave()
                         {
@@ -39,7 +41,7 @@ namespace Personeel.BLL
                             LeaveState = (int)AskState.部门主管审批
                         });
                     }
-                    else if (power == 2)
+                    else
                     {
                         await askForLeaveService.CreateAsync(new AskForLeave()
                         {

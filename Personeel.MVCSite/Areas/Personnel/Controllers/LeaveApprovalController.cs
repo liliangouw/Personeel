@@ -37,7 +37,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 }).ToList();
             }
             //部门主管
-            else if(userRight== "aeaeb207-2c3b-7e1d-265a-0ef856ce3871")
+            else if(userRight== "f740cd62-7161-d9b3-4fe7-4d63caa4a143")
             {
                 IUserManager userManager = new UserManager();
                 UserInfoDto userInfo=await userManager.GetUserById(Guid.Parse(userId));
