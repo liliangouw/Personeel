@@ -178,7 +178,9 @@ namespace Personeel.BLL
                         Department = m.Department.Depname,
                         LeaveSort = m.LeaveSort,
                         LeaveState = Enum.GetName(typeof(AskState), m.LeaveState),
-                        ApproveTime = m.CreateTime
+                        ApproveTime = m.CreateTime,
+                        StartTime=m.StartTime,
+                        EndTime=m.EndTime
                     }).ToList();
                 return list;
             }
@@ -198,7 +200,9 @@ namespace Personeel.BLL
                         Department = m.Department.Depname,
                         LeaveSort = m.LeaveSort,
                         LeaveState = Enum.GetName(typeof(AskState), m.LeaveState),
-                        ApproveTime = m.CreateTime
+                        ApproveTime = m.CreateTime,
+                        StartTime=m.StartTime,
+                        EndTime=m.EndTime
                     }).ToList();
                 return list;
             }

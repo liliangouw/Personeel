@@ -8,58 +8,47 @@
 
 <html>
 <head>
-    @Styles.Render("~/Content/css")
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
     <title>Login</title>
+    <link href="~/LoginFile/style.css" rel="stylesheet" />
 </head>
 <body>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-
-    <div class="col-md-offset-4 col-lg-offset-4col-xl-offset-4">
-        @using (Html.BeginForm())
-        {
+    @using (Html.BeginForm())
+    {
+        <div class="form">
             @Html.AntiForgeryToken()
-
-            <div class="form-horizontal">
-                <h4>企业人事管理系统</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LoginName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-toggle"></div>
+            <div class="form-panel one">
+                <div class="form-header">
+                    <h1>用户登录</h1>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LoginPwd, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LoginPwd, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LoginPwd, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.RememberMe)
-                            @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                <div class="form-content">
+                    <form>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LoginName, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })
                         </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="登录" class="btn btn-default" />
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LoginPwd, htmlAttributes: new { @class = "" })
+                            @Html.EditorFor(model => model.LoginPwd, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LoginPwd, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="form-remember" for="RememberMe"> <input class="check-box" data-val="true" data-val-required="记住我 字段是必需的。" id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />记住我</label>
+                            <span class="field-validation-valid text-danger" data-valmsg-for="RememberMe" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">登录</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+        <script src="~/LoginFile/script.js"></script>
+        <script src="~/LoginFile/jquery.min.js"></script>
+    }
 
 </body>
 </html>

@@ -15,15 +15,15 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     @Styles.Render("~/Content/css")
     <!--时间控件-->
-    
 
-    @RenderSection("headers", required: false)
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="/Content/style.css">
     <link href="~/fonts/iconfont.css" rel="stylesheet" />
-
+    @RenderSection("headers", required: false)
     <script type="text/javascript">
         Date.prototype.format = function (fmt) {
             var o = {
@@ -293,33 +293,33 @@
                             </ul>
                         </li>
 
-                        <!--<li>
-         <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>报表统计</a>
-         <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-             <li>
-                 <a href="#">
-                     <span class="fa-stack fa-lg pull-left"></span>
-                     人员统计
-                 </a>
-             </li>
-             <li>
-                 <a href="#">
-                     <span class="fa-stack fa-lg pull-left">
-                     </span>
-                     工资报表
-                 </a>
-             </li>
-             <li>
-                 <a href="#">
-                     <span class="fa-stack fa-lg pull-left">
-                     </span>
-                     合同报表
-                 </a>
-             </li>
-         </ul>
-     </li>-->
-                        
-
+                        <li>
+                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>报表统计</a>
+                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left"></span>
+                                        @Html.ActionLink("审批分析", "LeaveReport", "Reports", new { Area = "Personnel"}, null)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        工资报表
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa-stack fa-lg pull-left">
+                                        </span>
+                                        合同报表
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                                           
+                    
                     </ul>
                 </div>
             }

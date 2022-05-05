@@ -158,6 +158,7 @@
     <Compile Include="Areas\Personnel\Controllers\LoginController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PayRollAccountController.cs" />
     <Compile Include="Areas\Personnel\Controllers\PersonnelController.cs" />
+    <Compile Include="Areas\Personnel\Controllers\ReportsController.cs" />
     <Compile Include="Areas\Personnel\Controllers\RichTextController.cs" />
     <Compile Include="Areas\Personnel\Controllers\SalaryController.cs" />
     <Compile Include="Areas\Personnel\Controllers\TrainController.cs" />
@@ -212,6 +213,9 @@
     <Content Include="fonts\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="LoginFile\jquery.min.js" />
+    <Content Include="LoginFile\script.js" />
+    <Content Include="LoginFile\style.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -331,7 +335,9 @@
     <Content Include="Areas\Employee\Views\Regulation\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Regulation\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Train\Info.cshtml" />
+    <Content Include="Areas\Personnel\Views\Reports\LeaveReport.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\echarts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
