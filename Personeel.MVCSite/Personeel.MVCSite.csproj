@@ -208,6 +208,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\iconfont.css" />
+    <Content Include="fonts\pagestyle.css" />
     <Content Include="fonts\show-password-toggle.css" />
     <Content Include="fonts\show-password-toggle.min.css" />
     <Content Include="fonts\style.css" />

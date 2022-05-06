@@ -13,10 +13,14 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
     public class OperationController : Controller
     {
         // GET: Admin/Operation
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageIndex=0,int pageSize=10)
         {
             IOperationManager operationManager = new OperationManager();
-            var list=  await operationManager.GetAllOperation();
+            var list=  await operationManager.GetAllOperation(pageIndex, pageSize);
+            //获取总条数
+            var dataCount = await operationManager.GetDataCount();
+            ViewBag.PageCount =dataCount%pageSize==0?dataCount/pageSize:dataCount/pageSize+1;
+            ViewBag.PageIndex = pageIndex;
             List<OperationListViewModel> operationList = new List<OperationListViewModel>();
             foreach (var item in list)
             {
