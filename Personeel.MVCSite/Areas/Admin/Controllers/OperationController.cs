@@ -7,20 +7,20 @@ using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.OperationViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
     public class OperationController : Controller
     {
         // GET: Admin/Operation
-        public async Task<ActionResult> Index(int pageIndex=0,int pageSize=10)
+        public async Task<ActionResult> Index(int pageIndex=1,int pageSize=12)
         {
             IOperationManager operationManager = new OperationManager();
-            var list=  await operationManager.GetAllOperation(pageIndex, pageSize);
+            //当前第N页数据
+            var list=  await operationManager.GetAllOperation(pageIndex-1, pageSize);
             //获取总条数
             var dataCount = await operationManager.GetDataCount();
-            ViewBag.PageCount =dataCount%pageSize==0?dataCount/pageSize:dataCount/pageSize+1;
-            ViewBag.PageIndex = pageIndex;
             List<OperationListViewModel> operationList = new List<OperationListViewModel>();
             foreach (var item in list)
             {
@@ -33,7 +33,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 };
                 operationList.Add(temp);
             }
-            return View(operationList);
+            return View(new PagedList<OperationListViewModel>(operationList, pageIndex, pageSize, dataCount));
         }
 
 

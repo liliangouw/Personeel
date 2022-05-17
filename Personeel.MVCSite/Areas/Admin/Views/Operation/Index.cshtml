@@ -1,40 +1,9 @@
-﻿@model IEnumerable<Personeel.MVCSite.Models.OperationViewModels.OperationListViewModel>
+﻿@using Webdiyer.WebControls.Mvc;
+@model PagedList<Personeel.MVCSite.Models.OperationViewModels.OperationListViewModel>
+
 
 @{
     ViewBag.Title = "Index";
-}
-@section headers{
-    <style>
-        ul.pagination {
-            display: inline-block;
-            padding: 0;
-            margin: 0;
-        }
-
-            ul.pagination li {
-                display: inline;
-            }
-
-                ul.pagination li a {
-                    color: black;
-                    float: left;
-                    padding: 8px 16px;
-                    text-decoration: none;
-                    transition: background-color .3s;
-                    border: 1px solid #ddd;
-                }
-
-                    ul.pagination li a.active {
-                        background-color: #4CAF50;
-                        color: white;
-                        border: 1px solid #4CAF50;
-                    }
-
-                    ul.pagination li a:hover:not(.active) {
-                        background-color: #ddd;
-                    }
-    </style>
-  
 }
 <h2>日志管理</h2>
 
@@ -76,51 +45,32 @@
     <tfoot>
         <tr>
             <td colspan="6">
+                <nav>
+                    @Html.Pager(Model, new PagerOptions
+               {
+                   PageIndexParameterName = "pageIndex",
+                   ContainerTagName = "ul",
+                   CssClass = "pagination",
+                   CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+                   DisabledPagerItemTemplate ="<li class=\"disabled\"><a>{0}</a></li>",
+                   PagerItemTemplate = "<li>{0}</li>",
+                   Id = "bootstrappager"
+               })
+                </nav>
 
-                <ul class="pagination" id="pagination">
-                    @if (ViewBag.PageCount <= 10)
-                    {
-                        //数据实际数量小于等于可容纳页码数量
-                        for (int i = 1; i < ViewBag.PageCount; i++)
-                        {
-                            <li>
-                                <a href="/Admin/Operation/Index?pageIndex=@(i-1)&&pageSize=10">@i</a>
-                            </li>
-                        }
-                    }
-                    else
-                    {
-                        //数据实际数量大于等于可容纳页码数量
-                        if (ViewBag.PageIndex <= 10 / 2 + 1)
-                        {
-                            for (int i = 1; i < 10; i++)
-                            {
-                                <li>
-                                    <a href="/Admin/Operation/Index?pageIndex=@(i-1)&&pageSize=10">@i</a>
-                                </li>
-                            }
-                        }
-                        else if ((ViewBag.PageCount - ViewBag.PageIndex) <= 10 / 2)
-                        {
-                            for (int i = ViewBag.PageCount - (10 - 1); i < ViewBag.PageCount; i++)
-                            {
-                                <li>
-                                    <a href="/Admin/Operation/Index?pageIndex=@(i-1)&&pageSize=10">@i</a>
-                                </li>
-                            }
-                        }
-                        else
-                        {
-                            for (int i = ViewBag.PageIndex - 10 / 2; i < ViewBag.PageIndex + 10 / 2; i++)
-                            {
-                                <li>
-                                    <a href="/Admin/Operation/Index?pageIndex=@(i-1)&&pageSize=10">@i</a>
-                                </li>
-                            }
-                        }
-                    }
-                </ul>
             </td>
         </tr>
     </tfoot>
 </table>
+
+@section headers{
+    <style>
+        .pagination{
+            display:flex;
+            flex-direction:row;
+            justify-content:center;
+            margin:0;
+            padding:3px
+        }
+    </style>
+    }

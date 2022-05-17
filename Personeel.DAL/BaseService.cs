@@ -98,5 +98,11 @@ namespace Personeel.DAL
             await _db.SaveChangesAsync();
             _db.Configuration.ValidateOnSaveEnabled = true;
         }
+
+        public IQueryable<T> GetAllByStartEndTime(DateTime startTime, DateTime endTime)
+        {
+            return  GetAllByOrderAsync().Where(m => m.CreateTime>=startTime&&m.CreateTime<=endTime);
+        }
+        
     }
 }

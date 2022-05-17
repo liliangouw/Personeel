@@ -31,5 +31,7 @@ namespace Personeel.IDAL
         /// <returns></returns>
         IQueryable<T> GetAllByOrderAsync(bool asc=true);
         IQueryable<T> GetAllByPageOrderAsync(int pageSize = 10, int pageIndex = 0,bool asc=true);
+
+        IQueryable<T> GetAllByStartEndTime(DateTime startTime, DateTime endTime);
     }
 }
