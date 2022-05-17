@@ -100,8 +100,51 @@ namespace Personeel.BLL
                         BasicMoney = m.Basicmoney,
                         UserPower = m.UserRight.UserPower,
                         UserRightId = m.UserRightID,
-                        IsManager = m.IsManager
+                        IsManager = m.IsManager,
+                        DepGuid=m.DepartmentID
                     }).ToListAsync();
+            }
+        }
+
+        public async Task<List<DTO.UserInfoDto>> GetAllUserByPage(int pageIndex, int pageSize)
+        {
+            using (IUserService userService = new UserService())
+            {
+                return await userService.GetAllByPageOrderAsync(pageSize, pageIndex, false).Where(m => m.IsRemoved == false).Select(m =>
+                   new DTO.UserInfoDto()
+                   {
+                       UserId = m.Id,
+                       Email = m.Email,
+                       ImagePath = m.ImagePath,
+                       UserNum = m.UserNum,
+                       Name = m.Name,
+                       Gender = m.Gender,
+                       Birthday = m.Birthday,
+                       IdNumber = m.IDNumber,
+                       Wedlock = m.Wedlock,
+                       Race = m.Race,
+                       NativePlace = m.Nativeplace,
+                       Phone = m.Phone,
+                       Politic = m.Politic,
+                       School = m.School,
+                       TipTopDegree = m.Tiptopdegree,
+                       BeginWorkDate = m.Beginworkdate,
+                       BeFormDate = m.Beformdate,
+                       NotWorkDate = m.Notworkdate,
+                       Department = m.Department.Depname,
+                       Position = m.Position.Posname,
+                       BasicMoney = m.Basicmoney,
+                       UserPower = m.UserRight.UserPower,
+                       UserRightId = m.UserRightID,
+                       IsManager = m.IsManager
+                   }).ToListAsync();
+            }
+        }
+        public async Task<int> GetDataCount()
+        {
+            using (IUserService userService = new UserService())
+            {
+                return await userService.GetAllAsync().CountAsync();
             }
         }
 

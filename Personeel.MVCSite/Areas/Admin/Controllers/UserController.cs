@@ -12,6 +12,7 @@ using Personeel.DTO;
 using Personeel.IBLL;
 using Personeel.MVCSite.Filters;
 using Personeel.MVCSite.Models.UserViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
@@ -19,10 +20,11 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: Admin/User
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageIndex = 1, int pageSize = 4)
         {
             IBLL.IUserManager userManager = new UserManager();
-            List<DTO.UserInfoDto>userList = await userManager.GetAllUser();
+            List<DTO.UserInfoDto> userList = await userManager.GetAllUserByPage(pageIndex - 1, pageSize);
+            var dataCount = await userManager.GetDataCount();
             List<UserListViewModel> userListViewModels = new List<UserListViewModel>();
             foreach (var item in userList)
             {
@@ -31,11 +33,11 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 {
                     temp = "系统管理员";
                 }
-                else if(item.UserPower==1)
+                else if (item.UserPower == 1)
                 {
                     temp = "人事管理员";
                 }
-                else if(item.UserPower==3&item.IsManager==true)
+                else if (item.UserPower == 3 & item.IsManager == true)
                 {
                     temp = "部门主管";
                 }
@@ -55,14 +57,76 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 };
                 userListViewModels.Add(tempModel);
             }
-            return View(userListViewModels);
+            ViewBag.Department = await new DepartmentManager().GetInfo();
+            return View(new PagedList<UserListViewModel>(userListViewModels, pageIndex, pageSize, dataCount));
+        }
+        [HttpPost]
+        public async Task<ActionResult> Index(int id = 1, string Name = null, string Department = null)
+        {
+            IBLL.IUserManager userManager = new UserManager();
+            List<DTO.UserInfoDto> userList = await userManager.GetAllUser();
+            if (Name == "" && Department == "" )
+            {
+                
+            }
+            else if(Name!= "" && Department == "")
+            {
+                userList = userList.Where(m => m.Name.Contains(Name)).ToList();
+
+            }
+            else if(Name== "" && Department != "")
+            {
+               Guid DepGuid=Guid.Parse(Department);
+                userList = userList.Where(m => m.DepGuid.Equals(DepGuid)).ToList();
+            }
+            else
+            {
+               Guid DepGuid = Guid.Parse(Department);
+                userList = userList.Where(m => m.DepGuid.Equals(DepGuid) && m.Name.Contains(Name)).ToList();
+            }
+
+            List<UserListViewModel> userListViewModels = new List<UserListViewModel>();
+            foreach (var item in userList)
+            {
+                string temp = "";
+                if (item.UserPower == 0)
+                {
+                    temp = "系统管理员";
+                }
+                else if (item.UserPower == 1)
+                {
+                    temp = "人事管理员";
+                }
+                else if (item.UserPower == 3 & item.IsManager == true)
+                {
+                    temp = "部门主管";
+                }
+                else
+                {
+                    temp = "员工";
+                }
+                UserListViewModel tempModel = new UserListViewModel()
+                {
+                    UserId = item.UserId,
+                    UserNum = item.UserNum,
+                    Name = item.Name,
+                    Position = item.Position,
+                    Department = item.Department,
+                    Email = item.Email,
+                    UserPower = temp
+                };
+                userListViewModels.Add(tempModel);
+            }
+            var dataCount = userListViewModels.Count();
+            ViewBag.Department = await new DepartmentManager().GetInfo();
+            return View(new PagedList<UserListViewModel>(userListViewModels, id, 4, dataCount));
         }
 
         // GET: Admin/User/Details/5
         public async Task<ActionResult> Details(Guid id)
         {
             IUserManager userManager = new UserManager();
-            UserInfoDto userInfo=await userManager.GetUserById(id);
+            UserInfoDto userInfo = await userManager.GetUserById(id);
             UserListViewModel model = new UserListViewModel()
             {
                 UserId = userInfo.UserId,
@@ -111,7 +175,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 IBLL.IUserManager userManager = new UserManager();
-                await userManager.AddUser(model.Email, model.Password, model.Name, model.Right, model.BasicMoney,model.Department,model.Position);
+                await userManager.AddUser(model.Email, model.Password, model.Name, model.Right, model.BasicMoney, model.Department, model.Position);
                 BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
                 return RedirectToAction("Index");
             }
@@ -150,22 +214,22 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
 
         // POST: Admin/User/Edit/5
         [HttpPost]
-        public async Task<ActionResult> Edit( UserListViewModel user)
+        public async Task<ActionResult> Edit(UserListViewModel user)
         {
-           
+
             IUserManager userManager = new UserManager();
-               await userManager.ChangeInfo(user.UserId,user.Email, user.Name, user.Gender, user.Birthday, user.IdNumber, user.Wedlock,
-                    user.Race, user.NativePlace, user.Politic, user.Phone, user.TipTopDegree, user.School);
-               BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
+            await userManager.ChangeInfo(user.UserId, user.Email, user.Name, user.Gender, user.Birthday, user.IdNumber, user.Wedlock,
+                 user.Race, user.NativePlace, user.Politic, user.Phone, user.TipTopDegree, user.School);
+            BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
             return RedirectToAction("Index");
-            
+
         }
 
         // GET: Admin/User/Delete/5
         public async Task<ActionResult> Delete(Guid id)
         {
             IUserManager userManager = new UserManager();
-            UserInfoDto userInfo=await userManager.GetUserById(id);
+            UserInfoDto userInfo = await userManager.GetUserById(id);
             UserListViewModel userList = new UserListViewModel()
             {
                 UserId = userInfo.UserId,
@@ -197,13 +261,13 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> Delete(Guid id, FormCollection collection)
         {
-           
-            
-                IUserManager userManager = new UserManager(); 
-                await  userManager.DeleteUser(id);
-                BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
+
+
+            IUserManager userManager = new UserManager();
+            await userManager.DeleteUser(id);
+            BaseManager.AddOperation(Guid.Parse(Session["userId"].ToString()), Request.RequestContext.RouteData.Values["controller"].ToString() + ":" + Request.RequestContext.RouteData.Values["action"].ToString());
             return RedirectToAction("Index");
-            
+
         }
     }
 }

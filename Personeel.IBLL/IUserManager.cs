@@ -15,6 +15,8 @@ namespace Personeel.IBLL
         Task <DTO.UserInfoDto> GetUserById(Guid id);
         Task<DTO.UserInfoDto> GetUserByEmail(string email);
         Task<List<DTO.UserInfoDto>> GetAllUser();
+        Task<List<DTO.UserInfoDto>> GetAllUserByPage(int pageIndex, int pageSize);
+        Task<int> GetDataCount();
         Task DeleteUser(Guid id);
         Task ChangePower(Guid id, Guid powerId);
         Task ChangeIsManager(Guid id, bool isManager);
