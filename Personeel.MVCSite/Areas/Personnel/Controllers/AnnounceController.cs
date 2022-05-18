@@ -7,16 +7,25 @@ using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.ArticleViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
     public class AnnounceController : Controller
     {
         // GET: Admin/Regulatory
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "")
         {
             IAnnounceManager regulatoryManager = new AnnounceManager();
             List<DTO.AnnounceInfoDto> regulatoryInfo = await regulatoryManager.GetAllAnnounce();
+            if (Name == "")
+            {
+
+            }
+            else
+            {
+                regulatoryInfo = regulatoryInfo.Where(m => m.Name.Contains(Name)).ToList();
+            }
             List<ArticleListViewModel> articleList = new List<ArticleListViewModel>();
             foreach (var item in regulatoryInfo)
             {
@@ -30,7 +39,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 };
                 articleList.Add(tempModel);
             }
-            return View(articleList);
+            var model = articleList.ToPagedList(id, 8);
+            return View(model);
         }
         [HttpGet]
         public ActionResult CreateArticle()

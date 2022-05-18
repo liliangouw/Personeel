@@ -1,5 +1,5 @@
-﻿@model IEnumerable<Personeel.MVCSite.Models.PositionViewModels.PosListViewModel>
-
+﻿@using Webdiyer.WebControls.Mvc;
+@model PagedList<Personeel.MVCSite.Models.PositionViewModels.PosListViewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -20,19 +20,48 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PosName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PosDes)
-        </td>
-        <td>
-            @Html.ActionLink("修改", "Edit", new {  id=item.PosGuid  }) |
-            @Html.ActionLink("删除", "Delete", new { id = item.PosGuid })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PosName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PosDes)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.PosGuid }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.PosGuid })
+            </td>
+        </tr>
+    }
 
 </table>
+<tr>
+    <td colspan="6">
+        <nav>
+            @Html.Pager(Model, new PagerOptions
+       {
+           PageIndexParameterName = "id",
+           ContainerTagName = "ul",
+           CssClass = "pagination",
+           CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+           DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+           PagerItemTemplate = "<li>{0}</li>",
+           Id = "bootstrappager"
+       })
+        </nav>
+
+    </td>
+</tr>
+@section headers{
+    <style>
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0;
+            padding: 3px
+        }
+    </style>
+}

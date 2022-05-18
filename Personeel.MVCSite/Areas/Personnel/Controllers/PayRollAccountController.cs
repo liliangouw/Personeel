@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.SalaryViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
@@ -16,10 +17,18 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
 
         public IUserManager UserManager = new UserManager();
         // GET: Personnel/PayRollAccount
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "")
         {
-            var info = await salaryManager.GetAllAccount();
-            List<AddSalaryViewModel> list = info.Select(m => new AddSalaryViewModel()
+            var userList = await salaryManager.GetAllAccount();
+            if (Name == "" )
+            {
+
+            }
+            else
+            {
+                userList = userList.Where(m => m.UserName.Contains(Name)).ToList();
+            }
+            List<AddSalaryViewModel> list = userList.Select(m => new AddSalaryViewModel()
             {
                 Id = m.Id,
                 UserId = m.UserId,
@@ -30,7 +39,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 SocialSecurity = m.SocialSecurity,
                 Tax = m.Tax
             }).ToList();
-            return View(list);
+            var model = list.ToPagedList(id, 8);
+            return View(model);
         }
 
         public async Task<ActionResult> Select()

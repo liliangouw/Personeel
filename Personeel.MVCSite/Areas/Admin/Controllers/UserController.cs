@@ -19,49 +19,49 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
     [PersonnelAuth]
     public class UserController : Controller
     {
-        // GET: Admin/User
-        public async Task<ActionResult> Index(int pageIndex = 1, int pageSize = 4)
-        {
-            IBLL.IUserManager userManager = new UserManager();
-            List<DTO.UserInfoDto> userList = await userManager.GetAllUserByPage(pageIndex - 1, pageSize);
-            var dataCount = await userManager.GetDataCount();
-            List<UserListViewModel> userListViewModels = new List<UserListViewModel>();
-            foreach (var item in userList)
-            {
-                string temp = "";
-                if (item.UserPower == 0)
-                {
-                    temp = "系统管理员";
-                }
-                else if (item.UserPower == 1)
-                {
-                    temp = "人事管理员";
-                }
-                else if (item.UserPower == 3 & item.IsManager == true)
-                {
-                    temp = "部门主管";
-                }
-                else
-                {
-                    temp = "员工";
-                }
-                UserListViewModel tempModel = new UserListViewModel()
-                {
-                    UserId = item.UserId,
-                    UserNum = item.UserNum,
-                    Name = item.Name,
-                    Position = item.Position,
-                    Department = item.Department,
-                    Email = item.Email,
-                    UserPower = temp
-                };
-                userListViewModels.Add(tempModel);
-            }
-            ViewBag.Department = await new DepartmentManager().GetInfo();
-            return View(new PagedList<UserListViewModel>(userListViewModels, pageIndex, pageSize, dataCount));
-        }
-        [HttpPost]
-        public async Task<ActionResult> Index(int id = 1, string Name = null, string Department = null)
+        //// GET: Admin/User
+        //public async Task<ActionResult> Index(int id = 1, string Name = null, string Department = null)
+        //{
+        //    IBLL.IUserManager userManager = new UserManager();
+        //    List<DTO.UserInfoDto> userList = await userManager.GetAllUserByPage(pageIndex - 1, pageSize);
+        //    var dataCount = await userManager.GetDataCount();
+        //    List<UserListViewModel> userListViewModels = new List<UserListViewModel>();
+        //    foreach (var item in userList)
+        //    {
+        //        string temp = "";
+        //        if (item.UserPower == 0)
+        //        {
+        //            temp = "系统管理员";
+        //        }
+        //        else if (item.UserPower == 1)
+        //        {
+        //            temp = "人事管理员";
+        //        }
+        //        else if (item.UserPower == 3 & item.IsManager == true)
+        //        {
+        //            temp = "部门主管";
+        //        }
+        //        else
+        //        {
+        //            temp = "员工";
+        //        }
+        //        UserListViewModel tempModel = new UserListViewModel()
+        //        {
+        //            UserId = item.UserId,
+        //            UserNum = item.UserNum,
+        //            Name = item.Name,
+        //            Position = item.Position,
+        //            Department = item.Department,
+        //            Email = item.Email,
+        //            UserPower = temp
+        //        };
+        //        userListViewModels.Add(tempModel);
+        //    }
+        //    ViewBag.Department = await new DepartmentManager().GetInfo();
+        //    return View(new PagedList<UserListViewModel>(userListViewModels, pageIndex, pageSize, dataCount));
+        //}
+        [HttpGet]
+        public async Task<ActionResult> Index(int id = 1, string Name = "", string Department = "")
         {
             IBLL.IUserManager userManager = new UserManager();
             List<DTO.UserInfoDto> userList = await userManager.GetAllUser();
@@ -117,9 +117,10 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 };
                 userListViewModels.Add(tempModel);
             }
-            var dataCount = userListViewModels.Count();
+
+            var model = userListViewModels.ToPagedList(id,8);
             ViewBag.Department = await new DepartmentManager().GetInfo();
-            return View(new PagedList<UserListViewModel>(userListViewModels, id, 4, dataCount));
+            return View(model);
         }
 
         // GET: Admin/User/Details/5

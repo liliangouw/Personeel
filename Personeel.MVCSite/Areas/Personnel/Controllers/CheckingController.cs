@@ -8,6 +8,7 @@ using Personeel.BLL;
 using Personeel.DTO;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.CheckingViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
@@ -15,10 +16,20 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     {
         public ICheckingManager checkingManager = new CheckingManager();
         // GET: Personnel/Checking
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(DateTime? start = null, DateTime? end = null, string Name = "",int id = 1)
         {
-            
+            start = start ?? new DateTime(2000, 1, 1, 0, 0, 0);
+            end = end ?? DateTime.Now;
             List<CheckingInfoDto> info = await checkingManager.GetAllChecking();
+            info = info.Where(m => m.BeginTime >= start && m.BeginTime <= end).ToList();
+            if (Name == "")
+            {
+
+            }
+            else
+            {
+                info=info.Where(m => m.UserName.Contains(Name)).ToList();
+            }
             List<CheckingViewModel> list = new List<CheckingViewModel>();
             foreach (var item in info)
             {
@@ -33,7 +44,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 };
                 list.Add(temp);
             }
-            return View(list);
+            var model = list.ToPagedList(id, 8);
+            return View(model);
         }
     }
 }

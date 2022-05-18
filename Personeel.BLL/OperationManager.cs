@@ -39,7 +39,19 @@ namespace Personeel.BLL
                 }).ToListAsync();
             }
         }
-
+        public async Task<List<DTO.OperationinfoDto>> GetAll()
+        {
+            using (IOperationService operationService = new OperationService())
+            {
+                return await operationService.GetAllByOrderAsync(false).Select(m => new DTO.OperationinfoDto()
+                {
+                    CreateTime = m.CreateTime,
+                    Id = m.Id,
+                    Name = m.User.Name,
+                    Text = m.Logdes
+                }).ToListAsync();
+            }
+        }
         public async Task<int> GetDataCount()
         {
             using(IDAL.IOperationService operationService=new OperationService())

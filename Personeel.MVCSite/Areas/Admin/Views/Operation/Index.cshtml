@@ -6,71 +6,77 @@
     ViewBag.Title = "Index";
 }
 <h2>日志管理</h2>
-
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Text)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
+{
+    <div class="well well-sm">
+        <span>开始日期：</span><input type="date" name="start" value="@Request.QueryString["start"]" style="width:120px" />
+        <span>结束日期：</span><input type="date" name="end" value="@Request.QueryString["end"]" style="width:120px" />
+        <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
+    </div>
+}
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Text)
-                </td>
-                <td>
-                    @Html.ActionLink("删除", "Delete", new { id = item.Id, name = item.UserName })
+                <th>
+                    @Html.DisplayNameFor(model => model.CreateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        @Html.ActionLink("删除", "Delete", new { id = item.Id, name = item.UserName })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <nav>
+                        @Html.Pager(Model, new PagerOptions
+                   {
+                       PageIndexParameterName = "id",
+                       ContainerTagName = "ul",
+                       CssClass = "pagination",
+                       CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+                       DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+                       PagerItemTemplate = "<li>{0}</li>",
+                       Id = "bootstrappager"
+                   })
+                    </nav>
+
                 </td>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="6">
-                <nav>
-                    @Html.Pager(Model, new PagerOptions
-               {
-                   PageIndexParameterName = "pageIndex",
-                   ContainerTagName = "ul",
-                   CssClass = "pagination",
-                   CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
-                   DisabledPagerItemTemplate ="<li class=\"disabled\"><a>{0}</a></li>",
-                   PagerItemTemplate = "<li>{0}</li>",
-                   Id = "bootstrappager"
-               })
-                </nav>
+        </tfoot>
+    </table>
 
-            </td>
-        </tr>
-    </tfoot>
-</table>
-
-@section headers{
-    <style>
-        .pagination{
-            display:flex;
-            flex-direction:row;
-            justify-content:center;
-            margin:0;
-            padding:3px
-        }
-    </style>
+    @section headers{
+        <style>
+            .pagination {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                margin: 0;
+                padding: 3px
+            }
+        </style>
     }

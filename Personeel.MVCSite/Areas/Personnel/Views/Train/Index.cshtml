@@ -1,11 +1,19 @@
-﻿@model IEnumerable<Personeel.MVCSite.Models.TrainViewModels.AddTrainViewModel>
+﻿@using Webdiyer.WebControls.Mvc;
+@using Personeel.DTO;
+@model PagedList<Personeel.MVCSite.Models.TrainViewModels.AddTrainViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>培训管理</h2>
-
+@using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
+{
+    <div class="well well-sm">
+        <span>内容：</span><input type="text" name="Name" value="@Request.QueryString["Name"]" style="width:120px" />
+        <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
+    </div>
+}
 <p>
     @Html.ActionLink("添加培训", "Create")
 </p>
@@ -26,26 +34,44 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrainSort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.ActionLink("修改", "Edit", new {  id=item.TrainGuid  }) |
-            @Html.ActionLink("详情", "Details", new { id = item.TrainGuid }) |
-            @Html.ActionLink("删除", "Delete", new { id = item.TrainGuid })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainSort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.TrainGuid }) |
+                @Html.ActionLink("详情", "Details", new { id = item.TrainGuid }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.TrainGuid })
+            </td>
+        </tr>
+    }
 
 </table>
+<tr>
+    <td colspan="6">
+        <nav>
+            @Html.Pager(Model, new PagerOptions
+       {
+           PageIndexParameterName = "id",
+           ContainerTagName = "ul",
+           CssClass = "pagination",
+           CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+           DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+           PagerItemTemplate = "<li>{0}</li>",
+           Id = "bootstrappager"
+       })
+        </nav>
+
+    </td>
+</tr>

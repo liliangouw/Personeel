@@ -33,7 +33,7 @@ namespace Personeel.BLL
         {
             using (IDAL.IRegulatoryService regulatoryService = new DAL.RegulatoryService())
             {
-                return await regulatoryService.GetAllAsync().Select(m => new DTO.RegulatoryInfoDto()
+                return await regulatoryService.GetAllByOrderAsync(false).Select(m => new DTO.RegulatoryInfoDto()
                   {
                     Id = m.Id,
                     Title = m.Title,

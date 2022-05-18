@@ -11,6 +11,7 @@ namespace Personeel.IBLL
     {
         Task AddOperation(Guid userId, string text);
         Task<List<DTO.OperationinfoDto> >GetAllOperation(int pageIndex,int pageSize);
+        Task<List<DTO.OperationinfoDto>> GetAll();
         Task<int> GetDataCount();
         Task<OperationinfoDto> GetOperationById(Guid id);
         Task RemoveOperation(Guid id);

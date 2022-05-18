@@ -1,11 +1,19 @@
-﻿@model IEnumerable<Personeel.MVCSite.Models.FileViewModels.TrainInfoViewModel>
+﻿@using Webdiyer.WebControls.Mvc;
+@using Personeel.DTO;
+@model PagedList<Personeel.MVCSite.Models.FileViewModels.TrainInfoViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>培训资料</h2>
-
+@using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
+{
+    <div class="well well-sm">
+        <span>标题：</span><input type="text" name="Name" value="@Request.QueryString["Name"]" style="width:120px" />
+        <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
+    </div>
+}
 <p>
     @Html.ActionLink("上传资料", "Create")
 </p>
@@ -26,25 +34,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Title)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Sort)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreateTime)
-    </td>
-    <td>
-        <a href="/Contract/Download?filePath=@item.FilePath&fileName='@Path.GetFileName(item.FilePath)'">下载</a>
-    </td>
-    <td>
-        @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("删除", "Delete", new { id = item.Id })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                <a href="/Contract/Download?filePath=@item.FilePath&fileName='@Path.GetFileName(item.FilePath)'">下载</a>
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+<tr>
+    <td colspan="6">
+        <nav>
+            @Html.Pager(Model, new PagerOptions
+       {
+           PageIndexParameterName = "id",
+           ContainerTagName = "ul",
+           CssClass = "pagination",
+           CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+           DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+           PagerItemTemplate = "<li>{0}</li>",
+           Id = "bootstrappager"
+       })
+        </nav>
+
+    </td>
+</tr>

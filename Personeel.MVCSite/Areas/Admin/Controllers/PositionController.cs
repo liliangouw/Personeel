@@ -9,6 +9,7 @@ using Personeel.IBLL;
 using Personeel.MVCSite.Filters;
 using Personeel.MVCSite.Models.DepartmentViewModels;
 using Personeel.MVCSite.Models.PositionViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
@@ -16,7 +17,7 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
     public class PositionController : Controller
     {
         // GET: Admin/Position
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id=1)
         {
             IBLL.IPositionManager positionManager = new PositionManager();
             List<DTO.PositionInfoDto> posInfo = await positionManager.GetInfo();
@@ -29,7 +30,8 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                 tempModel.PosDes = item.PositionDescribe;
                 posList.Add(tempModel);
             }
-            return View(posList);
+            var model = posList.ToPagedList(id, 8);
+            return View(model);
         }
 
         // GET: Admin/Position/Details/5

@@ -8,16 +8,25 @@ using Personeel.BLL;
 using Personeel.DTO;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.TrainViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
     public class TrainController : Controller
     {
         // GET: Personnel/Train
-        public async  Task<ActionResult> Index()
+        public async  Task<ActionResult> Index(int id = 1, string Name = "")
         {
             ITrainManager trainManager = new TrainManager();
             List<TrainInfoDto>trainInfo= await trainManager.GetAllTrain();
+            if (Name == "")
+            {
+
+            }
+            else
+            {
+                trainInfo = trainInfo.Where(m => m.TrainDes.Contains(Name)).ToList();
+            }
             List<AddTrainViewModel> trainViewModel = new List<AddTrainViewModel>();
             foreach (var item in trainInfo)
             {
@@ -34,7 +43,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 };
                 trainViewModel.Add(temp);
             }
-            return View(trainViewModel);
+            var model = trainViewModel.ToPagedList(id, 8);
+            return View(model);
         }
 
         // GET: Personnel/Train/Details/5

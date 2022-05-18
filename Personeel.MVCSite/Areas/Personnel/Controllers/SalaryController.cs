@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.SalaryViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
@@ -14,18 +15,29 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     {
         ISalaryManager salaryManager = new SalaryManager();
         // GET: Personnel/Salary
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "")
         {
           var info=  await salaryManager.GetAllSalary();
-          var list = info.Select(m => new SalaryListViewModel()
+            if (Name == "")
+            {
+
+            }
+            else 
+            {
+                info=info.Where(m => m.UserName.Contains(Name)).ToList();
+
+            }
+            var list = info.Select(m => new SalaryListViewModel()
           {
               Id = m.Id,
               UserName = m.UserName,
               BasicSalary = m.BasicSalary,
               ActualSalary = m.ActualSalary,
               SalaryDate = m.SalaryDate
+             
           }).ToList();
-          return View(list);
+            var model = list.ToPagedList(id, 8);
+          return View(model);
         }
 
         // GET: Personnel/Salary/Details/5

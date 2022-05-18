@@ -10,6 +10,7 @@ using Personeel.BLL;
 using Personeel.DTO;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.FileViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
@@ -18,9 +19,18 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     {
         public ITrainInfoManager TrainInfoManager = new TrainInfoManager();
         // GET: Personnel/TrainInfo
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "")
         {
             List<TrainInfoInfoDto> info = await TrainInfoManager.GetAll();
+            if (Name == "")
+            {
+
+            }
+            else 
+            {
+                info=info.Where(m => m.Title.Contains(Name)).ToList();
+
+            }
             List<TrainInfoViewModel> list = info.Select(m => new TrainInfoViewModel()
             {
                 Id = m.Id,
@@ -29,7 +39,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 FilePath = m.FilePath,
                 CreateTime = m.CreateTime
             }).ToList();
-            return View(list);
+            var model = list.ToPagedList(id, 8);
+            return View(model);
         }
 
 

@@ -1,13 +1,23 @@
-﻿@model IEnumerable<Personeel.MVCSite.Models.CheckingViewModels.CheckingViewModel>
+﻿@using Webdiyer.WebControls.Mvc;
+@using Personeel.DTO;
+@model PagedList<Personeel.MVCSite.Models.CheckingViewModels.CheckingViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
-
+@using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
+{
+<div class="well well-sm">
+    <span>姓名：</span><input type="text" name="Name" value="@Request.QueryString["Name"]" style="width:120px" />
+    <span>开始日期：</span><input type="date" name="start" value="@Request.QueryString["start"]" style="width:120px" />
+    <span>结束日期：</span><input type="date" name="end" value="@Request.QueryString["end"]" style="width:120px" />
+    <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
+</div>
+}
 <h2>考勤信息</h2>
 
 <p>
-    
+
 </p>
 <table class="table">
     <tr>
@@ -29,24 +39,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BeginTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DayTime)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayTime)
+            </td>
+        </tr>
+    }
 
 </table>
+<tr>
+    <td colspan="6">
+        <nav>
+            @Html.Pager(Model, new PagerOptions
+       {
+           PageIndexParameterName = "id",
+           ContainerTagName = "ul",
+           CssClass = "pagination",
+           CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+           DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+           PagerItemTemplate = "<li>{0}</li>",
+           Id = "bootstrappager"
+       })
+        </nav>
+
+    </td>
+</tr>

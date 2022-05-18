@@ -32,7 +32,7 @@ namespace Personeel.BLL
         {
             using (IAnnounceService announceService = new AnnounceService())
             {
-                return await announceService.GetAllAsync().Select(m => new DTO.AnnounceInfoDto()
+                return await announceService.GetAllByOrderAsync(false).Select(m => new DTO.AnnounceInfoDto()
                 {
                     Id = m.Id,
                     Title = m.AnnounceTitle,

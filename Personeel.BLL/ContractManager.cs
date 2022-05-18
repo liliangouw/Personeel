@@ -18,7 +18,7 @@ namespace Personeel.BLL
         {
             using (IContractService contractService = new ContractService())
             {
-                return await contractService.GetAllAsync().Include(m => m.User).Select(m => new ContractInfoDto()
+                return await contractService.GetAllByOrderAsync().Include(m => m.User).Select(m => new ContractInfoDto()
                 {
                     Id = m.Id,
                     UserGuid = m.UserGuid,

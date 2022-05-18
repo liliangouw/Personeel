@@ -8,17 +8,27 @@ using Personeel.BLL;
 using Personeel.DTO;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.EncourageViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
     public class EncourageOrChastisementController : Controller
     {
         // GET: Personnel/EncourageOrChastisement
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "")
         {
             IEncourageManager encourageManager = new EncourageManage();
             List<EncourageViewModel> list = new List<EncourageViewModel>();
             List<EncourageInfoDto> info = await encourageManager.GetAll();
+            if (Name == "")
+            {
+
+            }
+            else
+            {
+                info=info.Where(m => m.UserName.Contains(Name)).ToList();
+
+            }
             foreach (var item in info)
             {
                 EncourageViewModel temp = new EncourageViewModel()
@@ -32,7 +42,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 };
                 list.Add(temp);
             }
-            return View(list);
+            var model = list.ToPagedList(id, 8);
+            return View(model);
         }
 
         // GET: Personnel/EncourageOrChastisement/Details/5

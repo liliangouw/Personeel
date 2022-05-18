@@ -9,6 +9,7 @@ using Personeel.IBLL;
 using Personeel.MVCSite.Filters;
 using Personeel.MVCSite.Models.ArticleViewModels;
 using Personeel.MVCSite.Models.DepartmentViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
@@ -16,10 +17,18 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     public class RegulatoryController : Controller
     {
         // GET: Admin/Regulatory
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "")
         {
             IRegulatoryManager regulatoryManager = new RegulatoryManager();
             List<DTO.RegulatoryInfoDto> regulatoryInfo = await regulatoryManager.GetAllRegulatory();
+            if (Name == "")
+            {
+
+            }
+            else
+            {
+                regulatoryInfo = regulatoryInfo.Where(m => m.Name.Contains(Name)).ToList();
+            }
             List<ArticleListViewModel> articleList = new List<ArticleListViewModel>();
             foreach (var item in  regulatoryInfo)
             {
@@ -33,7 +42,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 };
                 articleList.Add(tempModel);
             }
-            return View(articleList);
+            var model = articleList.ToPagedList(id, 8);
+            return View(model);
         }
         [HttpGet]
         public  ActionResult CreateArticle()

@@ -7,7 +7,7 @@
 }
 
 <h2>用户管理</h2>
-@using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Post))
+@using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
 {
 <div class="well well-sm">
     <span>姓名：</span><input type="text" name="Name" value="@Request.QueryString["Name"]" style="width:120px" />
@@ -20,7 +20,7 @@
         }
     </select>
     
-    <input type="submit" value="搜索" accesskey="S" />
+    <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
 </div>
 }
 <p>
@@ -86,7 +86,7 @@
                 <nav>
                     @Html.Pager(Model, new PagerOptions
                {
-                   PageIndexParameterName = "pageIndex",
+                   PageIndexParameterName = "id",
                    ContainerTagName = "ul",
                    CssClass = "pagination",
                    CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
@@ -100,14 +100,3 @@
         </tr>
     </tfoot>
 </table>
-@section headers{
-    <style>
-        .pagination {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 0;
-            padding: 3px
-        }
-    </style>
-}

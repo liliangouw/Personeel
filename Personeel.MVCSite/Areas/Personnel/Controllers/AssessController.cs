@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Personeel.BLL;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.AssessViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
@@ -15,9 +16,27 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     {
         private IAssessManager assessManager = new AssessManager();
         // GET: Personnel/Assess
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "", string Department = "")
         {
+            
             var info=await assessManager.GetAll();
+            if (Name == "" && Department == "")
+            {
+
+            }
+            else if (Name != "" && Department == "")
+            {
+                info = info.Where(m => m.UserName.Contains(Name)).ToList();
+
+            }
+            else if (Name == "" && Department != "")
+            {
+                info = info.Where(m => m.UserDep.Equals(Department)).ToList();
+            }
+            else
+            {
+                info = info.Where(m => m.UserDep.Equals(Department) && m.UserName.Contains(Name)).ToList();
+            }
             List<AssessListViewModel> list = info.Select(m => new AssessListViewModel()
             {
                 Id = m.Id,
@@ -29,7 +48,9 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 CreateTime = m.CreateTime,
                 State = m.State
             }).ToList();
-            return View(list);
+            var model = list.ToPagedList(id, 8);
+            ViewBag.Department = await new DepartmentManager().GetInfo();
+            return View(model);
         }
 
 

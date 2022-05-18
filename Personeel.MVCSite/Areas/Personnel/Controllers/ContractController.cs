@@ -10,6 +10,7 @@ using Personeel.BLL;
 using Personeel.DTO;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.FileViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
@@ -17,10 +18,18 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     {
         private IContractManager contractManager = new ContractManager();
         // GET: Personnel/Contract
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "")
         {
-           List<ContractInfoDto>info=await contractManager.GetAll();
-           List<ContractViewModel> list = info.Select(m => new ContractViewModel()
+           List<ContractInfoDto>userList=await contractManager.GetAll();
+            if (Name == "")
+            {
+
+            }
+            else
+            {
+                userList = userList.Where(m => m.UserName.Contains(Name)).ToList();
+            }
+            List<ContractViewModel> list = userList.Select(m => new ContractViewModel()
            {
                Id = m.Id,
                UserName = m.UserName,
@@ -30,7 +39,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                DeadLine = m.DeadLine,
                FilePath = m.FilePath
            }).ToList();
-            return View(list);
+            var model = list.ToPagedList(id, 8);
+            return View(model);
         }
 
         // GET: Personnel/Contract/Create

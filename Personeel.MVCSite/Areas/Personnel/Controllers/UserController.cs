@@ -9,16 +9,36 @@ using Personeel.BLL;
 using Personeel.DTO;
 using Personeel.IBLL;
 using Personeel.MVCSite.Models.UserViewModels;
+using Webdiyer.WebControls.Mvc;
 
 namespace Personeel.MVCSite.Areas.Personnel.Controllers
 {
     public class UserController : Controller
     {
         // GET: Personnel/User
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id = 1, string Name = "", string Department = "")
         {
             IBLL.IUserManager userManager = new UserManager();
             List<DTO.UserInfoDto> userList = await userManager.GetAllUser();
+            if (Name == "" && Department == "")
+            {
+
+            }
+            else if (Name != "" && Department == "")
+            {
+                userList = userList.Where(m => m.Name.Contains(Name)).ToList();
+
+            }
+            else if (Name == "" && Department != "")
+            {
+                Guid DepGuid = Guid.Parse(Department);
+                userList = userList.Where(m => m.DepGuid.Equals(DepGuid)).ToList();
+            }
+            else
+            {
+                Guid DepGuid = Guid.Parse(Department);
+                userList = userList.Where(m => m.DepGuid.Equals(DepGuid) && m.Name.Contains(Name)).ToList();
+            }
             List<UserListViewModel> userListViewModels = new List<UserListViewModel>();
             foreach (var item in userList)
             {
@@ -51,7 +71,9 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 };
                 userListViewModels.Add(tempModel);
             }
-            return View(userListViewModels);
+            var model = userListViewModels.ToPagedList(id, 8);
+            ViewBag.Department = await new DepartmentManager().GetInfo();
+            return View(model);
         }
 
         // GET: Admin/User/Details/5

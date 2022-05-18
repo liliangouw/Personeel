@@ -27,6 +27,15 @@
     <script src="~/Scripts/script.js"></script>
 
     @RenderSection("headers", required: false)
+    <style>
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0;
+            padding: 3px
+        }
+    </style>
     <script type="text/javascript">
         Date.prototype.format = function (fmt) {
             var o = {

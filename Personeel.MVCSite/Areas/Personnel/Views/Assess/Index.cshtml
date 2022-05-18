@@ -1,11 +1,28 @@
-﻿@model IEnumerable<Personeel.MVCSite.Models.AssessViewModels.AssessListViewModel>
+﻿@using Webdiyer.WebControls.Mvc;
+@using Personeel.DTO;
+@model PagedList<Personeel.MVCSite.Models.AssessViewModels.AssessListViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>绩效管理</h2>
+@using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
+{
+    <div class="well well-sm">
+        <span>姓名：</span><input type="text" name="Name" value="@Request.QueryString["Name"]" style="width:120px" />
+        <span>部门：</span>
+        <select name="Department">
+            <option name="Department" value=""></option>
+            @foreach (var userItem in ViewBag.Department)
+            {
+                <option name="Department" value="@userItem.DepGuid">@userItem.DepName</option>
+            }
+        </select>
 
+        <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
+    </div>
+}
 <p>
     @Html.ActionLink("创建考核", "Create")
 </p>
@@ -35,34 +52,50 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssessName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssessType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDep)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Result)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateTime)
-        </td>
-        <td>
-            @Html.ActionLink("考核", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("撤销", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDep)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                @Html.ActionLink("考核", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("撤销", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+<td colspan="6">
+    <nav>
+        @Html.Pager(Model, new PagerOptions
+   {
+       PageIndexParameterName = "id",
+       ContainerTagName = "ul",
+       CssClass = "pagination",
+       CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+       DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+       PagerItemTemplate = "<li>{0}</li>",
+       Id = "bootstrappager"
+   })
+    </nav>
+
+</td>

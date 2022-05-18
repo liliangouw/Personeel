@@ -1,11 +1,28 @@
-﻿@model IEnumerable<Personeel.MVCSite.Models.UserViewModels.UserListViewModel>
+﻿@using Webdiyer.WebControls.Mvc;
+@using Personeel.DTO;
+@model PagedList<Personeel.MVCSite.Models.UserViewModels.UserListViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>人事档案</h2>
+@using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
+{
+    <div class="well well-sm">
+        <span>姓名：</span><input type="text" name="Name" value="@Request.QueryString["Name"]" style="width:120px" />
+        <span>部门：</span>
+        <select name="Department">
+            <option name="Department" value=""></option>
+            @foreach (var userItem in ViewBag.Department)
+            {
+                <option name="Department" value="@userItem.DepGuid">@userItem.DepName</option>
+            }
+        </select>
 
+        <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
+    </div>
+}
 <p>
     @Html.ActionLink("添加用户", "AddUser")
 </p>
@@ -32,7 +49,8 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserNum)
@@ -61,3 +79,31 @@
     }
 
 </table>
+<tr>
+    <td colspan="6">
+        <nav>
+            @Html.Pager(Model, new PagerOptions
+       {
+           PageIndexParameterName = "id",
+           ContainerTagName = "ul",
+           CssClass = "pagination",
+           CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+           DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+           PagerItemTemplate = "<li>{0}</li>",
+           Id = "bootstrappager"
+       })
+        </nav>
+
+    </td>
+</tr>
+@section headers{
+    <style>
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0;
+            padding: 3px
+        }
+    </style>
+}
