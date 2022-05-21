@@ -1,56 +1,238 @@
-﻿@model IEnumerable<Personeel.MVCSite.Models.EventViewModels.EventIndexViewModel>
+﻿@using Webdiyer.WebControls.Mvc;
+@using Personeel.DTO;
+@model PagedList<Personeel.MVCSite.Models.EventViewModels.EventIndexViewModel>
 
 @{
     ViewBag.Title = "LeaveReport";
+
 }
 @section headers{
-
+    <script src="~/Scripts/echarts.js"></script>
 }
-@using (Html.BeginForm())
-{
-    <input type="date" name="startTime" value="" placeholder="开始日期" />
-    <input type="date" name="endTime" value="" placeholder="结束日期" />
-    <input type="submit" value="查询" class="btn btn-success" />
-}
+<form>
+    <input type="date" id="start" name="start" value="" placeholder="开始日期" />
+    <input type="date" id="end" name="end" value="" placeholder="结束日期" />
+    <input type="button" id="search" value="查询" class="btn btn-success" />
+</form>
 <br />
 <br />
+<div class="row">
+    <div>
+        <div id="main" style="width: 450px;height:400px;" class="col-md-6"></div>
+        <div class="col-md-1"> </div>
+        <div id="main2" style="width: 450px;height:400px;" class="col-md-5"></div>
+    </div>
+</div>
 
-<div id="main" style="width: 600px;height:400px;"></div>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventSort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApproveTime)
+        </th>
+        <th></th>
+    </tr>
 
-<script type="text/javascript">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventSort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApproveTime)
+            </td>
+            <td>
+                @Html.ActionLink("详情", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
-    $(function () {
+</table>
+<tr>
+    <td colspan="6">
+        <nav>
+            @Html.Pager(Model, new PagerOptions
+       {
+           PageIndexParameterName = "id",
+           ContainerTagName = "ul",
+           CssClass = "pagination",
+           CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+           DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+           PagerItemTemplate = "<li>{0}</li>",
+           Id = "bootstrappager"
+       })
+        </nav>
 
-        $('#p1').css('color', 'red');
+    </td>
+</tr>
 
-        $.ajax({
-            type: "POST",
-            url: "/Personnel/Reports/LeaveReport",
-            data: {},
-            success: function (data) {
-                var myChart = echarts.init(document.getElementById('main'));
-                // 指定图表的配置项和数据
-                var option = {
-                    legend: {
-                        data: ['人数']
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Reports/GetData/",
+                    data: {
+
                     },
-                    xAxis: {
-                        data: ['事假', '病假', '年假', '产假', '丧家', '其他']
+                    success: function (data) {
+                        var jsonData = JSON.stringify(data.state).replace(/\"/g, "");  //这里去掉所有"
+                        // 下边操作
+                        //  :替换:"
+                        //  ,替换",
+                        //  }]替换"}]
+                        //  }",{替换 "},{
+                        jsonData = jsonData.replace(/\:/g, "\:\"").replace(/\,/g, "\"\,").replace(/\}\]/g, "\"\}\]").replace(/\}\"\,\{/g, "\"\}\,\{");
+                        //最后转回json对象
+                        data.state = eval('(' + jsonData + ')');
+                        var myChart = echarts.init(document.getElementById('main'));
+                        var myChart2 = echarts.init(document.getElementById('main2'));
+                        // 指定图表的配置项和数据
+                        var option = {
+                            legend: {
+                                data: ['人数']
+                            },
+                            xAxis: {
+                                data: ['事假', '病假', '年假', '产假', '丧家', '其他']
+                            },
+                            yAxis: {},
+                            series: [{
+                                name: '人数',
+                                type: 'bar',
+                                data: data.numb
+                            }]
+                        };
+                        var option2 = {
+                            title: {
+                                text: '审批状态',
+                                subtext: '',
+                                left: 'center'
+                            },
+                            tooltip: {
+                                trigger: 'item'
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                left: 'left'
+                            },
+                            series: [
+                                {
+                                    name: '状态',
+                                    type: 'pie',
+                                    radius: '50%',
+                                    data: data.state,
+                                    emphasis: {
+                                        itemStyle: {
+                                            shadowBlur: 10,
+                                            shadowOffsetX: 0,
+                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                        }
+                                    }
+                                }
+                            ]
+                        };
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                        myChart2.setOption(option2);
+                    },  //end success
+                    error: function (jqXHR) {
+                        alert(1);
+                    }
+                });  //end ajax
+            });
+
+            $("#search").click(function () {
+
+                var start = $("#start").val();
+                var end = $("#end").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Reports/GetData/",
+                    data: {
+                        "start": start,
+                        "end": end
                     },
-                    yAxis: {},
-                    series: [{
-                        name: '人数',
-                        type: 'bar',
-                        data: data.numb
-                    }]
-                };
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-            },  //end success
-            error: function (jqXHR) {
+                    success: function (data) {
+                        var jsonData = JSON.stringify(data.state).replace(/\"/g, "");  //这里去掉所有"
+                        // 下边操作
+                        //  :替换:"
+                        //  ,替换",
+                        //  }]替换"}]
+                        //  }",{替换 "},{
+                        jsonData = jsonData.replace(/\:/g, "\:\"").replace(/\,/g, "\"\,").replace(/\}\]/g, "\"\}\]").replace(/\}\"\,\{/g, "\"\}\,\{");
+                        //最后转回json对象
+                        data.state = eval('(' + jsonData + ')');
+                        var myChart = echarts.init(document.getElementById('main'));
+                        var myChart2 = echarts.init(document.getElementById('main2'));
+                        // 指定图表的配置项和数据
+                        var option = {
+                            legend: {
+                                data: ['人数']
+                            },
+                            xAxis: {
+                                data: ['事假', '病假', '年假', '产假', '丧家', '其他']
+                            },
+                            yAxis: {},
+                            series: [{
+                                name: '人数',
+                                type: 'bar',
+                                data: data.numb
+                            }]
+                        };
+                        var option2 = {
+                            title: {
+                                text: '审批状态',
+                                subtext: '',
+                                left: 'center'
+                            },
+                            tooltip: {
+                                trigger: 'item'
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                left: 'left'
+                            },
+                            series: [
+                                {
+                                    name: '状态',
+                                    type: 'pie',
+                                    radius: '50%',
+                                    data: data.state,
+                                    emphasis: {
+                                        itemStyle: {
+                                            shadowBlur: 10,
+                                            shadowOffsetX: 0,
+                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                        }
+                                    }
+                                }
+                            ]
+                        };
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                        myChart2.setOption(option2);
+                    },  //end success
+                    error: function (jqXHR) {
+                        alert(1);
+                    }
+                });  //end ajax
+            });
+        });
 
-            }
-        });  //end ajax
-    }); //end page ready
-
-</script>
+    </script>

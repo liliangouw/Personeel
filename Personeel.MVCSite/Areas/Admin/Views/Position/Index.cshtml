@@ -7,9 +7,9 @@
 <h2>职位管理</h2>
 
 <p>
-    @Html.ActionLink("添加职位", "AddPosition")
+    @Html.ActionLink("添加职位", "AddPosition", new { }, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
+<table class="table table-bordered6">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PosName)

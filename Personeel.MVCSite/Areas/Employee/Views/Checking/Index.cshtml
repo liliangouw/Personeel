@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>考勤打卡</h2>
 
 <p>
-    @Html.ActionLink("上班打卡", "Start")<a> </a>@Html.ActionLink("下班打卡", "End")
+    @Html.ActionLink("上班打卡", "Start", new { }, new { @class = "btn btn-primary" })<a> </a>@Html.ActionLink("下班打卡", "End", new { }, new { @class = "btn btn-primary" })
 </p>
 <p>
     

@@ -11,7 +11,6 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-
         [HttpGet]
         public ActionResult Login()
         {
@@ -63,11 +62,11 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
                         Session["userEmail"] = model.LoginName;
                         Session["userid"] = userId.ToString();
                         Session["userName"] = userName;
-                        Session["UserRight"] = userRight.ToString();
+                        Session["userRight"] = userRight.ToString();
                         Session["isManager"] = isManager;
                     }
                     //跳转
-                    DTO.UserInfoDto user = await userManager.GetUserByEmail(model.LoginName);
+                    DTO.UserInfoDto user = await userManager.GetUserById(userId);
                     if (user.UserPower == 0)
                     {
                         return RedirectToAction("Index", "Admin", new { area = "Admin" });

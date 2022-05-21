@@ -7,6 +7,9 @@
 }
 
 <h2>奖惩管理</h2>
+<p>
+    @Html.ActionLink("创建奖惩", "Create", new { }, new { @class = "btn btn-primary" })
+</p>
 @using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
 {
     <div class="well well-sm">
@@ -14,10 +17,8 @@
         <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
     </div>
 }
-<p>
-    @Html.ActionLink("创建奖惩", "Create")
-</p>
-<table class="table">
+
+<table class="table table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UserName)

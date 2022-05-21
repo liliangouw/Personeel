@@ -7,6 +7,7 @@
 }
 
 <h2>工资账套管理</h2>
+<p>@Html.ActionLink("添加账套", "Select", new { }, new { @class = "btn btn-primary" })</p>
 @using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
 {
     <div class="well well-sm">
@@ -15,10 +16,9 @@
         <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
     </div>
 }
-<p>
-    @Html.ActionLink("选择用户", "Select")
-</p>
-<table class="table">
+
+
+<table class="table table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UserName)

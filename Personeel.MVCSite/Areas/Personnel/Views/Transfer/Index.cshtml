@@ -7,9 +7,9 @@
 <h2>人员职位表</h2>
 
 <p>
-    @Html.ActionLink("调动记录", "RecordIndex")
+    @Html.ActionLink("调动记录", "RecordIndex", new { }, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UserName)

@@ -7,9 +7,9 @@
 <h2>部门管理</h2>
 
 <p>
-    @Html.ActionLink("添加部门", "AddDepartment")
+    @Html.ActionLink("添加部门", "AddDepartment", new { }, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.DepName)

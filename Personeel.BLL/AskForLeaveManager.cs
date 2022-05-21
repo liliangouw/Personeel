@@ -190,7 +190,7 @@ namespace Personeel.BLL
         {
             using (IAskForLeaveService askForLeaveService = new AskForLeaveService())
             {
-                List<AskForLeave> info = await askForLeaveService.GetAllAsync().Include(m => m.User).Include(m => m.Department).ToListAsync();
+                List<AskForLeave> info = await askForLeaveService.GetAllByOrderAsync(false).Include(m => m.User).Include(m => m.Department).ToListAsync();
                 List<AskLeaveInfoDto> list = info.Select(m =>
                     new AskLeaveInfoDto()
                     {
