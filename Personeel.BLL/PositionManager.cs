@@ -50,7 +50,7 @@ namespace Personeel.BLL
         {
             using (IDAL.IPositionService iPositionService=new DAL.PositionService())
             {
-                return await  iPositionService.GetAllAsync().Select(m => new DTO.PositionInfoDto()
+                return await  iPositionService.GetAllByOrderAsync().Select(m => new DTO.PositionInfoDto()
                 {
                     PositionGuid = m.Id,
                     PositionName = m.Posname,

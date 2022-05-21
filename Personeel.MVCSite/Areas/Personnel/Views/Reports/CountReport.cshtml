@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "CountReport";
+}
+@section headers{
+    <script src="~/Scripts/echarts.js"></script>
+}
+<div id="main" style="width: 800px;height:325px;"></div>
+<div id="main2" style="width: 1000px;height:325px;"></div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Reports/GetCount/",
+                data: {
+                },
+                success: function (data) {
+                    var DepData = JSON.stringify(data.depName).replace(/\"/g, "'");
+                    data.depName = eval('(' + DepData + ')');
+
+                    var PosData = JSON.stringify(data.posName).replace(/\"/g, "'");
+                    data.posName = eval('(' + PosData + ')');
+
+                    var myChart = echarts.init(document.getElementById('main'));
+                    var myChart2 = echarts.init(document.getElementById('main2'));
+                    // 指定图表的配置项和数据
+                    var option = {
+                        title: {
+                            text: '部门分布',
+                            subtext: '',
+                            left: 'center'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: data.depName
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                data: data.depCount,
+                                type: 'bar',
+                                showBackground: true,
+                                backgroundStyle: {
+                                    color: 'rgba(180, 180, 180, 0.2)'
+                                }
+                            }
+                        ]
+                    };
+                    var option2 = {
+                        title: {
+                            text: '职位分布',
+                            subtext: '',
+                            left: 'center'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: data.posName
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                data: data.posCount,
+                                type: 'bar',
+                                showBackground: true,
+                                backgroundStyle: {
+                                    color: 'rgba(180, 180, 180, 0.2)'
+                                }
+                            }
+                        ]
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                    myChart2.setOption(option2);
+                },  //end success
+                error: function (jqXHR) {
+                    alert(1);
+                }
+            });  //end ajax
+        });
+    });
+
+</script>

@@ -15,6 +15,8 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     {
         public IAskForLeaveManager askForLeaveManager = new AskForLeaveManager();
         public IUserManager userManager = new UserManager();
+        public IDepartmentManager departmentManager = new DepartmentManager();
+        public IPositionManager positionManager = new PositionManager();
         // GET: Personnel/Reports
         public async Task <ActionResult> LeaveReport(int id=1)
         {
@@ -120,6 +122,40 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             return Json(new { Gender = gender,Age=age,Xueli=xueli,Wedlock=wedlock });
         }
 
+        public ActionResult CountReport()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> GetCount()
+        {
+            var userList = await userManager.GetAllUser();
+            var depList = await departmentManager.GetInfo();
+            var posList = await positionManager.GetInfo();
+
+            List<string> depName = new List<string>();
+            foreach (var item in depList)
+            {
+                depName.Add(item.DepName);
+            }
+            List<int> depCount = new List<int>();
+            foreach (var item in depList)
+            {
+               depCount.Add(userList.Where(m => m.Department == item.DepName).Count());
+            }
+
+            List<string> posName = new List<string>();
+            foreach (var item in posList)
+            {
+                posName.Add(item.PositionName);
+            }
+            List<int> posCount = new List<int>();
+            foreach (var item in posList)
+            {
+                posCount.Add(userList.Where(m => m.Position == item.PositionName).Count());
+            }
+            return Json(new { depName = depName, depCount = depCount, posName = posName, posCount = posCount });
+        }
 
     }
 }

@@ -341,6 +341,7 @@
     <Content Include="Areas\Employee\Views\Train\Info.cshtml" />
     <Content Include="Areas\Personnel\Views\Reports\LeaveReport.cshtml" />
     <Content Include="Areas\Personnel\Views\Reports\PersonReprot.cshtml" />
+    <Content Include="Areas\Personnel\Views\Reports\CountReport.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\echarts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

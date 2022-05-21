@@ -74,7 +74,7 @@ namespace Personeel.BLL
         {
             using (IUserService userService=new UserService())
             {
-                return  await userService.GetAllAsync().Where(m => m.IsRemoved == false).Select(m =>
+                return  await userService.GetAllByOrderAsync().Where(m => m.IsRemoved == false).Select(m =>
                     new DTO.UserInfoDto()
                     {
                         UserId = m.Id,

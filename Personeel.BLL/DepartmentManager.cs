@@ -45,7 +45,7 @@ namespace Personeel.BLL
         {
             using (IDepartmentService departmentService = new DepartmentService())
             {
-                return await departmentService.GetAllAsync().Select(m => new DTO.DepInfoDto()
+                return await departmentService.GetAllByOrderAsync().Select(m => new DTO.DepInfoDto()
                 {
                     DepGuid = m.Id,
                     DepName=m.Depname,
