@@ -14,6 +14,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
     public class ReportsController : Controller
     {
         public IAskForLeaveManager askForLeaveManager = new AskForLeaveManager();
+        public IUserManager userManager = new UserManager();
         // GET: Personnel/Reports
         public async Task <ActionResult> LeaveReport(int id=1)
         {
@@ -77,7 +78,47 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             return Json(new {numb = numberList,state=stateList});
         }
 
+        public async Task< ActionResult> PersonReprot()
+        {
+            ViewBag.Department = await new DepartmentManager().GetInfo();
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> GetPerson(DateTime? start = null, DateTime? end = null,string depGuid="")
+        {
+            start = start ?? new DateTime(2000, 1, 1, 0, 0, 0);
+            end = end ?? DateTime.Now;
+            var userList = await userManager.GetAllUser();
+            userList = userList.Where(m => m.BeginWorkDate >= start && m.BeginWorkDate <= end).ToList();
+            if (depGuid != "")
+            {
+                Guid DepGuid = Guid.Parse(depGuid);
+                userList = userList.Where(m => m.DepGuid.Equals(DepGuid)).ToList();
+            }
+            List<string> gender = new List<string>();
+            gender.Add("{value:" + userList.Where(m => m.Gender == "男").Count() + ",name:'男'}");
+            gender.Add("{value:" + userList.Where(m => m.Gender == "女").Count() + ",name:'女'}");
 
+            List<string> age = new List<string>();
+            DateTime now = DateTime.Now;
+            age.Add("{value:" + userList.Where(m =>(now.Year-m.Birthday.Year)>=18&& (now.Year - m.Birthday.Year) <23).Count() + ",name:'18-23岁'}");
+            age.Add("{value:" + userList.Where(m => (now.Year-m.Birthday.Year) >= 23 && (now.Year-m.Birthday.Year) < 28).Count() + ",name:'23-28岁'}");
+            age.Add("{value:" + userList.Where(m => (now.Year-m.Birthday.Year) >= 28 && (now.Year-m.Birthday.Year) < 33).Count() + ",name:'28-33岁'}");
+            age.Add("{value:" + userList.Where(m => (now.Year-m.Birthday.Year) >= 33 && (now.Year - m.Birthday.Year) < 38).Count() + ",name:'33-38岁'}");
+            age.Add("{value:" + userList.Where(m => (now.Year - m.Birthday.Year) >= 38).Count() + ",name:'38岁+'}");
+
+            List<string> xueli = new List<string>();
+            xueli.Add("{value:" + userList.Where(m =>m.TipTopDegree=="专科").Count() + ",name:'专科'}");
+            xueli.Add("{value:" + userList.Where(m => m.TipTopDegree == "本科").Count() + ",name:'本科'}");
+            xueli.Add("{value:" + userList.Where(m => m.TipTopDegree == "硕士").Count() + ",name:'硕士'}");
+
+            List<string> wedlock = new List<string>();
+            wedlock.Add("{value:" + userList.Where(m => m.Wedlock=="未婚").Count() + ",name:'未婚'}");
+            wedlock.Add("{value:" + userList.Where(m => m.Wedlock=="已婚").Count() + ",name:'已婚'}");
+            
+
+            return Json(new { Gender = gender,Age=age,Xueli=xueli,Wedlock=wedlock });
+        }
 
 
     }
