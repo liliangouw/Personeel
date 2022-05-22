@@ -16,16 +16,19 @@ namespace Personeel.MVCSite.Models.EncourageViewModels
         /// 类别
         /// </summary>
         [Display(Name = "分类")]
+        [Required]
         public string Category { get; set; }
         /// <summary>
         /// 原因
         /// </summary>
         [Display(Name = "原因")]
+        [Required]
         public string Reason { get; set; }
         /// <summary>
         /// 金额
         /// </summary>
          [Display(Name = "金额")]
+        [Required]
         public int Money { get; set; }
 
         public  Guid Id { get; set; }

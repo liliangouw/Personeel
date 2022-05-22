@@ -45,15 +45,31 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
 
         public async Task<ActionResult> Select()
         {
-            ViewBag.Users = await new UserManager().GetAllUser();
+            var Users = await new UserManager().GetAllUser();
+            var userAccounts = await salaryManager.GetAllAccount();
+            List<Guid> acountUserIds = userAccounts.Select(m => m.UserId).ToList();
+            Users = Users.Where(c => !acountUserIds.Contains(c.UserId)).ToList();
+            ViewBag.Users = Users;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Select(SelectUserViewModel model)
+        public async Task <ActionResult> Select(SelectUserViewModel model)
         {
-            Guid userGuid = model.UserGuid[0];
-            return RedirectToAction("Create", new { id = userGuid });
+            try 
+            { 
+              Guid userGuid = model.UserGuid[0];
+              return  RedirectToAction("Create", new { id = userGuid });
+            }
+            catch 
+            {
+                var Users = await new UserManager().GetAllUser();
+                var userAccounts = await salaryManager.GetAllAccount();
+                List<Guid> acountUserIds = userAccounts.Select(m => m.UserId).ToList();
+                Users = Users.Where(c => !acountUserIds.Contains(c.UserId)).ToList();
+                ViewBag.Users = Users;
+                return View(); 
+            }
         }
 
         // GET: Personnel/PayRollAccount/Create

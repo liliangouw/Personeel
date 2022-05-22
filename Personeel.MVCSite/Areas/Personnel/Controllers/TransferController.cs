@@ -52,15 +52,9 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(Guid userGuid, TransferRecordViewModel model)
         {
-            try
-            {
+            
                 await departmentManager.CreateTransferInfo(userGuid, model.TransferDep, model.TransferPos, model.Reason);
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
         [HttpGet]
         public async Task<ActionResult> RecordIndex()

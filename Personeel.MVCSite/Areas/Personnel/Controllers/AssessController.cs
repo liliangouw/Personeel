@@ -65,8 +65,17 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(AddAssessViewModel model)
         {
-            await assessManager.Add(model.AssessName, model.AssessType, model.UserGuid);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+              await assessManager.Add(model.AssessName, model.AssessType, model.UserGuid);
+              return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Users = await new UserManager().GetAllUser();
+                return View();
+            }
+            
         }
 
         // GET: Personnel/Assess/Edit/5

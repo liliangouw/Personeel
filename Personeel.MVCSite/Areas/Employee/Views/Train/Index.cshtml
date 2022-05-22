@@ -6,7 +6,8 @@
 
 <h2>培训首页</h2>
 @Html.ActionLink("培训资料", "Info", new { }, new { @class = "btn btn-primary" })
-<table class="table">
+<br />
+<table class="table table-bordered">
     <tr>
 
         <th>
@@ -46,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.EndTime)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.TrainGuid })
+                @Html.ActionLink("详情", "Details", new { id = item.TrainGuid })
 
             </td>
         </tr>

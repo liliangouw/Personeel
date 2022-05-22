@@ -35,7 +35,7 @@ namespace Personeel.BLL
         {
             using (IPayRollAccountService payRollAccountService = new PayRollAccountService())
             {
-               return await payRollAccountService.GetAllAsync().Select(m => new SalaryInfoDto()
+               return await payRollAccountService.GetAllByOrderAsync(false).Select(m => new SalaryInfoDto()
                 {
                     Id=m.Id,
                     UserId = m.UserGuid,
@@ -275,7 +275,7 @@ namespace Personeel.BLL
         {
             using (ISalaryService salaryService = new SalaryService())
             {
-                return await salaryService.GetAllAsync().Select(m => new SalaryInfoDto()
+                return await salaryService.GetAllByOrderAsync(false).Select(m => new SalaryInfoDto()
                 {
                     UserId = m.UserId,
                     Id = m.Id,
@@ -429,7 +429,7 @@ namespace Personeel.BLL
         {
             using (IChangeSalaryService changeSalaryService = new ChangeSalaryService())
             {
-                return await changeSalaryService.GetAllAsync().Select(m => new ChangeSalaryInfoDto()
+                return await changeSalaryService.GetAllByOrderAsync(false).Select(m => new ChangeSalaryInfoDto()
                 {
                     Id = m.Id,
                     UserGuid = m.UserId,

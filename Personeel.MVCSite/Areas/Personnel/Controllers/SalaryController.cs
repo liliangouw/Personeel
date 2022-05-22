@@ -73,8 +73,13 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         [HttpPost]
         public async Task<ActionResult> Select(SelectUserViewModel model)
         {
+            try { 
             await salaryManager.AddSalarys(model.UserGuid);
-            return  RedirectToAction("Index");
+            return  RedirectToAction("Index");}
+            catch {
+                ViewBag.Users = await new UserManager().GetAllUser();
+                return View();
+            }
         }
 
 

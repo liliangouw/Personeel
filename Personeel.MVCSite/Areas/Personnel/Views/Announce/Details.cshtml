@@ -3,55 +3,63 @@
 @{
     ViewBag.Title = "Details";
 }
-
+@section headers{
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <style>
+        .disable {
+            position: relative;
+            left: 0;
+            top: 0;
+            opacity: .5;
+            width: 100%;
+            height: 300rpx;
+            background: #000;
+            z-index: 998;
+            /*pointer-events: none; 是可以点击下面的事件，但是因为div是包着tinymac的，所以无效 */
+            pointer-events: none;
+        }
+    </style>
+}
 <h2>详情</h2>
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+    <b> @Html.DisplayNameFor(model => model.Title):</b>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Des)
-        </dt>
+    @Html.DisplayFor(model => model.Title)<br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Des)
-        </dd>
+    <b>@Html.DisplayNameFor(model => model.Des):</b>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
+    @Html.DisplayFor(model => model.Des)<br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
+    <b>@Html.DisplayNameFor(model => model.Writer):</b>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Writer)
-        </dt>
+    @Html.DisplayFor(model => model.Writer)<br />
 
-        <dd>
-            @Html.DisplayFor(model => model.Writer)
-        </dd>
+    <b>@Html.DisplayNameFor(model => model.CreateTime):</b>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateTime)
-        </dt>
+    @Html.DisplayFor(model => model.CreateTime)
 
-        <dd>
-            @Html.DisplayFor(model => model.CreateTime)
-        </dd>
+    <div class="disable">
+        <textarea name="readT" id="readT" style="width:100%; height:200px;">@Html.DisplayFor(model=>model.Text)</textarea>
+    </div>
 
-    </dl>
 </div>
 <p>
     @Html.ActionLink("修改", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("回到列表", "Index")
 </p>
+<script type="text/javascript">
+
+    $(function () {
+
+        tinymce.init({
+            selector: '#readT',
+            toolbar: false,
+            readonly: 1
+        });
+
+    });   //end page ready
+
+</script>

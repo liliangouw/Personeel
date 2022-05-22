@@ -57,7 +57,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TransferPos, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select name="TransferDep">
+                <select name="TransferPos">
                     @foreach (var userItem in ViewBag.Positions)
                     {
                         <option name="TransferPos" value="@userItem.PositionName">@userItem.PositionName</option>

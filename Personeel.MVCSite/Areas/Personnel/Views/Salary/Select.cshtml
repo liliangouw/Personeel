@@ -5,29 +5,23 @@
 }
 
 <h2>请选择要发放工资的员工</h2>
-
-@using (Html.BeginForm()) 
+是否全选：<input type="checkbox" id="checkBoxAll" />
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-         @Html.LabelFor(model => model.UserGuid, htmlAttributes: new { @class = "control-label col-md-2" })
-         <div class="col-md-10">
-             @foreach (var userItem in ViewBag.Users)
-             {
-                 <label><input type="checkbox" name="UserGuid" value="@userItem.UserId">@userItem.Name</label>
-             }
-             
-         </div>
+            @foreach (var userItem in ViewBag.Users)
+            {
+                <label><input type="checkbox" name="UserGuid" value="@userItem.UserId">@userItem.Name</label><br />
+            }
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="确定" class="btn btn-default" />
-            </div>
+            <input type="submit" value="确定" class="btn btn-default" />
         </div>
     </div>
 }
@@ -35,3 +29,48 @@
 <div>
     @Html.ActionLink("返回列表", "Index")
 </div>
+<script type="text/javascript">
+    $(function () {
+
+        // 全选/全不选
+
+        $("#checkBoxAll").click(function () {
+
+            $(":checkbox[name='UserGuid']").prop("checked", this.checked); //所有checkbox使用checkBoxAll状态
+
+        });
+
+        // checkbox全部选中时，checkBoxAll选中；checkbox存在未选中时，checkBoxAll不选
+
+        $(":checkbox[name='UserGuid']").click(function () {
+
+            // 首先验证自己是否选中状态，如果自己为非选中状态，则直接改变checkBoxAll状态
+
+            if (!$(this)[0].checked) {
+
+                $("#checkBoxAll").prop("checked", false);
+
+                return;
+
+            }
+
+            // 整体验证
+
+            // 获取未选中的checbox，如果存在则非全选
+
+            var checkBoxslist = $(":checkbox[name='UserGuid']:not(:checked)");
+
+            if (checkBoxslist.length > 0) { // 存在未选中
+
+                $("#checkBoxAll").prop("checked", false);
+
+            } else { // 不存在未选中
+
+                $("#checkBoxAll").prop("checked", true);
+
+            }
+
+        });
+
+    });
+</script>

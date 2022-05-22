@@ -97,7 +97,7 @@ namespace Personeel.BLL
         {
             using (ICheckingService checkingService = new CheckingService())
             {
-                return await checkingService.GetAllAsync().Select(m => new CheckingInfoDto()
+                return await checkingService.GetAllByOrderAsync(false).Select(m => new CheckingInfoDto()
                 {
                     Id = m.Id,
                     UserName = m.User.Name,

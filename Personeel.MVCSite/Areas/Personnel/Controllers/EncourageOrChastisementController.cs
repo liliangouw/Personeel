@@ -72,16 +72,24 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
 
         // POST: Personnel/EncourageOrChastisement/Create
         [HttpPost]
-        public ActionResult Create(EncourageViewModel model)
+        public async Task<ActionResult> Create(EncourageViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                IEncourageManager encourageManager = new EncourageManage();
-                encourageManager.AddEncourage(model.UserId, model.Category, model.Reason, model.Money);
-                return RedirectToAction("Index");
+                try
+                {
+                    IEncourageManager encourageManager = new EncourageManage();
+                    await encourageManager.AddEncourage(model.UserId, model.Category, model.Reason, model.Money);
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
+                ViewBag.Users = await new UserManager().GetAllUser();
                 return View();
             }
         }
