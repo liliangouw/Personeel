@@ -57,6 +57,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -136,6 +137,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OperationController.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServerController.cs" />
     <Compile Include="Areas\Personnel\Controllers\RegulatoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Employee\Controllers\AnnounceController.cs" />
@@ -342,6 +344,7 @@
     <Content Include="Areas\Personnel\Views\Reports\LeaveReport.cshtml" />
     <Content Include="Areas\Personnel\Views\Reports\PersonReprot.cshtml" />
     <Content Include="Areas\Personnel\Views\Reports\CountReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Server\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\echarts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

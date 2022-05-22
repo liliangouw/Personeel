@@ -138,24 +138,10 @@
 
 
                         <li>
-                            <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cog fa-stack-1x "></i></span>系统管理</a>
-                            <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                                <li>
-                                    <a href="#">
-                                        <span class="fa-stack fa-lg pull-left"></span>
-                                        @Html.ActionLink("日志管理", "Index", "Operation", new { Area = "Admin" }, null)
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <span class="fa-stack fa-lg pull-left">
-                                        </span>
-                                        设备管理
-                                    </a>
-                                </li>
-
-                            </ul>
+                            <a href="#">
+                            <span class="fa-stack fa-lg pull-left"><i class="fa fa-cog fa-stack-1x "></i></span>
+                            @Html.ActionLink("日志管理", "Index", "Operation", new { Area = "Admin" }, null)
+                            </a>
                         </li>
                     </ul>
                 </div>
