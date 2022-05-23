@@ -289,7 +289,8 @@ namespace Personeel.BLL
                     SalaryDate = m.SalaryDate,
                     SocialSecurity = m.SocialSecurity,
                     Tax = m.Tax,
-                    Subsidies = m.Subsidies
+                    Subsidies = m.Subsidies,
+                    Date=m.CreateTime
                 }).ToListAsync();
             }
         }

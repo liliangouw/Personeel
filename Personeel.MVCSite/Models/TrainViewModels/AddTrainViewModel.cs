@@ -13,14 +13,16 @@ namespace Personeel.MVCSite.Models.TrainViewModels
         [Display(Name = "主讲人")]
         public Guid UserId { get; set; }
         [Display(Name = "主讲人名称")]
+        [Required]
         public string UserName { get; set; }
         [Display(Name = "培训分类")]
-
+        [Required]
         public string TrainSort { get; set; }
         /// <summary>
         /// 培训内容
         /// </summary>
          [Display(Name = "培训内容")]
+        [Required]
         public string TrainDes { get; set; }
         /// <summary>
         /// 开始时间

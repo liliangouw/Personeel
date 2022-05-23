@@ -74,23 +74,23 @@ namespace Personeel.MVCSite.Controllers
                     {
                         return RedirectToAction("Index", "Admin", new { area = "Admin" });
                     }
-                    else if(user.UserPower==1)
+                    else if (user.UserPower == 1)
                     {
                         return RedirectToAction("Index", "Personnel", new { area = "Personnel" });
                     }
-                    else if(user.UserPower==3)
+                    else
                     {
                         return RedirectToAction("Index", "Employee", new { area = "Employee" });
                     }
 
                 }
+                else { return View(); }
             }
             else
             {
-                ModelState.AddModelError("","您的账号密码有误");
+                return View();
             }
-            
-            return View();
+
         }
     }
 }

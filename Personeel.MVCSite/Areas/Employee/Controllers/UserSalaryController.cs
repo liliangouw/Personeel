@@ -10,7 +10,7 @@ using Personeel.MVCSite.Models.SalaryViewModels;
 
 namespace Personeel.MVCSite.Areas.Employee.Controllers
 {
-    public class SalaryController : Controller
+    public class UserSalaryController : Controller
     {
         private ISalaryManager salaryManager = new SalaryManager();
         // GET: Employee/Salary

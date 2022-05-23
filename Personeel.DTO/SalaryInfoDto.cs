@@ -56,5 +56,6 @@ namespace Personeel.DTO
         /// 发薪日期
         /// </summary>
         public string SalaryDate { get; set; }
+        public DateTime Date { get; set; }
     }
 }

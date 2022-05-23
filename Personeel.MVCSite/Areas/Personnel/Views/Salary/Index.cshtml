@@ -12,10 +12,13 @@
 </p>
 @using (Html.BeginForm("Index", ViewContext.RouteData.GetRequiredString("Controller"), new RouteValueDictionary { { "id", "" } }, FormMethod.Get))
 {
-    <div class="well well-sm">
-        <span>姓名：</span><input type="text" name="Name" value="@Request.QueryString["Name"]" style="width:120px" />
-        <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
-    </div>
+<div class="well well-sm">
+    <span>姓名：</span><input type="text" name="Name" id="name" value="@Request.QueryString["Name"]" style="width:120px" />
+    <span>开始日期：</span><input type="date" name="start" id="start" value="@Request.QueryString["start"]" style="width:120px" />
+    <span>结束日期：</span><input type="date" name="end" id="end" value="@Request.QueryString["end"]" style="width:120px" />
+    <input type="submit" value="搜索" class="btn btn-success" accesskey="S" />
+    <input type="button" value="导出Excel" id="search" class="btn btn-success" />
+</div>
 }
 
 <table class="table table-bordered">
@@ -76,3 +79,16 @@
 
     </td>
 </tr>
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#search").click(function () {
+                var start = $("#start").val();
+                var end = $("#end").val();
+                var name = $("#name").val();
+                window.open("/Salary/Excel?name=" + name + "&start=" + start + "&end=" + end);
+            });
+        });
+
+</script>

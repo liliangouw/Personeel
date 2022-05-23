@@ -78,8 +78,15 @@
                 @Html.DisplayFor(modelItem => item.CreateTime)
             </td>
             <td>
-                @Html.ActionLink("考核", "Edit", new { id = item.Id }) |
+                @if (item.State == "已完成")
+                {              
                 @Html.ActionLink("撤销", "Delete", new { id = item.Id })
+                }
+                else
+                {
+                @Html.ActionLink("考核", "Edit", new { id = item.Id })  <a>|</a>
+                @Html.ActionLink("撤销", "Delete", new { id = item.Id })
+                }
             </td>
         </tr>
     }

@@ -76,15 +76,16 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(AddTrainViewModel trainViewModel)
         {
-            try
+            if(ModelState.IsValid)
             {
                 ITrainManager trainManager = new TrainManager();
                 await trainManager.AddTrain(trainViewModel.TrainSort, trainViewModel.TrainDes, trainViewModel.StartTime,
                     trainViewModel.EndTime, trainViewModel.UserId);
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
+                ViewBag.Users = await new UserManager().GetAllUser();
                 return View();
             }
         }

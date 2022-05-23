@@ -14,7 +14,7 @@
             var content3 = parseInt(document.getElementById("3").value);
             var content4 = parseInt(document.getElementById("4").value);
             var sum = content * 0.5 + content2 * 0.3 + content3 * 0.2 + content4;
-            var a = document.getElementById("result");
+            var a = document.getElementById("Result");
             a.value = sum;
         }                             
 
@@ -50,7 +50,7 @@
         <div class="form-group" hidden>
             @Html.LabelFor(model => model.Result, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input id="result" type="number" name="Result"/>
+                <input id="Result" type="number" name="Result"/>
             </div>
         </div>
         

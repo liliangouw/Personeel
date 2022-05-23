@@ -47,13 +47,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NPOI, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -146,7 +164,7 @@
     <Compile Include="Areas\Employee\Controllers\EventController.cs" />
     <Compile Include="Areas\Employee\Controllers\LoginController.cs" />
     <Compile Include="Areas\Employee\Controllers\RegulationController.cs" />
-    <Compile Include="Areas\Employee\Controllers\SalaryController.cs" />
+    <Compile Include="Areas\Employee\Controllers\UserSalaryController.cs" />
     <Compile Include="Areas\Employee\Controllers\TrainController.cs" />
     <Compile Include="Areas\Employee\Controllers\UserController.cs" />
     <Compile Include="Areas\Employee\EmployeeAreaRegistration.cs" />
@@ -331,8 +349,8 @@
     <Content Include="Areas\Personnel\Views\Assess\Edit.cshtml" />
     <Content Include="Areas\Employee\Views\User\Index.cshtml" />
     <Content Include="Areas\Employee\Views\User\Edit.cshtml" />
-    <Content Include="Areas\Employee\Views\Salary\Index.cshtml" />
-    <Content Include="Areas\Employee\Views\Salary\Details.cshtml" />
+    <Content Include="Areas\Employee\Views\UserSalary\Index.cshtml" />
+    <Content Include="Areas\Employee\Views\UserSalary\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Train\Index.cshtml" />
     <Content Include="Areas\Employee\Views\Train\Details.cshtml" />
     <Content Include="Areas\Employee\Views\Announce\Index.cshtml" />

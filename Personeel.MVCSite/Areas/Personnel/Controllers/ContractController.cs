@@ -48,7 +48,13 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         {
             ContractViewModel list = new ContractViewModel();
             list.CreateTime=DateTime.Now;
-            ViewBag.Users = await new UserManager().GetAllUser();
+            var Users = await new UserManager().GetAllUser();
+            IContractManager contractManager = new ContractManager();
+            var userAccounts = await contractManager.GetAll();
+            List<Guid> acountUserIds = userAccounts.Select(m => m.UserGuid).ToList();
+            Users = Users.Where(c => !acountUserIds.Contains(c.UserId)).ToList();
+            ViewBag.Users = Users;
+
             return View(list);
         }
 
@@ -56,7 +62,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(ContractViewModel model)
         {
-            
+           
                 if (Request.Files.Count == 0)
                 {
                     //Request.Files.Count 文件数为0上传不成功
@@ -82,7 +88,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
                 }
 
                 return RedirectToAction("Index");
-            
+
         }
         //下载文件
         public ActionResult Download(string filePath, string fileName)

@@ -24,7 +24,7 @@ namespace Personeel.MVCSite.Areas.Personnel.Controllers
             }
             else
             {
-                regulatoryInfo = regulatoryInfo.Where(m => m.Name.Contains(Name)).ToList();
+                regulatoryInfo = regulatoryInfo.Where(m => m.Title.Contains(Name)).ToList();
             }
             List<ArticleListViewModel> articleList = new List<ArticleListViewModel>();
             foreach (var item in regulatoryInfo)

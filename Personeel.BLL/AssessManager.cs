@@ -34,7 +34,7 @@ namespace Personeel.BLL
         {
             using (IAssessService assessService = new AssessService())
             {
-                List<Assess> info= await assessService.GetAllAsync().Include(m=>m.User).Include(m=>m.User.Department).ToListAsync();
+                List<Assess> info= await assessService.GetAllByOrderAsync(false).Include(m=>m.User).Include(m=>m.User.Department).ToListAsync();
                 List<AssessInfoDto> list = info.Select(m => new AssessInfoDto()
                 {
                     AssessName = m.AssessName,

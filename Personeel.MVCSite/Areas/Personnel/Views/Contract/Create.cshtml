@@ -23,6 +23,7 @@
                     <option value="@userItem.UserId">@userItem.Name</option>
                 }
             </select>
+            @Html.ValidationMessageFor(model => model.UserGuid, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -48,6 +49,7 @@
         <div class="col-md-10">
             <input name="file" type="file" id="file" />
         </div>
+        @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">

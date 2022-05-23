@@ -4,19 +4,10 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>删除</h2>
-
-<h3>你确定要删除以下培训信息吗</h3>
+<h3>您确定要删除以下培训信息吗</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TrainGuid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrainGuid)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
@@ -64,7 +55,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="删除" class="btn btn-default" /> |
             @Html.ActionLink("回到列表", "Index")
         </div>
     }
