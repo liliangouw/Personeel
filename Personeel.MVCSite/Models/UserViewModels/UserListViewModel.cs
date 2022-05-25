@@ -53,6 +53,15 @@ namespace Personeel.MVCSite.Models.UserViewModels
         public string Gender { get; set; }
         [Display(Name = "权限")]
         public Guid Right { get; set; }
+        [Display(Name = "密码")]
+        [Required]
+        public string oldPassWord { get; set; }
+        [Display(Name = "新密码")]
+        [Required]
+        public string PassWord1 { get; set; }
+        [Display(Name = "确认密码")]
+        [Required]
+        public string PassWord2 { get; set; }
 
     }
 }

@@ -76,7 +76,8 @@
                 <td>
                     @Html.ActionLink("修改", "Edit", new { id = item.UserId }) |
                     @Html.ActionLink("详情", "Details", new { id = item.UserId }) |
-                    @Html.ActionLink("删除", "Delete", new { id = item.UserId })
+                    @Html.ActionLink("删除", "Delete", new { id = item.UserId })  |
+                    @Html.ActionLink("重置密码", "Reset", new { id = item.UserId })
                 </td>
             </tr>
         }

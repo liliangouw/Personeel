@@ -1,0 +1,12 @@
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\bin\Debug\Personeel.DTO.dll
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\bin\Debug\Personeel.DTO.pdb
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\obj\Debug\Personeel.DTO.csproj.CoreCompileInputs.cache
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\obj\Debug\Personeel.DTO.dll
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\obj\Debug\Personeel.DTO.pdb
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\obj\Debug\Personeel.DTO.csproj.AssemblyReference.cache
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\bin\Debug\Personeel.DTO.dll.config
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\bin\Debug\EntityFramework.dll
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\bin\Debug\EntityFramework.xml
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\布咚咚\Desktop\Personeel\Personeel.DTO\obj\Debug\Personeel.DTO.csproj.CopyComplete

@@ -168,6 +168,7 @@ namespace Personeel.BLL
             int days = DateTime.DaysInMonth(year, month);
             //休息天数
             int weekDays = 0;
+            double addDay = 1;
             for (int i = 0; i < days; i++)
             {
                 //每逢周六/周日 休息天数增加一天
@@ -182,7 +183,7 @@ namespace Personeel.BLL
                     default:
                         break;
                 }
-                dateTime.AddDays(1);
+                dateTime=dateTime.AddDays(addDay);
             }
             //工作日等于当月总天数减去非
             //工作日

@@ -270,5 +270,14 @@ namespace Personeel.MVCSite.Areas.Admin.Controllers
             return RedirectToAction("Index");
 
         }
+
+        public async Task<ActionResult> Reset(Guid id)
+        {
+            IUserManager userManager = new UserManager();
+            var user=await userManager.GetUserById(id);
+            await userManager.ChangePassword(id, user.Email, "123456", "123456");
+            TempData["message"] = "密码重置成功";
+            return RedirectToAction("Index");
+        }
     }
 }

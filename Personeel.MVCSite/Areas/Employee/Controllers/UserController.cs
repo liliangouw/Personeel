@@ -44,7 +44,50 @@ namespace Personeel.MVCSite.Areas.Employee.Controllers
             };
             return View(model);
         }
-
+        
+        public async Task<ActionResult> ChangePassword(Guid id)
+        {
+            UserInfoDto userInfo = await userManager.GetUserById(id);
+            UserListViewModel model = new UserListViewModel()
+            {
+                UserId=userInfo.UserId,
+                Email = userInfo.Email,
+                Name = userInfo.Name,
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(UserListViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.PassWord2 == model.PassWord1)
+                {
+                    var user = await userManager.GetUserById(model.UserId);
+                    if (user.PassWord == model.oldPassWord)
+                    {
+                        await userManager.ChangePassword(model.UserId, model.Email, model.oldPassWord, model.PassWord2);
+                        TempData["message"] = "密码重置成功";
+                        return RedirectToAction("Index", new { userGuid = model.UserId });
+                    }
+                    else
+                    {
+                        TempData["message"] = "旧密码错误！";
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    TempData["message"] = "两次密码输入不一致！";
+                    return View(model);
+                }
+            }
+            else
+            {
+                return View(model);
+            }
+            
+        }
         // GET: Employee/User/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {

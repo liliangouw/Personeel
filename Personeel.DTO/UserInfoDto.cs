@@ -100,6 +100,7 @@ namespace Personeel.DTO
 
         public  Guid UserRightId { get; set; }
         public Guid DepGuid { get; set; }
+        public string PassWord { get; set; }
 
     }
 }

@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "89a15791-316b-4990-9fa8-db7166714c1b": {
+      "ProjectGuid": "89a15791-316b-4990-9fa8-db7166714c1b",
+      "DisplayName": "Personeel.Models",
+      "ColorIndex": 0
+    },
+    "f123e799-1af7-4f1f-a417-c0ff32eaec6d": {
+      "ProjectGuid": "f123e799-1af7-4f1f-a417-c0ff32eaec6d",
+      "DisplayName": "Personeel.IDAL",
+      "ColorIndex": 1
+    },
+    "5b45e63a-31d3-4c33-a1a4-ca0d797df8f3": {
+      "ProjectGuid": "5b45e63a-31d3-4c33-a1a4-ca0d797df8f3",
+      "DisplayName": "Personeel.DAL",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "杂项文件",
+      "ColorIndex": -1
+    },
+    "0848a575-7e78-457d-8ebf-5a3c4eecd223": {
+      "ProjectGuid": "0848a575-7e78-457d-8ebf-5a3c4eecd223",
+      "DisplayName": "Personeel.BLL",
+      "ColorIndex": 3
+    },
+    "3d44004a-7d3a-4dcd-87b8-1b4cd2917485": {
+      "ProjectGuid": "3d44004a-7d3a-4dcd-87b8-1b4cd2917485",
+      "DisplayName": "Personeel.IBLL",
+      "ColorIndex": 4
+    },
+    "9c0a2df9-c5b7-412b-8629-c6d5fdfd5e06": {
+      "ProjectGuid": "9c0a2df9-c5b7-412b-8629-c6d5fdfd5e06",
+      "DisplayName": "Personeel.DTO",
+      "ColorIndex": 5
+    },
+    "4d6076b4-888a-4840-b475-d6b4c39860b9": {
+      "ProjectGuid": "4d6076b4-888a-4840-b475-d6b4c39860b9",
+      "DisplayName": "Personeel.MVCSite",
+      "ColorIndex": 6
+    },
+    "38ed7ef8-2085-4813-aeac-efbda25fb1f1": {
+      "ProjectGuid": "38ed7ef8-2085-4813-aeac-efbda25fb1f1",
+      "DisplayName": "Test",
+      "ColorIndex": 7
+    },
+    "415f911d-1980-4d39-a6f1-82e81b63b84e": {
+      "ProjectGuid": "415f911d-1980-4d39-a6f1-82e81b63b84e",
+      "DisplayName": "Test",
+      "ColorIndex": 8
+    },
+    "d57def8d-4592-42dd-b09b-acea0c1e9ffa": {
+      "ProjectGuid": "d57def8d-4592-42dd-b09b-acea0c1e9ffa",
+      "DisplayName": "YiSha.Util",
+      "ColorIndex": 9
+    },
+    "63752ab7-54d0-44e3-b375-78d366799601": {
+      "ProjectGuid": "63752ab7-54d0-44e3-b375-78d366799601",
+      "DisplayName": "Personeel.Util",
+      "ColorIndex": 10
+    },
+    "83840fd4-26bb-4cb9-8f23-3f17bb9abebd": {
+      "ProjectGuid": "83840fd4-26bb-4cb9-8f23-3f17bb9abebd",
+      "DisplayName": "infotest",
+      "ColorIndex": 11
+    }
+  },
+  "NextColorIndex": 12
+}

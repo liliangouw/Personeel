@@ -181,7 +181,8 @@ namespace Personeel.BLL
                             UserPower = m.UserRight.UserPower,
                             UserRightId = m.UserRightID,
                             DepGuid = m.DepartmentID,
-                            IsManager = m.IsManager
+                            IsManager = m.IsManager,
+                            PassWord=m.Password
                         }).FirstAsync();
                 }
                 else

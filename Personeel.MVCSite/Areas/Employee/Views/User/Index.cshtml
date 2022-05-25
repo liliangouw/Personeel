@@ -154,5 +154,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("修改", "Edit", new { id=Model.UserId})
+    @Html.ActionLink("修改", "Edit", new { id = Model.UserId })|
+    @Html.ActionLink("修改密码", "ChangePassword", new { id = Model.UserId })
 </p>
