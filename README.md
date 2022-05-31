@@ -2,10 +2,10 @@
 开发工具：vs2022+sqlserver20199
 
 # 技术框架
-● 前端：Bootstrap
-● 核心框架：ASP.NET  MVC
-● ORM框架：Entity Framework
-● 数据库支持：SqlServer
+前端：Bootstrap
+核心框架：ASP.NET  MVC
+ORM框架：Entity Framework
+数据库支持：SqlServer
 
 # 项目结构
 --DTO层：业务层DTO对象
