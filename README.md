@@ -8,10 +8,10 @@ ORM框架：Entity Framework
 数据库支持：SqlServer  
 
 # 项目结构
---DTO层：业务层DTO对象  
---MODEL层：数据库实体层，使用EF的CodeFirst模式创建数据库  
---DAL层：数据访问层  
---IDAL层：数据访问层接口  
---BLL层：业务逻辑层  
---IBLL层：业务逻辑层接口  
---MVCSite层：前端UI界面
+DTO层：业务层DTO对象  
+MODEL层：数据库实体层，使用EF的CodeFirst模式创建数据库  
+DAL层：数据访问层  
+IDAL层：数据访问层接口  
+BLL层：业务逻辑层  
+IBLL层：业务逻辑层接口  
+MVCSite层：前端UI界面
